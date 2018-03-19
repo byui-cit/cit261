@@ -68,7 +68,7 @@ console.log(outputObject(ironMan));
 //works!  of course just figured out I can type 'superman' directly in the console and see the same thing!
 
 const jla = {
-//superman: { realName: 'Clark Kent' },  //this line gave me an error...oh I created superman above...won't let me redeclare that object
+superman: { realName: 'Clark Kent' }, //I thought I made a superman object above. why didn't this give me an error?
 batman: { realName: 'Bruce Wayne' },
 wonderWoman: { realName: 'Diana Prince' },
 flash: { realName: 'Barry Allen' },
@@ -77,3 +77,4 @@ aquaman: { realName: 'Arthur Curry' },
 
 console.log(jla.wonderWoman.realName);
 //can link dots together to drill into the object
+//and apparently "jla.superman" is a different object than just plain "superman".  That was why no error above. I wonder if I can use my "superman" object to initialize my jla.superman?
