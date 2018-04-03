@@ -13,7 +13,7 @@ html {
 	background: -webkit-radial-gradient(ellipse, #21a048 0%, #265169 100%) fixed;
 	background: radial-gradient(ellipse, #21a048 0%, #265169 100%) fixed;
 }
-
+img {max-width: 100%;}
 h1 {
 	color: #171717;
     padding-top: 15px;

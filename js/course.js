@@ -5,8 +5,8 @@
 ********************************************************/
 /* DO NOT DELETE OR MODIFY THIS SECTION */
 /* Append Script Tag for Online.js to the Body Tag */
-var onlineJs = document.createElement("script");
-onlineJs.src = 'https://content.byui.edu/integ/gen/00134d04-34d1-47b8-9242-c29059c522ee/0/online.js';
-document.body.appendChild(onlineJs);
+//var onlineJs = document.createElement("script");
+//onlineJs.src = 'https://content.byui.edu/integ/gen/00134d04-34d1-47b8-9242-c29059c522ee/0/online.js';
+//document.body.appendChild(onlineJs);
 
 /* Add Course Specific JavaScript Below */
