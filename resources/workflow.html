@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+	<title>BYU-Idaho CIT 261</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/solarized-light.css" />
+	<link rel="stylesheet" href="../css/course.css" />
+</head>
+<body>
+<div id="main">
+<header><img src="../images/smallBanner.png" alt="Course Banner" /></header>
+<main id="article">
+<h1>Managing the modern Front end workflow</h1>
+<hr />
+
+<p>Development workflow has become quite complicated for Web development.  Lets take a medium sized project for example. It could have dozens of javascript files, several css files, 3rd party libraries, and who knows how many icons, fonts, images, etc are involved. It might be using a CSS preprocessor like SASS or it could be transpiling the Javascript to make sure that new features will work in older browsers.</p>
+<p>A potential list of tasks that could need to happen everytime something changes is this:</p>
+<ol>
+    <li>Lint CSS and Javascript to find any coding issues.</li>
+    <li>Run unit tests to make sure nothing got broken with your last changes</li>
+    <li>compile all SCSS to CSS</li>
+    <li>concatinate all CSS into one file for faster loading,</li>
+    <li>Minify the CSS to reduce file size.</li>
+    <li>Transpile Javascript with Babel for wider support for older browsers</li>
+    <li>Concatinate all JS files into one file for faster loading</li>
+    <li>Minify and Uglify Javascript to reduce size</li>
+    <li>Do the same for any 3rd party CSS or JS</li>
+    <li>Move all the production assets into a distribution directory to separate them from the development stuff</li>
+    
+</ol>
+<p>Whew!  That's a lot of things...and they have to happen A LOT!  It's no wonder that developers have produced tools to help manage all of this. This activity will introduce a simple implementation of some of these tools.</p>
+
+<h2>Prerequisites</h2>
+<ul>
+   <li>It will really help if you are familiar with the command line for your Operating system. Here is a quick overview to the <a href="http://byui-cit.github.io/advcss/resources/cmd-line-mac.html" target="_blank">command line for Mac</a> and the <a href="http://byui-cit.github.io/advcss/resources/cmd-line-pc.html" target="_blank">command line for Windows</a> if you need a primer. </li>
+    <li>You must have <a href="https://nodejs.org/en/" target="_blank">NodeJS</a> installed on your computer. Most of these tools require it. Goto <a href="https://byui-cit.github.io/advcss/lesson01/l01-software.html" target="_blank">this software setup</a> walkthrough and skip to the Node part for instructions for your OS.</li>
+    <li>The <a href="parcel.zip">boilerplate code</a>. Download this and extract it somewhere you can find it on your computer. If you are not confident with the command line for your operating system then I recommend placing it on your Desktop or in Documents.</li>
+    <li><a href="https://yarnpkg.com/en/">Yarn</a>: This is a package manager for Node.  You can install it by running <code>npm install yarn -g</code> in your command line once you have installed NodeJS</li>
+    
+</ul>
+</main>
+<!-- end #article --></div>
+
+<script src="../js/course.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script>// <![CDATA[
+hljs.initHighlightingOnLoad();
+// ]]></script>
+</body>
+</html>
