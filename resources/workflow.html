@@ -1,92 +1,133 @@
 <!DOCTYPE html>
 <html lang="en-us">
+
 <head>
     <meta charset="utf-8">
-	<title>BYU-Idaho CIT 261</title>
+    <title>BYU-Idaho CIT 261</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/solarized-light.css" />
-	<link rel="stylesheet" href="../css/course.css" />
-	<style>
-        code {
-            font-weight: bold;
-            color: cadetblue;
-        }
-        kbd {
-            font-weight: bold;
-            color:darkblue;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/course.css" />
+
 </head>
+
 <body>
-<div id="main">
-<header><img src="../images/smallBanner.png" alt="Course Banner" /></header>
-<main id="article">
-<h1>Managing the modern Front end workflow</h1>
-<hr />
+    <div id="main">
+        <header><img src="../images/smallBanner.png" alt="Course Banner" /></header>
+        <main id="article">
+            <h1>Managing the modern Front end workflow</h1>
+            <hr />
 
-<p>Development workflow has become quite complicated for Web development.  Lets take a medium sized project for example. It could have dozens of javascript files, several css files, 3rd party libraries, and who knows how many icons, fonts, images, etc are involved. It might be using a CSS preprocessor like SASS or it could be transpiling the Javascript to make sure that new features will work in older browsers.</p>
-<p>A potential list of tasks that could need to happen everytime something changes is this:</p>
-<ol>
-    <li>Lint CSS and Javascript to find any coding issues.</li>
-    <li>Run unit tests to make sure nothing got broken with your last changes</li>
-    <li>compile all SCSS to CSS</li>
-    <li>concatinate all CSS into one file for faster loading,</li>
-    <li>Minify the CSS to reduce file size.</li>
-    <li>Transpile Javascript with Babel for wider support for older browsers</li>
-    <li>Concatinate all JS files into one file for faster loading</li>
-    <li>Minify and Uglify Javascript to reduce size</li>
-    <li>Do the same for any 3rd party CSS or JS</li>
-    <li>Move all the production assets into a distribution directory to separate them from the development stuff</li>
-    
-</ol>
-<p>Whew!  That's a lot of things...and they have to happen A LOT!  It's no wonder that developers have produced tools to help manage all of this. This activity will introduce a simple implementation of some of these tools.</p>
-<p>The tools fall into three catagories:</p>
-<ol>
-    <li>Package managers: These keep track of all of the external dependencies for our app. Both development tools and libraries we might be using. It knows not only which packages to download...but tracks versions as well. We are using <code>yarn</code> for our package manager. NPM is another very common package manager.</li>
-    <li>Bundlers: bundlers handle the compiling, transpiling, concatinating, minifying, and moving around of assets in our project. We are using <code>Parcel</code> as our bundler. Another common bundler is Webpack</li>
-    <li>Task managers: these keep track of what needs to be done and when. There will generally be scripts defined in the task manager for each phase of development. Our project is fairly simple so we are just using <code>yarn</code> again for task manager. Other common managers are Grunt or Gulp</li>
-    </ol>
+            <p>Development workflow has become quite complicated for Web development. Lets take a medium sized project
+                for example. It could have dozens of javascript files, several css files, 3rd party libraries, and who
+                knows how many icons, fonts, images, etc are involved. It might be using a CSS preprocessor like SASS
+                or it could be transpiling the Javascript to make sure that new features will work in older browsers.</p>
+            <p>A potential list of tasks that could need to happen everytime something changes is this:</p>
+            <ol>
+                <li>Lint CSS and Javascript to find any coding issues.</li>
+                <li>Run unit tests to make sure nothing got broken with your last changes</li>
+                <li>compile all SCSS/LESS to CSS</li>
+                <li>concatinate all CSS into one file for faster loading,</li>
+                <li>Minify the CSS to reduce file size.</li>
+                <li>Transpile Javascript with Babel for wider support for older browsers</li>
+                <li>Concatinate all JS files into one file for faster loading</li>
+                <li>Minify and Uglify Javascript to reduce size</li>
+                <li>Do the same for any 3rd party CSS or JS</li>
+                <li>Move all the production assets into a distribution directory to separate them from the development
+                    stuff</li>
+
+            </ol>
+            <p>Whew! That's a lot of things...and they have to happen A LOT! It's no wonder that developers have
+                produced tools to help manage all of this. This activity will introduce a simple implementation of some
+                of these tools.</p>
+            <p>The tools fall into three catagories:</p>
+            <ol>
+                <li>Package managers: These keep track of all of the external dependencies for our app. Both
+                    development tools and libraries we might be using. It knows not only which packages to
+                    download...but tracks versions as well. We are using <code>yarn</code> for our package manager. NPM
+                    is another very common package manager.</li>
+                <li>Bundlers: bundlers handle the compiling, transpiling, concatinating, minifying, and moving around
+                    of assets in our project. We are using <code>Parcel</code> as our bundler. Another common bundler
+                    is Webpack</li>
+                <li>Task managers: these keep track of what needs to be done and when. There will generally be scripts
+                    defined in the task manager for each phase of development. Our project is fairly simple so we are
+                    just using <code>yarn</code> again for task manager. Other common managers are Grunt or Gulp</li>
+            </ol>
 
 
-<h2>Prerequisites</h2>
-<ul>
-   <li>It will really help if you are familiar with the command line for your Operating system. Here is a quick overview to the <a href="http://byui-cit.github.io/advcss/resources/cmd-line-mac.html" target="_blank">command line for Mac</a> and the <a href="http://byui-cit.github.io/advcss/resources/cmd-line-pc.html" target="_blank">command line for Windows</a> if you need a primer. </li>
-    <li>You must have <a href="https://nodejs.org/en/" target="_blank">NodeJS</a> installed on your computer. Most of these tools require it. Goto <a href="https://byui-cit.github.io/advcss/lesson01/l01-software.html" target="_blank">this software setup</a> walkthrough and skip to the Node part for instructions for your OS.</li>
-    <li>The <a href="parcel.zip">boilerplate code</a>. Download this and extract it somewhere you can find it on your computer. If you are not confident with the command line for your operating system then I recommend placing it on your Desktop or in Documents.</li>
-    <li><a href="https://yarnpkg.com/en/">Yarn</a>: This is a package manager for Node.  You can install it by running <code>npm install yarn -g</code> in your command line once you have installed NodeJS</li>
-    
-</ul>
-<h2>Activity</h2>
-<ol>
-    <li>After completing the setup above open the command line on your computer and navigate to the directory where you saved the boilerplate code.</li>
-    <li>There are a bunch of additional assets that need to be installed. Type <code>yarn install</code> to get those. Once that is finished you will notice a new directory called node_modules. </li>
-    <li>Open the folder with the boilerplate code in your editor. You will notice a few things.
-    <ul>
-        <li><kbd>node_modules</kbd> : This is where all of the 3rd party tools we will need got installed to when you ran 'yarn install' above.</li>
-        <li><kbd>src</kbd>: This is where I have placed all of the code. This is where you will work.</li>
-        <li><kbd>package.json</kbd>: This file contains the information about the dependencies for the project. When you ran the install command this is how it knew what to go get. We can also define a few scripts in here.</li>
-        <li>Various other configuration files.</li>
-    </ul>  </li>
-    <li>Open the <kbd>package.json</kbd> file in your editor. Look first at the <kbd>scripts</kbd> portion. You should see the following possible commands:
-    <ul>
-        <li><code>prestart</code>: This gets run automatically when you run <code>start</code> or you can run it by itself as well. It does a bit of cleanup for us.</li>
-        <li><code>start</code>: This command starts up our bundler Parcel. This starts a webserver on port 1234, clears out the 'build' directory, builds the new files based on what is in 'src' (transpiles with babel, compiles our Sass if we are using it, and concatenates all of our CSS and JS into separate files.), watches our files for changes, re-compiles everything on a change and refreshes the browser. It places the code in a <kbd>build</kbd> directory. Quite a lot for one simple command!</li>
-        <li><code>prebuild</code>: just like prestart this runs automatically when we run the <code>build</code> process.</li>
-        <li><code>build</code>: This command gets our code ready for distribution. It runs a similar process to the <code>start</code> above, but also minifies the CSS and JS. It creates a <kbd>dist</kbd> directory. If you were publishing your app to a server that is the code you would move.</li>
-        <li><code>watch</code> is very similar to <code>start</code></li>
-        <li><code>lint</code> runs a linter on your Javascript and will make recommendations and sometimes even changes to your code based on the rules it is configured with.</li>
-    </ul></li>
-    <li>Look next at the <kbd>devDependencies</kbd> section. This lists out all of the tools we are using to facilitate our development. These tools will not be a part of the distribution code. This is a good thing, I don't know if you noticed...but the <kbd>node_modules</kbd> directory is over 100MB!</li>
-    <li>To start up your tools go ahead and run <code>yarn start</code> in the command line. You should see the <kbd>build</kbd> directory get created and populated with files. And if you point your web browser to <code>http://localhost:1234</code> you will see a simple page. Make a change to any of the files in the project and the browser will auto-refresh.</li>
-    <li>When you are done working you can hit <code>ctrl-c</code> to end that process.</li>
-</ol>
-</main>
-<!-- end #article --></div>
+            <h2>Prerequisites</h2>
+            <ul>
+                <li>It will really help if you are familiar with the command line for your Operating system. Here is a
+                    quick overview to the <a href="http://byui-cit.github.io/advcss/resources/cmd-line-mac.html" target="_blank">command
+                        line for Mac</a> and the <a href="http://byui-cit.github.io/advcss/resources/cmd-line-pc.html"
+                        target="_blank">command line for Windows</a> if you need a primer. </li>
+                <li>You must have <a href="https://nodejs.org/en/" target="_blank">NodeJS</a> installed on your
+                    computer. Most of these tools require it. Goto <a href="https://byui-cit.github.io/advcss/lesson01/l01-software.html"
+                        target="_blank">this software setup</a> walkthrough and skip to the Node part for instructions
+                    for your OS.</li>
+                <li>The <a href="parcel.zip">boilerplate code</a>. Download this and extract it somewhere you can find
+                    it on your computer. If you are not confident with the command line for your operating system then
+                    I recommend placing it on your Desktop or in Documents.</li>
+                <li><a href="https://yarnpkg.com/en/">Yarn</a>: This is a package manager for Node. You can install it
+                    by running <code>npm install yarn -g</code> in your command line once you have installed NodeJS</li>
 
-<script src="../js/course.js"></script>
-<script src="../js/highlight.pack.js"></script>
-<script>// <![CDATA[
-hljs.initHighlightingOnLoad();
+            </ul>
+            <h2>Activity</h2>
+            <ol>
+                <li>After completing the setup above open the command line on your computer and navigate to the
+                    directory where you saved the boilerplate code.</li>
+                <li>There are a bunch of additional assets that need to be installed. Type <code>yarn install</code> to
+                    get those. Once that is finished you will notice a new directory called node_modules. </li>
+                <li>Open the folder with the boilerplate code in your editor. You will notice a few things.
+                    <ul>
+                        <li><kbd>node_modules</kbd> : This is where all of the 3rd party tools we will need got
+                            installed to when you ran 'yarn install' above.</li>
+                        <li><kbd>src</kbd>: This is where I have placed all of the code. This is where you will work.</li>
+                        <li><kbd>package.json</kbd>: This file contains the information about the dependencies for the
+                            project. When you ran the install command this is how it knew what to go get. We can also
+                            define a few scripts in here.</li>
+                        <li>Various other configuration files.</li>
+                    </ul>
+                </li>
+                <li>Open the <kbd>package.json</kbd> file in your editor. Look first at the <kbd>scripts</kbd> portion.
+                    You should see the following possible commands:
+                    <ul>
+                        <li><code>prestart</code>: This gets run automatically when you run <code>start</code> or you
+                            can run it by itself as well. It does a bit of cleanup for us.</li>
+                        <li><code>start</code>: This command starts up our bundler Parcel. This starts a webserver on
+                            port 1234, clears out the 'build' directory, builds the new files based on what is in 'src'
+                            (transpiles with babel, compiles our Sass if we are using it, and concatenates all of our
+                            CSS and JS into separate files.), watches our files for changes, re-compiles everything on
+                            a change and refreshes the browser. It places the code in a <kbd>build</kbd> directory.
+                            Quite a lot for one simple command!</li>
+                        <li><code>prebuild</code>: just like prestart this runs automatically when we run the <code>build</code>
+                            process.</li>
+                        <li><code>build</code>: This command gets our code ready for distribution. It runs a similar
+                            process to the <code>start</code> above, but also minifies the CSS and JS. It creates a
+                            <kbd>dist</kbd> directory. If you were publishing your app to a server that is the code you
+                            would move.</li>
+                        <li><code>watch</code> is very similar to <code>start</code></li>
+                        <li><code>lint</code> runs a linter on your Javascript and will make recommendations and
+                            sometimes even changes to your code based on the rules it is configured with.</li>
+                    </ul>
+                </li>
+                <li>Look next at the <kbd>devDependencies</kbd> section. This lists out all of the tools we are using
+                    to facilitate our development. These tools will not be a part of the distribution code. This is a
+                    good thing, I don't know if you noticed...but the <kbd>node_modules</kbd> directory is over 100MB!</li>
+                <li>To start up your tools go ahead and run <code>yarn start</code> in the command line. You should see
+                    the <kbd>build</kbd> directory get created and populated with files. And if you point your web
+                    browser to <code>http://localhost:1234</code> you will see a simple page. Make a change to any of
+                    the files in the project and the browser will auto-refresh.</li>
+                <li>When you are done working you can hit <code>ctrl-c</code> to end that process.</li>
+            </ol>
+        </main>
+        <!-- end #article -->
+    </div>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>// <![CDATA[
+        hljs.initHighlightingOnLoad();
 // ]]></script>
 </body>
+
 </html>
