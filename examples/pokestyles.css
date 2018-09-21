@@ -1,0 +1,50 @@
+main {
+    display: flex;
+    flex-flow: row wrap;
+    
+}
+
+.hidden {
+    display: none;
+}
+
+#pokelist li {
+    cursor: pointer;
+}
+
+#detailsbox {
+    height: 400px;
+    width: 300px;
+    padding: 1em;
+    text-align: center;
+       border: 2px solid;
+}
+
+#detailsbox dl {
+    border: 1px solid;
+    text-align: left;
+}
+
+.listbox {
+    width: 50%;
+}
+
+#pokelist {
+    display: flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+    line-height: 2em;
+    
+}
+
+#pokelist li {
+    flex: 0 0 6em;
+    text-align: center;
+    border: 1px solid;
+    background-color: azure;
+    
+}
+#pokelist li:hover {
+    background-color: bisque;
+    text-decoration: underline;
+}

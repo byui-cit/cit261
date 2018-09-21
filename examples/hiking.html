@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Great Hikes (dynamic DOM example)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .hikeStyles {
+            padding: 0;
+            margin: 1em 0;
+            list-style-type: none;
+        }
+
+        .hikeStyles li>h2 {
+            text-align: center;
+            background-color: burlywood;
+
+        }
+
+        .hikeStyles li>img {
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <main>
+        <h1>My favorite hikes</h1>
+        <ul id="hikes" class="hikeStyles">
+            <li>
+                <img src="falls.jpg" alt="Image of Bechler Falls">
+                <h2>Bechler Falls</h2>
+                <div>
+                    <h3>Distance</h3>
+                    <p>3 miles</p>
+                </div>
+                <div>
+                    <h3>Difficulty</h3>
+                    <p>Easy</p>
+                </div>
+                <div>
+                    <h3>Description</h3>
+                    <p>Beautiful short hike along the Bechler river to Bechler Falls</p>
+                </div>
+                <div>
+                    <h3>How to get there</h3>
+                    <p>Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for
+                        a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road.
+                        There is a parking area at the trailhead.</p>
+                </div>
+            </li>
+        </ul>
+    </main>
+
+    <script>
+        //create an array of hikes
+        const hikeList = [
+            {
+                name: 'Bechler Falls',
+                imgSrc: 'falls.jpg',
+                imgAlt: 'Image of Bechler Falls',
+                distance: '3 miles',
+                difficulty: 'Easy',
+                description: 'Beautiful short hike along the Bechler river to Bechler Falls',
+                directions: 'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+            },
+            {
+                name: 'Teton Canyon',
+                imgSrc: 'falls.jpg',
+                imgAlt: 'Image of Bechler Falls',
+                distance: '3 miles',
+                difficulty: 'Easy',
+                description: 'Beautiful short hike along the Bechler river to Bechler Falls',
+                directions: 'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+            },
+            {
+                name: 'Denanda Falls',
+                imgSrc: 'falls.jpg',
+                imgAlt: 'Image of Bechler Falls',
+                distance: '3 miles',
+                difficulty: 'Easy',
+                description: 'Beautiful short hike along the Bechler river to Bechler Falls',
+                directions: 'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+            }
+
+        ];
+
+        //on load grab the array and insert it into the page
+        window.addEventListener('load', function () {
+            console.log('it worked!');
+            let hikeListElement = document.getElementById('hikes');
+            hikeListElement.innerHTML = '';
+            hikeList.map((hike) => {
+                hikeListElement.appendChild(renderHike(hike));
+            });
+            //createHike(hikeList[0]);
+        });
+
+        function createHike(hike) {
+
+            let item = document.createElement('li');
+            item.innerHTML = `<img src="${hike.imgSrc}" alt="${hike.imgAlt}">`; //this is another way we could do it.
+            let image = document.createElement('img');
+            image.src = hike.imgSrc;
+            image.alt = hike.imgAlt;
+            item.appendChild(image);
+            item.appendChild(document.createElement('h2').appendChild(document.createTextNode(hike.name)));
+            return item;
+        }
+
+        function renderHike(hike) {
+            const item = document.createElement('li');
+            item.innerHTML = ` 
+            
+                <img src="${hike.imgSrc}" alt="${hike.imgAlt}">
+                <h2>${hike.name}</h2>
+                <div>
+                    <h3>Distance</h3>
+                    <p>${hike.distance}</p>
+                </div>
+                <div>
+                    <h3>Difficulty</h3>
+                    <p>${hike.difficulty}</p>
+                </div>
+                <div>
+                    <h3>Description</h3>
+                    <p>${hike.description}</p>
+                </div>
+                <div>
+                    <h3>How to get there</h3>
+                    <p>Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for
+                        a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road.
+                        There is a parking area at the trailhead.</p>
+                </div>
+            
+            `;
+            return item;
+        }
+
+
+    </script>
+</body>
+
+</html>

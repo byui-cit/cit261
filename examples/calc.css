@@ -1,0 +1,27 @@
+:root {
+  --buttonWidth: 44px;
+  --width: calc(var(--buttonWidth) * 4);
+}
+* {
+  box-sizing: border-box;
+}
+.calcBody {
+  max-width: var(--width);
+}
+.calcBody > input {
+  width: 100%;
+  height: var(--buttonWidth);
+  font-size: calc(var(--buttonWidth) * 0.8);
+}
+.calcButtons {
+  display: flex;
+  flex-wrap: wrap;
+}
+.calcButtons button {
+  margin: 0;
+  width: var(--buttonWidth);
+  height: var(--buttonWidth);
+}
+button.span {
+  flex: 1 0 calc(var(--buttonWidth) * 1.4);
+}

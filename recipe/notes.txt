@@ -1,0 +1,270 @@
+Components:
+Recipe: 
+    data,
+    method keyWordsToArray
+    method keyWordsFromArray
+    Render Recipe? if doing full MVC we would put this somewhere else.
+    
+    
+RecipeList:
+    list of Recipes
+    getList
+    addRecipe
+    removeRecipe
+    filterList
+
+    
+Exercises:
+Scan an array of objects to build a list of links
+Filter a list of objects and display only the matches as a list of links
+When a link is selected build a new view of details about that object
+
+
+{
+  author: "",
+  url: "",
+  isBasedOn: "" ,
+  cookTime: "",
+  datePublished: "",
+  keywords: "",
+  description: "",
+  image: "",
+  recipeIngredient: [
+    {
+      amount: "",
+      units: "",
+      ingredient: ""
+    },
+     {
+      amount: "",
+      units: "",
+      ingredient: ""
+    }
+    
+  ],
+  name: "",
+  prepTime: "",
+  recipeInstructions:  [
+    
+  ],
+  recipeYield: ""
+ }
+
+{
+  "author": "John Smith",
+  "url": "",
+  "isBasedOn" : "",
+  "cookTime": "PT1H",
+  "datePublished": "2009-05-08",
+  "keywords": "Bake, Bread, Nuts, Banana",
+  "description": "This classic banana bread recipe comes from my mom -- the walnuts add a nice texture and flavor to the banana bread.",
+  "image": "bananabread.jpg",
+  "recipeIngredient": [
+    {
+      "amount": "3 or 4",
+      "units": "smashed",
+      "ingredient": "ripe bananas"
+    },
+    {
+      "amount": "1",
+      "units": "whole",
+      "ingredient": "egg"
+    },
+   {
+      "amount": "3/4",
+      "units": "cup",
+      "ingredient": "sugar"
+    }
+  ],
+  "name": "Mom's World Famous Banana Bread",
+  "prepTime": "PT15M",
+  "recipeInstructions":  [
+    "Preheat the oven to 350 degrees.",
+    "Mix in the ingredients in a bowl.",
+    "Add the flour last.",
+    "Pour the mixture into a loaf pan and bake for one hour."
+  ],
+  "recipeYield": "1 loaf"
+ }
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Recipe",
+  "author": "John Smith",
+  "isBasedOn" : "",
+  "cookTime": "PT1H",
+  "datePublished": "2009-05-08",
+  "keywords": "Bake, Bread, Nuts, Banana",
+  "description": "This classic banana bread recipe comes from my mom -- the walnuts add a nice texture and flavor to the banana bread.",
+  "image": "bananabread.jpg",
+  "recipeIngredient": [
+    "3 or 4 ripe bananas, smashed",
+    "1 egg",
+    "3/4 cup of sugar"
+  ],
+  "name": "Mom's World Famous Banana Bread",
+  "nutrition": {
+    "@type": "NutritionInformation",
+    "calories": "240 calories",
+    "fatContent": "9 grams fat"
+  },
+  "prepTime": "PT15M",
+  "recipeInstructions":  [
+    "Preheat the oven to 350 degrees.",
+    "Mix in the ingredients in a bowl.",
+    "Add the flour last.",
+    "Pour the mixture into a loaf pan and bake for one hour."
+  ],
+  
+  "recipeYield": "1 loaf",
+  "suitableForDiet": "http://schema.org/LowFatDiet"
+}
+</script>
+
+
+<script type="application/ld+json">{
+    "@context": "http:\/\/www.schema.org",
+    "url": "https:\/\/www.marthastewart.com\/341735\/apple-pie",
+    "@type": "Recipe",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Martha Stewart",
+        "url": "https:\/\/www.marthastewart.com\/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/www.marthastewart.com\/sites\/all\/themes\/emma\/img\/logo.png",
+            "width": 118,
+            "height": 60
+        }
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "https:\/\/assets.marthastewart.com\/styles\/wmax-1500\/d17\/apple-pie-d102471\/apple-pie-d102471_horiz.jpg?itok=dS_mH4uP",
+        "width": "1324",
+        "height": "743"
+    },
+    "datePublished": "2011-04-04",
+    "keywords": "Bake, Dessert, Dessert party, Fall, Thanksgiving, Make-ahead, All-American recipes, Cinnamon, Apples, Fruit pies, Crusts and pastry doughs, Alcohol-free, Nut-free, Meatless, Pork-free, Shellfish-free, Egg-free, Vegetarian",
+    "name": "Apple Pie",
+    "aggregateRating": {
+        "ratingValue": 3.6,
+        "ratingCount": 292,
+        "bestRating": 5,
+        "worstRating": 1
+    },
+    "recipeIngredient": [
+        "1\/4 cup all-purpose flour (spooned and leveled), plus more for rolling dough",
+        "1 recipe (2 disks) <a href=\"https:\/\/www.marthastewart.com\/856573\/basic-pie-dough-apple-pie\"><a href=\"https:\/\/www.marthastewart.com\/856573\/basic-pie-dough-apple-pie\">Basic Pie Dough for Apple Pie<\/a><\/a>",
+        "2 tablespoons freshly squeezed lemon juice (from 1 lemon)",
+        "4 pounds (8 to 10) apples, such as Empire, Granny Smith, Gala, Cortland, Winesap, or a mix",
+        "3\/4 cup sugar",
+        "1 teaspoon ground cinnamon",
+        "1\/2 teaspoon salt",
+        "2 tablespoons unsalted butter, cut into small pieces"
+    ],
+    "prepTime": "PT0H40M",
+    "totalTime": "P0DT6H0M",
+    "recipeYield": "8 servings",
+    "description": "Baking a pie from scratch takes a little patience, but watching your friends and family enjoy the results makes it all worthwhile.",
+    "recipeInstructions": [
+        "Lightly flour a large piece of waxed paper; place a disk of dough in center. Rolling from center outward, form into a 12-inch circle. (Use paper to rotate dough, and flour rolling pin and paper as necessary to prevent sticking.) Transfer dough (still on paper) to a baking sheet; cover and refrigerate. Repeat with second disk of dough.",
+        "Preheat oven to 450 degrees with a rack set in lowest position. Remove first circle of dough from refrigerator; wrap around rolling pin (discarding paper), and carefully unroll over a 9-inch pie plate. Gently lift edges and lower dough into the pie plate so it hugs bottom and sides. Avoid stretching the dough, which will make it shrink during baking. Refrigerate.",
+        "Place lemon juice in a large bowl. Peel, core, and cut apples into 1\/4-inch-thick slices; halve crosswise, and add to lemon juice (to keep them from turning brown) as you work. Add sugar, flour, cinnamon, and salt; toss to combine.",
+        "Remove dough-lined pie plate from refrigerator. Fill with apple mixture, gently packing apples and mounding slightly in center; dot with butter. Lightly brush rim of pie shell with water. Remove remaining circle of dough from refrigerator. Lay over apples; press along moistened rim to seal. Using kitchen shears, trim overhang to 1 inch.",
+        "With floured fingers, fold overhang under itself to form a thick rim; pinch between thumb and forefinger to form a uniform edge around the rim of the pie plate.",
+        "To crimp edges: With thumb and index finger of one hand, gently press dough against knuckle of other hand; continue around pie. (Deep indentations anchor dough on rim and prevent it from sliding down sides of pie plate during baking.)",
+        "With a floured paring knife, cut 5 to 6 slits in top of pie, radiating from center; place pie plate on a rimmed baking sheet. Bake 20 minutes; reduce heat to 375 degrees and bake until crust is golden and juices are bubbling, 50 to 60 minutes more. If edges brown too quickly, cover with aluminum foil. Cool completely, at least 6 hours, before serving."
+    ],
+    "@graph": [
+        [
+            {
+                "@type": "VideoObject",
+                "name": "How to Bake Apple Pie",
+                "description": "John Barricelli bakes the classic American apple pie.",
+                "thumbnailUrl": "https:\/\/assets.marthastewart.com\/styles\/video-preview-1280x720-highdpi\/d21\/how_to_bake_apple_pie\/how_to_bake_apple_pie_horiz.jpg?itok=CPphfIO5",
+                "uploadDate": "2011-04-04"
+            }
+        ]
+    ],
+    "review": [
+        {
+            "@type": "Review",
+            "author": "noellevlasov",
+            "datePublished": "2017-10-21",
+            "reviewBody": "Hey!This recipe is great!By the way, i&#039;m 13 years old!I lobe cooking and baking!I made this recipe for my family, and they literally ate it all in 30 minutes :) And it was really tasty, to be honest :) One tiny little adjustment I made is I added a bit less butter to the pie dough, because I thought it was too much butter :) I live in Romania, and here, our recipes never have more than 1 cup of butter(that&#039;s like a lot) and also the recipes are not that sweet, we never add more than like % tablespoons of sugar maximum. So that&#039;s why I decided to do that :) Anyways, besides the butter, the recipe is so great, so great.Bravo!",
+            "reviewRating": {
+                "@type": "Rating",
+                "bestRating": 5,
+                "ratingValue": 5,
+                "worstRating": 1
+            }
+        },
+        {
+            "@type": "Review",
+            "author": "blynhall",
+            "datePublished": "2017-03-05",
+            "reviewBody": "Thanks its a great pie. I wish I could post my pic."
+        },
+        {
+            "@type": "Review",
+            "author": "lesbooth",
+            "datePublished": "2016-09-10",
+            "reviewBody": "I&#039;ve made this twice and it is amazing. Followed the directions exactly. I did use varied apples, Granny&#039;s, Honey Crisp and Gala. It&#039;s about to come out of the oven and the smell reminds you back when you&#039;d put your pie on the window shelf.  The juice of lemon sugar salt and the flower is just the right balance. Thank you Martha!"
+        },
+        {
+            "@type": "Review",
+            "author": "Mamoyo ",
+            "datePublished": "2015-08-09",
+            "reviewBody": "Delicious. I forgot to add butter in the filling but it came out nice and tasted yummy. Used figi apples and only 1\/4 cup sugar. Will definitely make it again. Thank you for the recipe ",
+            "reviewRating": {
+                "@type": "Rating",
+                "bestRating": 5,
+                "ratingValue": 5,
+                "worstRating": 1
+            }
+        },
+        {
+            "@type": "Review",
+            "author": "amymhs",
+            "datePublished": "2014-11-25",
+            "reviewBody": "I should&#039;ve read the reviews (esp the latest one) before bothering with this. Don&#039;t waste your time. Turns out a sloppy mess of flattened pie-like object. I was expecting to have a delicious homemade pie for Thanksgiving on Thursday. Whole Foods, here I come. \r\n\r\nWorst pie recipe I have ever tried. Very frustrating to put all the time into. "
+        },
+        {
+            "@type": "Review",
+            "author": "Morrigan1",
+            "datePublished": "2014-03-13",
+            "reviewBody": "OK, I&#039;m done.  This is the 4th or 5th time I&#039;ve made this and I end up with an inch-deep, ugly gray mess of stewed-to-mush apples in a pastry shell.  At first I thought the apples were dry, so I shopped around.  Nope.  Everything else bakes just fine, so it&#039;s not the oven.\n\nVery frustrating to put all the time and work into it, and end up giving it to the birds.",
+            "reviewRating": {
+                "@type": "Rating",
+                "bestRating": 5,
+                "ratingValue": 1,
+                "worstRating": 1
+            }
+        },
+        {
+            "@type": "Review",
+            "author": "Sofi Brenes",
+            "datePublished": "2012-11-09",
+            "reviewBody": "Amazing taste, and basic pie dough fully recommended. "
+        },
+        {
+            "@type": "Review",
+            "author": "MS112702038",
+            "datePublished": "2011-10-10",
+            "reviewBody": "Delicious! I highly recommend, especially with the basic dough recipe!",
+            "reviewRating": {
+                "@type": "Rating",
+                "bestRating": 5,
+                "ratingValue": 5,
+                "worstRating": 1
+            }
+        },
+        {
+            "@type": "Review",
+            "author": "JulietteCeku",
+            "datePublished": "2011-07-21",
+            "reviewBody": "Everyone in my family loved this pie including myself! It was very easy to make and remember. The most time consuming part was simply peeling and coring the apples. I definitely recommend this recipe to anyone who wants to make a quick and delicious apple pie; especially to those who are making one for the first time!"
+        }
+    ]
+}</script>
