@@ -1,16 +1,16 @@
 const calculator = {
-  number1: 0,
-  number2: 0,
-  operation: '',
-  inputOutput: document.getElementById('calcInput'),
+  _number1: 0,
+  _number2: 0,
+  _operation: '',
+  _inputOutput: document.getElementById('calcInput'),
   clear: function() {
-    this.inputOutput.value = '';
+    this._inputOutput.value = '';
   },
   buttonClicked: function(button) {
     console.log(button);
     console.dir(button);
 
-    let inputBox = this.inputOutput;
+    let inputBox = this._inputOutput;
 
     switch (button.target.innerHTML) {
       case 'M':
@@ -34,8 +34,8 @@ const calculator = {
     }
   }
 };
-const buttonContainer = document.querySelector('.calcButtons');
-buttonContainer.addEventListener('touchend', calculator.buttonClicked);
+// const buttonContainer = document.querySelector('.calcButtons');
+// buttonContainer.addEventListener('touchend', calculator.buttonClicked);
 
 // function buttonClicked(button) {
 //   console.log(button);

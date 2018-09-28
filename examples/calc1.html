@@ -11,23 +11,40 @@
 <body>
     <div class="simpleCalcBody">
         <div>
-            <input type="number" id="input1">
-            <input type="number" id="input2">
+            <input type="number" id="input1" value="5">
+            <input type="number" id="input2" value="3">
         </div>
         <button id="plusButton" onclick="add()">+</button>
-        <button id="subButton" onclick="subtract()">-</button>
+
 
         Result:
         <span id="result"></span>
     </div>
     <script>
-        //write add function
-        function add() {
-            let num1 = document.getElementById('input1').value;
-            let num2 = document.getElementById('input2').value;
+
+        const add = () => {
+            const num1 = document.getElementById('input1').value;
+            const num2 = document.getElementById('input2').value;
             const resultBox = document.getElementById('result');
+            return function () {
+
+            }
             resultBox.innerHTML = parseFloat(num1) + parseFloat(num2);
         }
+
+        function add2(num1, num2) {
+            return parseFloat(num1) + parseFloat(num2);
+        }
+        const add3 = (num1, num2) => parseFloat(num1) + parseFloat(num2);
+
+        const calculator = {
+
+            num1: 0,
+            num2: 0,
+            function add() {
+
+            }
+}
 
 
     </script>
