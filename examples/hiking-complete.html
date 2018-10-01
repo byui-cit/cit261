@@ -91,20 +91,54 @@
         ];
 
         //on load grab the array and insert it into the page
-
+        window.addEventListener('load', function () {
+            console.log('it worked!');
+            let hikeListElement = document.getElementById('hikes');
+            hikeListElement.innerHTML = '';
+            hikeList.map((hike) => {
+                hikeListElement.appendChild(renderHike(hike));
+            });
+            //createHike(hikeList[0]);
+        });
 
         function createHike(hike) {
-            //create the DOM elements and append them together
 
             let item = document.createElement('li');
-
+            item.innerHTML = `<img src="${hike.imgSrc}" alt="${hike.imgAlt}">`; //this is another way we could do it.
+            let image = document.createElement('img');
+            image.src = hike.imgSrc;
+            image.alt = hike.imgAlt;
+            item.appendChild(image);
+            item.appendChild(document.createElement('h2').appendChild(document.createTextNode(hike.name)));
             return item;
         }
 
         function renderHike(hike) {
-            // Do it again with a template literal string
             const item = document.createElement('li');
-
+            item.innerHTML = ` 
+            
+                <img src="${hike.imgSrc}" alt="${hike.imgAlt}">
+                <h2>${hike.name}</h2>
+                <div>
+                    <h3>Distance</h3>
+                    <p>${hike.distance}</p>
+                </div>
+                <div>
+                    <h3>Difficulty</h3>
+                    <p>${hike.difficulty}</p>
+                </div>
+                <div>
+                    <h3>Description</h3>
+                    <p>${hike.description}</p>
+                </div>
+                <div>
+                    <h3>How to get there</h3>
+                    <p>Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for
+                        a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road.
+                        There is a parking area at the trailhead.</p>
+                </div>
+            
+            `;
             return item;
         }
 
