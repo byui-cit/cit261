@@ -64,6 +64,10 @@
         for (let color of colors) {
             console.log(color);
         }
+
+        colors.forEach(item => {
+            console.log(item);
+        });
         //example of map
         const newArray = numbers.map(function (number) {
             return number * -1;
@@ -72,14 +76,48 @@
         //example of map with arrow function declaration
         const negNumbers = numbers.map(number => number * -1);
 
-        //random numbers write a function that will return a random number in a range specified
+        const filteredWildcard = colors.filter(item => {
+            return item.toLowerCase().indexOf("r".toLowerCase()) > -1;
+        });
+        console.log(filteredWildcard);
+        const filteredList = ships.filter(item => {
+            return parseInt(item.length) > 12;
+        });
+        console.log(filteredList);
+
         function random(num) {
             return Math.floor(Math.random() * num);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // //random numbers write a function that will return a random number in a range specified
+        // function random(num) {
+        //     return Math.floor(Math.random() * num);
+        // }
         // write a function to build a random sentence seeded from 3 arrays (color, adj, noun)
         function sentence() {
             //get random color
-            let color = colors[random(5)];
+            let color = colors[random(colors.length())];
             let noun = nouns[random(7)];
             let adj = adjectives[random(7)];
             console.log(adj + ' ' + color + ' ' + noun);
