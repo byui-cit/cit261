@@ -1,11 +1,10 @@
 //inspired by this MDN article https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
 
 // define variables
-let pickerContainer = null;
-
-let yearSelect = null;
-let monthSelect = null;
-let daySelect = null;
+let pickerContainer,
+  yearSelect,
+  monthSelect,
+  daySelect = null;
 
 //preserve day selection
 let previousDay;
@@ -18,7 +17,7 @@ function populateDays(month) {
   }
 
   // Create variable to hold new number of days to inject
-  var dayNum;
+  let dayNum;
 
   // 31 or 30 days?
   if (
@@ -40,14 +39,14 @@ function populateDays(month) {
     dayNum = 30;
   } else {
     // If month is February, calculate whether it is a leap year or not
-    var year = yearSelect.value;
-    var leap = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    const year = yearSelect.value;
+    const leap = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
     dayNum = leap ? 29 : 28;
   }
 
   // inject the right number of new <option> elements into the day <select>
   for (let i = 1; i <= dayNum; i++) {
-    var option = document.createElement('option');
+    let option = document.createElement('option');
     option.textContent = i;
     daySelect.appendChild(option);
   }
@@ -78,12 +77,12 @@ function populateDays(month) {
 
 function populateYears() {
   // get this year as a number
-  var date = new Date();
-  var year = date.getFullYear();
+  const date = new Date();
+  const year = date.getFullYear();
 
   // Make this year, and the 100 years before it available in the year <select>
-  for (var i = 0; i <= 100; i++) {
-    var option = document.createElement('option');
+  for (let i = 0; i <= 100; i++) {
+    let option = document.createElement('option');
     option.textContent = year - i;
     yearSelect.appendChild(option);
   }
@@ -127,6 +126,7 @@ export default function datePicker(className, labelText) {
   // test whether a new date input falls back to a text input or not
   let test = document.createElement('input');
   test.type = 'date';
+
   // if it does, run the code inside the if() {} block
   if (test.type === 'text') {
     // remove the native picker and show the fallback
