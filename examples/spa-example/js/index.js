@@ -1,10 +1,4 @@
-import shipController from './ships.js';
 import buildNavigation from './routing.js';
-
-// install moment.js for example
-
-//console.log(shipController.getShips());
-//console.log(shipController.getShipByName('Executor'));
 
 const navElement = document.getElementById('mainNav');
 buildNavigation(navElement);
@@ -18,7 +12,3 @@ function component() {
   return element;
 }
 document.body.appendChild(component());
-
-// shipController.getShips().then((data) => {
-//   console.log(data);
-// });

@@ -3,7 +3,7 @@ const routes = [
   { file: 'views/parks.html', label: 'Parks' }
 ];
 
-// function to create a navigation for the items founc in routes.
+// function to create a navigation for the items found in routes.
 // creates element, add a touchend event listener and appends it to parent
 export default function buildNavigation(parent) {}
 
@@ -14,29 +14,7 @@ function getView(viewPath) {}
 function addNavEvent(element, path) {}
 
 // inserts the view into the content area of index.html
-function insertView(view) {}
-
-// export function buildNavigation(parent) {
-//   routes.forEach(route => {
-//     const item = document.createElement('li');
-//     item.innerHTML = `<a href="#">${route.label}</a>`;
-//     parent.appendChild(item);
-//     addNavEvent(item, route.file);
-//   });
-// }
-
-// function getView(viewPath) {
-//   return fetch(viewPath).then(response => response.text());
-// }
-// function addNavEvent(element, path) {
-//   element.addEventListener('touchend', e => {
-//     insertView(getView(path));
-//   });
-// }
-
-// function insertView(view) {
-//   const contentElement = document.getElementById('content');
-//   view.then(data => {
-//     contentElement.innerHTML = data;
-//   });
-// }
+// remember that getView returns a promise!
+function insertView(viewPromise) {
+  const contentElement = document.getElementById('content');
+}

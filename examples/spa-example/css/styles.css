@@ -1,3 +1,35 @@
 body {
   background-color: #dddddd;
 }
+img {
+  max-width: 100%;
+}
+
+.listStyles {
+  padding: 0;
+  margin: 1em 0;
+  list-style-type: none;
+}
+
+.listStyles li > h2 {
+  text-align: center;
+  background-color: burlywood;
+}
+
+.listStyles li > img {
+  width: 100%;
+  max-width: 500px;
+}
+
+.hikeList > div {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.hikeList h3 {
+  margin: 0.5em;
+}
+.hikeList img {
+  height: 15vh;
+}
