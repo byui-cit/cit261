@@ -11,7 +11,7 @@ export default function buildNavigation(parent) {
     let item = document.createElement('li');
     item.innerHTML = `<a href="#${route.label}">${route.label}</a>`;
     parent.appendChild(item);
-    addNavEvent(item, route.file, route.controller);
+    addNavEventAsync(item, route.file, route.controller);
   });
 }
 
@@ -30,7 +30,9 @@ function getView(viewPath) {
 async function getViewAsync(viewPath) {
   try {
     const response = await fetch(viewPath);
-    return await response.text();
+    const text = await response.text();
+    debugger;
+    return text;
   } catch (err) {
     console.log('Something went wrong', err);
   }
@@ -64,6 +66,7 @@ function insertView(viewPromise, controller) {
 // using async/await
 async function insertViewAsync(viewPromise, controller) {
   const contentElement = document.getElementById('content');
+  debugger;
   contentElement.innerHTML = await viewPromise;
   controller.init();
 }
