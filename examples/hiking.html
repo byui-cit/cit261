@@ -91,12 +91,28 @@
         ];
 
         //on load grab the array and insert it into the page
+        //get the element that will hold the list
+        const listElement = document.getElementById('hikes');
+        listElement.innerHTML = '';
+        //for each element in the list 
+        hikeList.forEach((hike) => {
+            //for each item
+            listElement.appendChild(renderHike(hike));
+        });
 
+        // build out an li element with the approriate html structure
 
         function createHike(hike) {
             //create the DOM elements and append them together
 
             let item = document.createElement('li');
+
+            let image = document.createElement('img');
+            image.src = hike.imgSrc;
+            image.alt = hike.imgAlt;
+            console.log(image);
+            item.innerHTML = "<h2>" + hike.name + "</h2>";
+            item.appendChild(image);
 
             return item;
         }
@@ -104,7 +120,22 @@
         function renderHike(hike) {
             // Do it again with a template literal string
             const item = document.createElement('li');
-
+            item.innerHTML = `
+            <img src="${hike.imgSrc}" alt="${hike.imgAlt}">
+                <h2>${hike.name}</h2>
+                <div>
+                    <h3>Distance</h3>
+                    <p>${hike.distance}</p>
+                </div>
+                <div>
+                    <h3>Difficulty</h3>
+                    <p>Easy</p>
+                </div>
+                <div>
+                    <h3>Description</h3>
+                    <p>${hike.description}</p>
+                </div>
+                `;
             return item;
         }
 
