@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Food search (API usage example)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .foodStyles {
+        padding: 0;
+        margin: 1em 0;
+        list-style-type: none;
+      }
+
+      .foodStyles li > h2 {
+        text-align: center;
+        background-color: burlywood;
+      }
+
+      .foodStyles li > img {
+        width: 100%;
+        max-width: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <h1>Food lookup</h1>
+      <ul id="foodList" class="foodStyles"></ul>
+    </main>
+
+    <script type="module">
+      import foodController from './food.js';
+
+      foodController.init();
+      foodController.searchFood('apple');
+    </script>
+  </body>
+</html>
