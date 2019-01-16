@@ -1,0 +1,22 @@
+iNaturalist API
+Create an app that will get current location from GPS, then show an x mile wide map section.
+Dropdown that will allow to pick an animal that lives in the area…pick an animal and it will draw recent observations on the map. 
+Phase 1
+Create basic interface from wireframe
+Use placeholder image for map
+Become familiar with API…pull some data out: native species list, observations …add to project as objects.
+Generate dropdown list from species list.
+Filter observations by selected species
+Phase 2
+Learn about gps, expanding a lat/long point into an area. http://janmatuschek.de/LatitudeLongitudeBoundingCoordinates
+Learn more about GeoLocation services.  https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+Get current location from browser.
+Filter observations data based off of a selected species and location if allowed, and display it on the screen.  Graph by date?
+Phase 3
+Refactor code to use modules
+Switch to pulling data from the API
+Phase 4
+Display a map with plotted observations
+https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames
+https://leafletjs.com
+Add animations

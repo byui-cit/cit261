@@ -1,53 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Calc</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <div class="simpleCalcBody">
-        <div>
-            <input type="number" id="input1" value="5">
-            <input type="number" id="input2" value="3">
-        </div>
-        <button id="plusButton" onclick="add()">+</button>
+      <div>
+        <input type="number" id="input1" value="5" />
+        <input type="number" id="input2" value="3" />
+      </div>
+      <button id="plusButton" onclick="add()">+</button>
 
-
-        Result:
-        <span id="result"></span>
+      <p>Result: <span id="result"></span></p>
     </div>
     <script>
+      function add() {
+        const num1 = document.getElementById('input1').value;
+        const num2 = document.getElementById('input2').value;
+        const resultBox = document.getElementById('result');
 
-        const add = () => {
-            const num1 = document.getElementById('input1').value;
-            const num2 = document.getElementById('input2').value;
-            const resultBox = document.getElementById('result');
-            return function () {
-
-            }
-            resultBox.innerHTML = parseFloat(num1) + parseFloat(num2);
-        }
-
-        function add2(num1, num2) {
-            return parseFloat(num1) + parseFloat(num2);
-        }
-        const add3 = (num1, num2) => parseFloat(num1) + parseFloat(num2);
-
-        const calculator = {
-
-            num1: 0,
-            num2: 0,
-            function add() {
-
-            }
-}
-
-
+        resultBox.innerHTML = parseFloat(num1) + parseFloat(num2);
+      }
+      // this is similar to the first function...but simpler. It ONLY adds.  It does not get the input or send the output. It would be more reusable because of this. To use this we would replace 'parseFloat(num1) + parseFloat(num2)' above with 'add2(num1, num2)'
+      function add2(num1, num2) {
+        return parseFloat(num1) + parseFloat(num2);
+      }
+      // Exactly the same as add2, but using an arrow function
+      const add3 = (num1, num2) => parseFloat(num1) + parseFloat(num2);
     </script>
-</body>
-
+  </body>
 </html>
