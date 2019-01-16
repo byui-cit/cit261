@@ -21,19 +21,17 @@ We will need:
 
 TO DO
 1. Nothing is working! If you click a button you get the following error. What does it mean? "TypeError: null is not an object (evaluating 'inputBox.value = parseFloat(button.innerHTML)')"  Fix this error.
-2. Now it works if I am adding. It seems like the add method could be simplified by making it an arrow function. Make that change.
-3. There is another problem with the calculator...I can only add single digit numbers currently...how can this be fixed? Fix it!
-4. Add the code to make divide work.
+2. Notice that around line 47 the clear function is called...but it hasn't been declared yet! Try adding 'add()' right below that then refresh your page...why can we call 'clear()' but not 'Add()'? Hoisting.  function declarations are hoisted, function expressions are not...so they must be declared BEFORE they are used.  Move Add up above the buttonClicked function. This really only effects functions that are invoked immediately upon the javascript loading however. You will notice that your calculator works fine even though we got an error on 'add()'
+3. It seems like the add method could be simplified by making it an arrow function. Make that change. Lets go ahead and move it above the equal function as well...just to make sure we doin't run into any hoisting problems.
+4. There is another problem with the calculator...I can only add single digit numbers currently...how can this be fixed? Fix it!
+5. Add the code to make divide work.
+6. This code works, but is a bit brittle. Everything is global and unrelated, in larger projects this could easily cause problems...we will talk more about how to solve this problem later.
 */
 const calculator = {
   number1: 0,
   number2: 0,
   operation: '',
   inputOutput: document.getElementById('calcInput')
-};
-
-const add = function() {
-  return calculator.number1 + calculator.number2;
 };
 
 const equal = function() {
@@ -46,6 +44,7 @@ const equal = function() {
     }
   }
 };
+clear();
 
 const buttonClicked = function(button) {
   // notice the difference in the output between console.log and console.dir
@@ -94,6 +93,9 @@ function clear() {
     calculator.inputOutput.value = '';
   }
 }
+const add = function() {
+  return calculator.number1 + calculator.number2;
+};
 // const buttonContainer = document.querySelector('.calcButtons');
 // buttonContainer.addEventListener('touchend', e => {
 //   console.log(e);
