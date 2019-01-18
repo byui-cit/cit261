@@ -72,24 +72,23 @@
         {
           name: 'Teton Canyon',
           imgSrc: 'falls.jpg',
-          imgAlt: 'Image of Bechler Falls',
-          distance: '3 miles',
-          difficulty: 'Easy',
-          description:
-            'Beautiful short hike along the Bechler river to Bechler Falls',
+          imgAlt: 'Image of Teton Canyon',
+          distance: '5 miles',
+          difficulty: 'Moderate',
+          description: 'Beautiful short hike up Teton Canyon',
           directions:
-            'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+            'Take Highway 33 to Driggs. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
         },
         {
           name: 'Denanda Falls',
           imgSrc: 'falls.jpg',
-          imgAlt: 'Image of Bechler Falls',
-          distance: '3 miles',
-          difficulty: 'Easy',
+          imgAlt: 'Image of Denanda Falls',
+          distance: '12 miles',
+          difficulty: 'Moderate',
           description:
-            'Beautiful short hike along the Bechler river to Bechler Falls',
+            'Beautiful short hike through Bechler Meadows to Denanda Falls',
           directions:
-            'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+            'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
         }
       ];
 
@@ -99,7 +98,7 @@
       const listElement = document.getElementById('hikes');
       // 2 clear out the current contents
 
-      // 3 for each element in the list:
+      // 3 for each element in the list...
       hikeList.forEach(hike => {
         // 4 ...build and append an element
         listElement.appendChild(createHike(hike));

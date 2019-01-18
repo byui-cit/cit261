@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Great Hikes (web components example)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .hikeStyles {
+        padding: 0;
+        margin: 1em 0;
+        list-style-type: none;
+      }
+
+      .hikeStyles li > h2 {
+        text-align: center;
+        background-color: burlywood;
+      }
+
+      .hikeStyles li img {
+        width: 100%;
+        max-width: 500px;
+      }
+    </style>
+    <template id="hikeTemplate">
+      <style>
+        /* notice that even though the rule above has a higher specificity...this local rule gets applied */
+        h2 {
+          text-align: center;
+          background-color: salmon;
+        }
+        img {
+          width: 100%;
+          max-width: 500px;
+        }
+      </style>
+
+      <details>
+        <summary>
+          <h2><slot name="name">Bechler Falls</slot></h2>
+          <dl>
+            <dt>Distance</dt>
+            <dd><slot name="distance">3 miles</slot></dd>
+
+            <dt>Difficulty</dt>
+            <dd><slot name="difficulty">Easy</slot></dd>
+          </dl>
+        </summary>
+        <slot name="img"
+          ><img src="falls.jpg" alt="Image of Bechler Falls"
+        /></slot>
+        <div>
+          <h3>Description</h3>
+          <p>
+            <slot class="description">
+              Beautiful short hike along the Bechler river to Bechler Falls
+            </slot>
+          </p>
+        </div>
+        <div>
+          <h3>How to get there</h3>
+          <p>
+            <slot name="directions">
+              Take Highway 20 north to Ashton. Turn right into the town and
+              continue through. Follow that road for a few miles then turn left
+              again onto the Cave Falls road. Drive to the end of the Cave Falls
+              road. There is a parking area at the trailhead.
+            </slot>
+          </p>
+        </div>
+      </details>
+    </template>
+  </head>
+
+  <body>
+    <main>
+      <h1>My favorite hikes</h1>
+      <ul id="hikes" class="hikeStyles"></ul>
+    </main>
+
+    <script>
+      //create an array of hikes
+      const hikeList = [
+        {
+          name: 'Bechler Falls',
+          img: {
+            imgSrc: 'falls.jpg',
+            imgAlt: 'Image of Bechler Falls'
+          },
+          distance: '3 miles',
+          difficulty: 'Easy',
+          description:
+            'Beautiful short hike along the Bechler river to Bechler Falls',
+          directions:
+            'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+        },
+        {
+          name: 'Teton Canyon',
+          img: {
+            imgSrc: 'falls.jpg',
+            imgAlt: 'Image of Teton Canyon'
+          },
+          distance: '5 miles',
+          difficulty: 'Moderate',
+          description:
+            'Beautiful short hike along the Bechler river to Bechler Falls',
+          directions:
+            'Take Highway 33 east to Driggs. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+        },
+        {
+          name: 'Denanda Falls',
+          img: {
+            imgSrc: 'falls.jpg',
+            imgAlt: 'Image of Denanda Falls'
+          },
+          distance: '12 miles',
+          difficulty: 'Moderate',
+          description:
+            'Beautiful longer hike through Bechler Meadows to Denanda Falls',
+          directions:
+            'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+        }
+      ];
+      customElements.define(
+        'hike-details',
+        class extends HTMLElement {
+          constructor() {
+            super();
+            var template = document.getElementById('hikeTemplate').content;
+            const shadowRoot = this.attachShadow({ mode: 'open' }).appendChild(
+              template.cloneNode(true)
+            );
+          }
+        }
+      );
+      //on load grab the array and insert it into the page
+
+      const listElement = document.getElementById('hikes');
+      hikeList.forEach(hike => {
+        listElement.appendChild(createHike(hike));
+      });
+
+      // function to build out an li element with the appropriate html structure
+      function createHike(hike) {
+        //create the DOM elements and append them together
+        // li to hold everything
+        const item = document.createElement('li');
+        const details = document.createElement('hike-details');
+        for (let key of Object.keys(hike)) {
+          let detailElement = '';
+          if (key === 'img') {
+            detailElement = document.createElement('img');
+            detailElement.slot = key;
+            detailElement.src = hike[key].imgSrc;
+            detailElement.alt = hike[key].imgAlt;
+          } else {
+            detailElement = document.createElement('span');
+            detailElement.slot = key;
+            detailElement.innerHTML = hike[key];
+          }
+          details.appendChild(detailElement);
+        }
+        item.appendChild(details);
+        // return our new element
+        return item;
+      }
+
+      function renderHike(hike) {
+        // Do it again with a template literal string
+        const item = document.createElement('li');
+        item.innerHTML = `
+
+                `;
+        return item;
+      }
+    </script>
+  </body>
+</html>
