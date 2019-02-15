@@ -1,129 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Fun with Arrays</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-
-</head>
-
-<body>
-
-
-
+  <body>
+    <main></main>
     <script>
-        //open your editor and create an array of colors...5 or so should do it.
-        const colors = ['red', 'blue', 'green', 'yellow', 'orange'];
-        const adjectives = ['bold', 'shy', 'strong', 'lazy', 'round', 'flat', 'old'];
-        const nouns = ['bike', 'cat', 'plate', 'computer', 'student', 'car', 'house'];
-        const numbers = [1, 4, 7, 34, 54, 243, 67, 89, 21, 12345];
+      //open your editor and create an array of colors...5 or so should do it.
+      const colors = ['red', 'blue', 'green', 'yellow', 'orange'];
+      const adjectives = [
+        'bold',
+        'shy',
+        'strong',
+        'lazy',
+        'round',
+        'flat',
+        'old'
+      ];
+      const nouns = [
+        'bike',
+        'cat',
+        'plate',
+        'computer',
+        'student',
+        'car',
+        'house'
+      ];
+      const numbers = [1, 4, 7, 34, 54, 243, 67, 89, 21, 12345];
 
-        const ships = [{
-            name: "Executor",
-            model: "Executor-class star dreadnought",
-            manufacturer: "Kuat Drive Yards, Fondor Shipyards",
-            cost_in_credits: "1143350000",
-            length: "19000",
-            starship_class: "Star dreadnought",
-            url: "http://swapi.co/api/starships/15/"
-        }, {
-            name: "Death Star",
-            model: "DS-1 Orbital Battle Station",
-            manufacturer: "Imperial Department of Military Research, Sienar Fleet Systems",
-            cost_in_credits: "1000000000000",
-            length: "120000",
-            starship_class: "Deep Space Mobile Battlestation",
-            url: "http://swapi.co/api/starships/9/"
-        }, {
-            name: "Millennium Falcon",
-            model: "YT-1300 light freighter",
-            manufacturer: "Corellian Engineering Corporation",
-            cost_in_credits: "100000",
-            length: "34.37",
-            starship_class: "Light freighter",
-            url: "http://swapi.co/api/starships/10/"
-        }, {
-            name: "X-wing",
-            model: "T-65 X-wing",
-            manufacturer: "Incom Corporation",
-            cost_in_credits: "149999",
-            length: "12.5",
-            starship_class: "Starfighter",
-            url: "http://swapi.co/api/starships/12/"
-        }];
-
-        //example of for loop to traverse array
-        for (let i = 0; i < colors.length; i++) {
-            console.log(colors[i]);
+      const ships = [
+        {
+          name: 'Executor',
+          model: 'Executor-class star dreadnought',
+          manufacturer: 'Kuat Drive Yards, Fondor Shipyards',
+          cost_in_credits: '1143350000',
+          length: '19000',
+          starship_class: 'Star dreadnought',
+          url: 'http://swapi.co/api/starships/15/'
+        },
+        {
+          name: 'Death Star',
+          model: 'DS-1 Orbital Battle Station',
+          manufacturer:
+            'Imperial Department of Military Research, Sienar Fleet Systems',
+          cost_in_credits: '1000000000000',
+          length: '120000',
+          starship_class: 'Deep Space Mobile Battlestation',
+          url: 'http://swapi.co/api/starships/9/'
+        },
+        {
+          name: 'Millennium Falcon',
+          model: 'YT-1300 light freighter',
+          manufacturer: 'Corellian Engineering Corporation',
+          cost_in_credits: '100000',
+          length: '34.37',
+          starship_class: 'Light freighter',
+          url: 'http://swapi.co/api/starships/10/'
+        },
+        {
+          name: 'X-wing',
+          model: 'T-65 X-wing',
+          manufacturer: 'Incom Corporation',
+          cost_in_credits: '149999',
+          length: '12.5',
+          starship_class: 'Starfighter',
+          url: 'http://swapi.co/api/starships/12/'
         }
-        //what can we do with an array console.dir()
-        console.dir(colors);
-        // example of for of loop to traverse array
-        for (let color of colors) {
-            console.log(color);
-        }
+      ];
 
-        colors.forEach(item => {
-            console.log(item);
-        });
-        //example of map
-        const newArray = numbers.map(function (number) {
-            return number * -1;
-        });
-        console.log(newArray);
-        //example of map with arrow function declaration
-        const negNumbers = numbers.map(number => number * -1);
+      //example of for loop to traverse array
+      for (let i = 0; i < colors.length; i++) {
+        console.log(colors[i]);
+      }
+      //what can we do with an array console.dir()
+      console.dir(colors);
+      // example of for of loop to traverse array
+      for (let color of colors) {
+        console.log(color);
+      }
 
-        const filteredWildcard = colors.filter(item => {
-            return item.toLowerCase().indexOf("r".toLowerCase()) > -1;
-        });
-        console.log(filteredWildcard);
-        const filteredList = ships.filter(item => {
-            return parseInt(item.length) > 12;
-        });
-        console.log(filteredList);
+      colors.forEach(item => {
+        console.log(item);
+      });
+      //example of map
+      const newArray = numbers.map(function(number) {
+        return number * -1;
+      });
+      console.log(newArray);
+      //example of map with arrow function declaration
+      const negNumbers = numbers.map(number => number * -1);
 
-        function random(num) {
-            return Math.floor(Math.random() * num);
-        }
+      const filteredWildcard = colors.filter(item => {
+        return item.toLowerCase().indexOf('r'.toLowerCase()) > -1;
+      });
+      console.log(filteredWildcard);
+      const filteredList = ships.filter(item => {
+        return parseInt(item.length) > 12;
+      });
+      console.log(filteredList);
 
+      console.log(Math.random());
 
+      function random(num) {
+        return function() {
+          return Math.floor(Math.random() * num) + 1;
+        };
+      }
 
+      const random2 = random;
+      const die6 = random(6);
+      const d20 = random(20);
+      die6();
 
+      // //random numbers write a function that will return a random number in a range specified
+      // function random(num) {
+      //     return Math.floor(Math.random() * num);
+      // }
+      // write a function to build a random sentence seeded from 3 arrays (color, adj, noun)
+      //   function sentence() {
+      //     //get random color
+      //     let color = colors[random(colors.length())];
+      //     let noun = nouns[random(7)];
+      //     let adj = adjectives[random(7)];
+      //     console.log(adj + ' ' + color + ' ' + noun);
+      //   }
 
+      //  this mapping.
+      //   const main = document.querySelector('main');
+      //   function createEl(el, content) {
+      //     const item = document.createElement(el);
+      //     item.innerHTML = content;
+      //     return item;
+      //   }
+      //   main.appendChild(createEl('h2', 'Hello'));
 
+      //   main.appendChild(createEl('h2', 'Goodbye'));
+      //   ('use strict');
+      //   const goodbyeWrapper = function() {
+      //     //main.children[1].addEventListener('click', ev => {
+      //     console.log(this);
+      //     //});
+      //   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // //random numbers write a function that will return a random number in a range specified
-        // function random(num) {
-        //     return Math.floor(Math.random() * num);
-        // }
-        // write a function to build a random sentence seeded from 3 arrays (color, adj, noun)
-        function sentence() {
-            //get random color
-            let color = colors[random(colors.length())];
-            let noun = nouns[random(7)];
-            let adj = adjectives[random(7)];
-            console.log(adj + ' ' + color + ' ' + noun);
-        }
-
+      //   const stuff = {
+      //     helloWrapper: function() {
+      //       main.children[0].addEventListener('click', function(ev) {
+      //         console.log(this);
+      //       });
+      //     },
+      //     goodbyeWrapper: goodbyeWrapper
+      //   };
+      //   stuff.helloWrapper();
+      //   goodbyeWrapper();
+      //   stuff.goodbyeWrapper();
     </script>
-</body>
-
+  </body>
 </html>

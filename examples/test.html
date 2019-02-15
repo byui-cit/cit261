@@ -1,27 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Fun with JS</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 
+    1. create a basic .html file…add code to make it a valid document.
+    2. Add a text input and a button. Put an empty div with an ID below those.
+    3. Add a script tag, write a function that will read the contents of the input, and write them to the div.
+    4. Call the function when the button is pressed. -->
 
+    <!-- Pair exercise: 
+1. Open file from Tuesday.
+2. Write a new function that expects a number as an argument. It should take that number and sum all the numbers up to the number provided. (ie n=5…so it would do 1+2+3+4+5 = 15) It should return that value
+3. When the button is pressed it should read the number from the input. Make sure it is a valid number, call the summing function you just wrote, and output the result to the div. -->
+  </head>
 
-</head>
+  <body>
+    <input id="inputBox" type="number" />
+    <button onclick="getInput()">Click me</button>
+    <div id="output"></div>
 
-<body>
     <script>
-        let a = 1, b = 2;
+      function getInput() {
+        const myInput = document.getElementById('inputBox');
+        console.log(myInput.value);
 
-        function add() {
-            let num1 = a, num2 = b;
-            return num1 + num2;
+        const myOutput = document.getElementById('output');
+        if (myInput.value != NaN) {
+          myOutput.innerHTML = sum(myInput.value);
+        }
+      }
+
+      function sum(max) {
+        let total = 0;
+        for (let i = 0; i <= max; i++) {
+          total = total + i;
         }
 
+        return total;
+      }
 
+      const sum = function(max) {
+        let total = 0;
+        for (let i = 0; i <= max; i++) {
+          total = total + i;
+        }
 
+        return total;
+      };
+
+      const add = (num1, num2) => num1 + num2;
+
+      add(1, 2);
     </script>
-
-</body>
-
+  </body>
 </html>
