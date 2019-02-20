@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>BYU-Idaho CIT 261</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/solarized-light.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <header>
+        <img src="../images/smallBanner.png" alt="Course Banner" />
+      </header>
+      <main id="article">
+        <h1>Calculator 2: Objects</h1>
+        <hr />
+
+        <p>
+          In a previous exercise we made a simple adding machine. This activity
+          will have you expand that into a complete calculator as well as
+          introduce some Javascript troubleshooting techniques and some object
+          usage.
+        </p>
+        <p>
+          Start by getting the code. You will need 3 files from this
+          <a
+            href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/calc"
+            target="_blank"
+            >github folder</a
+          >: <kbd>calc2.html</kbd>, <kbd>calc2.js</kbd>, and
+          <kbd>calc.css</kbd>.
+        </p>
+        <p>
+          Alternatively you could just clone the
+          <a href="https://github.com/byui-cit/cit261.git" target="_blank"
+            >whole repository</a
+          >. If you do this make sure to change to the
+          <kbd>gh-pages</kbd> branch.
+        </p>
+        <h2>Activity</h2>
+        <p>
+          Most of your portfolio for this course will be made up of code. It
+          would make sense then, to use a tool specifically designed to help
+          manage code to manage your portfolio. I would recommend something like
+          <a href="https://github.com" target="_blank">Github</a> or
+          <a href="https://bitbucket.org/" target="_blank">Bitbucket</a>. Both
+          of these are free hosted code repositories with the core ability to
+          track changes.
+        </p>
+        <div class="callout">
+          <p>
+            If you aren't sure how to get a version control repository setup,
+            here is a cheatsheet using Github:
+          </p>
+          <ol>
+            <li>
+              Create an account with
+              <a href="https://github.com" target="_blank">Github</a> if you
+              don't already have one.
+            </li>
+            <li>
+              Once logged in find and click on the "New Repository" button.
+            </li>
+            <li>
+              It will ask for a name, description, and whether to include a
+              "README". Fill out the name, description, and check the Readme
+              box.
+            </li>
+            <li>
+              You should now see a screen listing out the files in the
+              repository (it's a very short list) There should also be a big
+              green button labeled "Clone or download" Click on it and copy the
+              URL in the box. (should look something like
+              <code>https://github.com/matkat99/port.git</code>
+            </li>
+            <li>
+              At this point you need to decide if you want to manage your
+              repository with the command line or with a GUI tool.
+              <ul>
+                <li>
+                  GUI Tool
+                  <ol>
+                    <li>
+                      Download and install the
+                      <a href="https://desktop.github.com" target="_blank"
+                        >Github Desktop</a
+                      >
+                      app. Launch it and sign in with your Github credentials.
+                    </li>
+                    <li>
+                      Click on "add a new project" (usually the +) and select
+                      "Clone" If you have authenticated to your Github account
+                      correctly then you should see your repository listed.
+                      Select it and click "Clone Repository". It will ask you
+                      where it should store it. Select a directory on your
+                      harddrive.
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Command line
+                  <ol>
+                    <li>
+                      <p>
+                        Make sure your computer has git installed. Open your
+                        command line prompt (Terminal.app on the Mac, CMD on
+                        Windows), then type
+                      </p>
+                      <pre><code class="bash">git --version</code></pre>
+                      <p>
+                        If you get an error go
+                        <a href="https://git-scm.com/download" target="_blank"
+                          >install git</a
+                        >.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        Navigate to the folder where you want the project stored
+                        on your harddrive. If you are unsure how to do that then
+                        lets just put it on your desktop. You will automatically
+                        start in your User directory when you open a new command
+                        prompt...and it's easy to get back there. Type:
+                      </p>
+                      <pre><code class="bash">cd ~</code></pre>
+                      <p>on the Mac or for Windows type:</p>
+                      <pre><code class="bash">cd %user_profile%</code></pre>
+                      <p>then simply type:</p>
+                      <pre><code class="bash">cd Desktop</code></pre>
+                    </li>
+                    <li>
+                      <p>
+                        Enter
+                        <code
+                          >git clone &lt;URL copied from github&gt; &lt;name of
+                          directory you want created&gt;</code
+                        >
+                        Mine for example would look like this:
+                      </p>
+                      <pre><code class="bash">git clone https://github.com/matkat99/port.git portfolio</code></pre>
+                    </li>
+                  </ol>
+                </li>
+              </ul>
+            </li>
+            <li>
+              Now you can open that folder up in your editor and begin making
+              edits. You should probably also run through something like
+              <a
+                href="https://try.github.io/levels/1/challenges/1"
+                target="_blank"
+                >try.github.io</a
+              >
+              to start learning how to use git.
+            </li>
+          </ol>
+        </div>
+        <h2>Example</h2>
+        <p>
+          Let's look at an example of how this might look in practice. Visit
+          this
+          <a href="https://github.com/byui-cit/cit261" target="_blank"
+            >CIT261 repository</a
+          >
+          on Github. Notice that I created a couple of folders to hold my work.
+          "ds" is for the examples from the "Doing Stuff" book, and "ntn" is for
+          the "Javascript: Novice to Ninja" book.
+        </p>
+        <p>
+          If you drill into those folders you will see additional directories
+          for organization. Drill into <code>"ntn/ch5-objects"</code>. You will
+          see an <code>index.html</code> file and a couple of javascript files.
+        </p>
+        <p>
+          If you look at the <code>index.html</code> you will see that is is
+          basically the template file from the first Doing Stuff chapter, with a
+          couple of extra <code>&lt;script&gt;</code> elements added to the
+          bottom to include our javascript. The index is really just to make it
+          easier to view our examples in the browser console.
+        </p>
+        <p>
+          Take a moment to look through the <code>superObjects.js</code> file.
+          Notice that I have many of the code examples from the chapter in
+          there...I used a lot of <code>console.log()</code> commands to run
+          many of the examples. I also used this as an opportunity to record my
+          notes from the reading and my thoughts about the examples as well.
+        </p>
+        <p>
+          My workflow would be to open the <code>index.html</code> file in my
+          browser, then open up the browser console, then open the chapter I am
+          currently working on. If you were to pull these files down and do that
+          you would see bunch of output. You could also try additional commands
+          right there as well.
+        </p>
+        <p>
+          Note that you will not see <strong>all</strong> of the examples from
+          the chapter in the .js files!...many of the examples were exploratory
+          in nature so I simply ran them in the console of the browser once I
+          had my <code>index.html</code> page open there. It is much faster to
+          try lots of variations of a command there than it is to code it all up
+          in a JS file. Your goal is to get enough of the example code into the
+          file that you can experiment in the browser console and record your
+          findings as comments.
+        </p>
+        <p>
+          If you follow a similar system while working the examples
+          yourself...you will find your portfolio ready to show at any time.
+          When it is time to start the first Challenge phase, create another
+          directory in your repository for your projects and they will be added
+          as well.
+        </p>
+        <h2>Resources</h2>
+        <p>
+          Tools such as Github and Bitbucket are powerful, but do require a bit
+          of work to learn. I haven't mentioned anything about using them in
+          this outline. There are many good free resources to get started with
+          them if you don't have any previous experience. A search will bring
+          many of them up easily. If you use Github, it has a very good getting
+          started tutorial right on their site to get you going.
+        </p>
+        <p>
+          It will be very worth your time to gain some mastery of at least one
+          of these tools.
+        </p>
+      </main>
+      <!-- end #article -->
+    </div>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>
+      // <![CDATA[
+      hljs.initHighlightingOnLoad();
+      // ]]>
+    </script>
+  </body>
+</html>
