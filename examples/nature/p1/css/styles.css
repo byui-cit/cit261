@@ -1,0 +1,70 @@
+body {
+  background-color: #dddddd;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
+  padding: 0.5em;
+}
+img {
+  max-width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  height: 100%;
+}
+
+#map {
+  height: 400px;
+  margin: 0;
+}
+.controls {
+}
+.controls select {
+  display: block;
+  width: 100%;
+  font-size: 1.2rem;
+}
+.controls option {
+  padding: 0.5em;
+}
+.controls button {
+  width: 100%;
+  background-color: lightblue;
+}
+.listStyles {
+  padding: 0;
+  margin: 1em 0;
+  list-style-type: none;
+}
+
+.listStyles li > h2 {
+  text-align: center;
+  background-color: burlywood;
+}
+
+.listStyles li > img {
+  width: 100%;
+  max-width: 500px;
+}
+
+.obs-list {
+  list-style-type: none;
+  padding: 0.5em;
+}
+.obs-list h3 {
+  margin: 0;
+  padding: 0;
+}
+.obs-list > li {
+  margin: 0.5em;
+}

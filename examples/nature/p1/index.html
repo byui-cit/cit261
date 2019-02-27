@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nature App</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- change the path below to scss/styles.scss to use SASS -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Where are they?</h1>
+      <nav><a href="#">settings</a></nav>
+    </header>
+
+    <main id="content">
+      <figure id="map"><img src="falls.jpg" /></figure>
+      <ul id="listElement" class="obs-list"></ul>
+      <div class="controls">
+        <select id="location">
+          <option>Location</option>
+        </select>
+        <select id="species">
+          <option>Species</option>
+        </select>
+        <button id="search">Search</button>
+      </div>
+    </main>
+    <script src="js/data.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

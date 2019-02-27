@@ -1,10 +1,23 @@
 body {
   background-color: #dddddd;
+  font-family: Arial, Helvetica, sans-serif;
 }
 img {
   max-width: 100%;
 }
-
+#mainNav {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  justify-content: space-around;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  background-color: burlywood;
+}
+#mainNav li a {
+  display: block;
+  padding: 1em;
+}
 .listStyles {
   padding: 0;
   margin: 1em 0;

@@ -87,11 +87,9 @@ function renderHikeFull(hike) {
         </div>
         <div>
             <h3>How to get there</h3>
-            <p>Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for
-                a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road.
-                There is a parking area at the trailhead.</p>
+            <p>${hike.directions}</p>
         </div>
-    
+      
     `;
 
   item.insertBefore(backButton, item.childNodes[0]);
@@ -101,7 +99,7 @@ const hikes = {
   _hikeListElement: null,
   _hikeList: null,
   init: function() {
-    this._hikeListElement = document.getElementById('hikes');
+    this._hikeListElement = document.querySelector('#hikes > ul');
     this._hikeList = hikeList;
     this.getAllHikes();
   },

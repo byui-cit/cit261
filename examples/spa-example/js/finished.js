@@ -1,7 +1,8 @@
 import hikes from './hikes.js';
+import parks from './parks.js';
 const routes = [
   { controller: hikes, file: 'views/hikes.html', label: 'Hiking' },
-  { controller: 'parks', file: 'views/parks.html', label: 'Parks' }
+  { controller: parks, file: 'views/parks.html', label: 'Parks' }
 ];
 
 // function to create a navigation for the items found in routes.
