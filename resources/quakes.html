@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>BYU-Idaho CIT 261</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/solarized-light.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <header>
+        <img src="../images/smallBanner.png" alt="Course Banner" />
+      </header>
+      <main id="article">
+        <h1>Earthquake Watch</h1>
+        <hr />
+
+        <p>
+          At this point we have learned a lot about coding with Javascript.
+          Let's make a simple earthquake watch app to apply what we have
+          learned.
+        </p>
+        <p>
+          Start by creating a simple HTML file. You can use the code below as a
+          starting point.
+        </p>
+        <pre><code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+        &lt;title&gt;Local Quakes&lt;/title&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;main&gt;
+            &lt;h1&gt;Quake List&lt;/h1&gt;
+            &lt;ul id="quakeList" class="hikeStyles"&gt;&lt;/ul&gt;
+        &lt;/main&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+        <p>
+          Create two additional files: <kbd>utilities.js</kbd> and
+          <kbd>quakes.js</kbd>.
+        </p>
+        <h2>Activity</h2>
+        <ol class="bigSteps">
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>getJSON function</h3>
+            <p>
+              We will be fetching data from an external API using
+              <kbd>fetch</kbd>. All of the data we will be requesting will be in
+              the <kbd>JSON</kbd> format, so let's write a helper function to
+              automatically convert the response to that, and add a bit of extra
+              error checking as well.
+            </p>
+            <p>
+              Open the <kbd>utilities.js</kbd> file and create a function called
+              <kbd>getJSON(url)</kbd>. Add the code to make your function do a
+              simple fetch request using the <kbd>url</kbd> argument that should
+              get passed in, and return the response in JSON.
+            </p>
+            <p>
+              You can use
+              <kbd
+                >https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-03-02'</kbd
+              >
+              to test your function with. Check your function against mine once
+              you have it working.
+            </p>
+            <section class="hint">
+              <input type="checkbox" /><i></i>
+              <h3>Simple Fetch</h3>
+              <div>
+                <pre><code class="javascript">
+function getJSON(url) {
+    return fetch(url)
+        .then(function(response) {
+            return response.json();
+        })
+}
+                </code></pre>
+              </div>
+            </section>
+            <p>
+              This is a good start, but it is a bit brittle. Let's add some
+              error checking. You should have used a <code>.then()</code> method
+              call to process the response of your request. There is another
+              method we can use as well: <code>.catch()</code>. We can use this
+              to do some checking on how successful our fetch was. We can just
+              chain this method after the end of the <code>.then()</code> call.
+              Like this:
+            </p>
+            <pre><code class="javascript">
+.catch(function(error) {
+    console.log(error);
+});
+        </code></pre>
+            <p>
+              This is a very simple error handler. Normally you would do
+              something about the error, instead of just reporting it. The
+              problem with this however, is that Fetch was designed to treat
+              <em>any</em> request that communicates successfully with the
+              intended destination server as successful, no matter what the
+              response is! So we need to add more checking to make sure we
+              actually got the results we were looking for before we try to use
+              them. Luckily the Fetch response includes an <code>ok</code> flag
+              as part of the response. If that is <kbd>true</kbd>, then we get
+              got something more than just a wave from the server. Below is an
+              example of how we might check against <code>ok</code>
+            </p>
+            <pre><code class="javascript">
+function getJSON(url) {
+    return fetch(url)
+        .then(function(response) {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            } else {
+                return response.json();
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+        </code></pre>
+            <p>
+              If you are uncomfortable with the <code>throw</code> line
+              above...go back and revisit the reading in the text about Bugs and
+              Errors.
+            </p>
+
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Geolocation services</h3>
+            <p>
+              We would like our app to be able to return earthquakes within a
+              certain radius of our current location. In order to do that we
+              will need to tap into the
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API"
+                target="_blank"
+                >Geolocation API</a
+              >. Luckily it is pretty easy to use. Make sure to read through the
+              linked page above for more details, but I'll provide this
+              function. One thing to note is that the Geolocation API does not
+              return a <kbd>Promise</kbd> like Fetch does. It would be nice if
+              it did so we could take advantage of the newer promise based
+              features of ES2015 and ES2106. Below you will find a simple
+              "Promisefied" version of the method to return the current location
+              of the user. Add this to your <kbd>utilities.js</kbd> file.
+            </p>
+            <pre><code class="javascript">
+const getLocation = function(options) {
+    return new Promise(function(resolve, reject) {
+        navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
+};
+            </code></pre>
+
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Export the utilities</h3>
+            <p>
+              We would like our <kbd>utilities.js</kbd> collection to be a
+              reusable module. So we need to export our helper functions to be
+              used elsewhere. Add an <code>export</code> right before the
+              <code>function</code> keyword for your two functions to export
+              them.
+            </p>
+            <pre><code class="javascript">export function getJSON(url) { ...</code></pre>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Quakes module</h3>
+            <p>
+              Now we can start on the <kbd>quakes.js</kbd> module in the other
+              file. We will want to use our utilities, so let's import them:
+            </p>
+            <pre><code class="javascript">import { getJSON, getLocation } from 'utilities.js';</code></pre>
+            <p>
+              ...then let's add a variable to hold the Base Url for our app. We
+              can use the same one we used earlier for testing. Notice that is
+              has the start and end times embedded in it. That will work for
+              now, but eventually we will probably want those to be able to
+              change and so we will remove them from that <code>const</code>.
+            </p>
+            <pre><code class="javascript">const baseUrl ='https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-03-02';</code></pre>
+            <p>
+              Make use of our two funcitons to get the current location from the
+              browser...then send that on to the API to request the earthquakes
+              within a 100km radius of that location. The URL that you should
+              end up with should look like this:
+            </p>
+            <code class="callout javascript"
+              >https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-03-02&latitude=43.814540699999995&longitude=-111.78491029999999&maxradiuskm=100</code
+            >
+            <p>
+              Construct this URL with the current location from your helper
+              function.
+            </p>
+
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3></h3>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3></h3>
+            <!-- END STEP -->
+          </li>
+        </ol>
+      </main>
+      <!-- end #article -->
+    </div>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>
+      // <![CDATA[
+      hljs.initHighlightingOnLoad();
+      // ]]>
+    </script>
+  </body>
+</html>
