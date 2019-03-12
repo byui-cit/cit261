@@ -151,3 +151,121 @@ kbd {
   font-weight: bold;
   color: darkblue;
 }
+
+.bigSteps {
+  list-style: none;
+  counter-reset: my-counter;
+
+  margin: 0;
+  padding: 0;
+}
+.bigSteps > li {
+  counter-increment: my-counter;
+
+  margin-bottom: 0.5rem;
+}
+
+.bigSteps > li::before {
+  content: counter(my-counter);
+  font-weight: bold;
+  font-size: 3rem;
+  margin-right: 0.5rem;
+  font-family: 'Impact', serif;
+  line-height: 1;
+}
+.bigSteps > li:nth-child(-n + 9):before {
+  content: '0' counter(my-counter);
+}
+
+.bigSteps ol {
+  counter-reset: sub-counter;
+  list-style: none;
+}
+.bigSteps ol > li {
+  counter-increment: sub-counter;
+  margin-bottom: 0.6em;
+}
+.bigSteps ol > li::before {
+  content: counters(sub-counter, '.') '.';
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+
+.bigSteps > li > h3,
+.bigSteps > li > h2 {
+  display: inline-block;
+}
+
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hint {
+  border: 1px solid grey;
+  background: #e0e0e0;
+  padding: 0.5em;
+  position: relative;
+  margin: 1em 0;
+}
+.hint h3 {
+  margin: 0;
+}
+.hint:hover {
+  background: #d0d0d0;
+}
+.hint > div {
+  display: none;
+}
+
+.hint input[type='checkbox'] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.hint input[type='checkbox']:checked ~ div {
+  display: block;
+}
+
+.hint i {
+  position: absolute;
+  transform: translate(-6px, 0);
+  margin-top: 16px;
+  right: 10px;
+  top: -3px;
+  border: 0;
+}
+.hint i:before,
+.hint i:after {
+  content: '';
+  position: absolute;
+  background-color: black;
+  width: 3px;
+  height: 9px;
+}
+.hint i:before {
+  transform: translate(2px, 0) rotate(45deg);
+}
+.hint i:after {
+  transform: translate(-2px, 0) rotate(-45deg);
+}
+
+.hint input[type='checkbox']:checked ~ i:before {
+  transform: translate(-2px, 0) rotate(45deg);
+}
+.hint input[type='checkbox']:checked ~ i:after {
+  transform: translate(2px, 0) rotate(-45deg);
+}
