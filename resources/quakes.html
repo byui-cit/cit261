@@ -294,7 +294,7 @@ export default class Quake {
               Notice I took the liberty of importing the
               <code>getJSON</code> function we wrote earlier. We will need it.
             </p>
-            <p>Finish the model by completing the two methods referenced.</p>
+
             <!-- END STEP -->
           </li>
           <li>
@@ -317,7 +317,7 @@ export default class QuakesView {
   }
 }
             </code></pre>
-            <p>Complete the View by finishing the methods.</p>
+
             <!-- END STEP -->
           </li>
           <li>
@@ -385,16 +385,37 @@ export default class QuakesController {
   }
 }
             </code></pre>
+
             <!-- END STEP -->
           </li>
           <li>
             <!-- BEGIN STEP -->
             <h3>Putting it all together</h3>
             <p>
-              The last step is to let our HTML know about our modules. Import in
+              The next step is to let our HTML know about our modules. Import in
               your Controller, create an instance of the class, then call the
-              <code>init()</code> method. If everything has gone well you should
-              see a list of quakes on the screen.
+              <code>init()</code> method. You may want to console.log something
+              out from that method until we create it to help us know if
+              everything is working correctly. If there are errors, fix them :)
+              If not move on to the next step
+            </p>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Finishing up</h3>
+            <p>
+              The last step is go back in our model, view, and controller and
+              finish writing the methods as indicated in the comments. I would
+              recommend starting with the Model. Complete the
+              <code>getEarthQuakesByRadius</code> method first, test it, then
+              move on to the <code>getQuakeById</code> method. Test again.
+            </p>
+            <p>
+              After that work on the controller or View methods as it makes
+              sense. I would recommend following the same order...finish a
+              method, then test. It will keep your errors under control and make
+              your code easier to troubleshoot.
             </p>
             <!-- END STEP -->
           </li>
