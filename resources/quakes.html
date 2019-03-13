@@ -45,7 +45,7 @@
         </code></pre>
         <p>
           Create two additional files: <kbd>utilities.js</kbd> and
-          <kbd>quakes.js</kbd>.
+          <kbd>index.js</kbd>.
         </p>
         <h2>Activity</h2>
         <ol class="bigSteps">
@@ -73,6 +73,18 @@
               to test your function with. Check your function against mine once
               you have it working.
             </p>
+            <div class="callout">
+              <p>
+                We will be using earthquake data from the USGS. They have an
+                open api that is easy to use. You can find the documentation
+                here:
+                <a
+                  href="https://earthquake.usgs.gov/fdsnws/event/1/"
+                  target="_blank"
+                  >USGS Earthquake Catalog</a
+                >
+              </p>
+            </div>
             <section class="hint">
               <input type="checkbox" /><i></i>
               <h3>Simple Fetch</h3>
@@ -184,8 +196,9 @@ const getLocation = function(options) {
             <!-- BEGIN STEP -->
             <h3>Quakes module</h3>
             <p>
-              Now we can start on the <kbd>quakes.js</kbd> module in the other
-              file. We will want to use our utilities, so let's import them:
+              Now we can start on the <kbd>quakes</kbd> module in the other file
+              <kbd>index.js</kbd>. We will want to use our utilities, so let's
+              import them:
             </p>
             <pre><code class="javascript">import { getJSON, getLocation } from 'utilities.js';</code></pre>
             <p>
@@ -197,7 +210,7 @@ const getLocation = function(options) {
             </p>
             <pre><code class="javascript">const baseUrl ='https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-03-02';</code></pre>
             <p>
-              Make use of our two funcitons to get the current location from the
+              Make use of our two functions to get the current location from the
               browser...then send that on to the API to request the earthquakes
               within a 100km radius of that location. The URL that you should
               end up with should look like this:
@@ -214,12 +227,208 @@ const getLocation = function(options) {
           </li>
           <li>
             <!-- BEGIN STEP -->
-            <h3></h3>
+            <h3>MVC</h3>
+            <p>
+              Before we take the next steps, let's think a moment about how we
+              would like to organize our code. Not taking this time will almost
+              always end up in what is known as 'Spaghetti code'. Hard to
+              follow, maintain, and understand.
+            </p>
+            <p>
+              For this project we will use the Model-View-Controller (MVC)
+              architecture. It provides a nice separation of concerns and will
+              help us stay organized. This is a simple application and so we
+              will probably only need one model, one view, and one controller.
+              Create three more files in your project called:
+            </p>
+            <ul>
+              <li><kbd>Quake.js</kbd></li>
+              <li><kbd>QuakesView.js</kbd></li>
+              <li><kbd>QuakesController.js</kbd></li>
+            </ul>
+            <p>
+              In MVC models are responsible to handle all of the interactions
+              with our data source. They often contain schema information
+              describing the data as well.
+            </p>
+            <p>
+              Views take information (usually from the Model) and display it in
+              whatever format is needed.
+            </p>
+            <p>
+              Controllers act as the glue between the model and view. Their job
+              is to request information from the model when needed, and pass it
+              on to the view to be displayed.
+            </p>
             <!-- END STEP -->
           </li>
           <li>
             <!-- BEGIN STEP -->
-            <h3></h3>
+            <h3>Quake.js</h3>
+            <p>
+              Let's begin by building the model: Quake.js. We will use a
+              <kbd>class</kbd> to represent our model. I've provided a bit of
+              code below to get you started. Copy it into your file.
+            </p>
+            <pre><code class="javascript">
+import { getJSON } from './utilities.js';
+// Quake Model
+export default class Quake {
+  constructor() {
+    this.baseUrl =
+      'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-03-02';
+    // store the last batch of retrieved quakes in the model.  I don't always do this...in this case the api doesn't have an endpoint to request one quake.
+    this._quakes = [];
+  }
+  async getEarthQuakesByRadius(position, radius = 100) {
+    // use the getJSON function and the position provided to build out the correct URL to get the data we need.  Store it into this._quakes, then return it
+    return this._quakes;
+  }
+  getQuakeById(id) {
+    // filter this._quakes for the record identified by id and return it
+    return ;
+  }
+}
+            </code></pre>
+            <p>
+              Notice I took the liberty of importing the
+              <code>getJSON</code> function we wrote earlier. We will need it.
+            </p>
+            <p>Finish the model by completing the two methods referenced.</p>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>QuakesView.js</h3>
+            <p>
+              Now let's move on to the View. The view should get sent some data,
+              then format it and display it in the current page. As before we
+              will use a class, and I will give you a head start:
+            </p>
+            <pre><code class="javascript">
+  // Quake View handler
+export default class QuakesView {
+  renderQuakeList(quakeList, listElement) {
+    //build a list of the quakes...include the title and time of each quake then append the list to listElement. You should also add the id of the quake record as a data- property to the li. ie. &lt;li data-id=""&gt;
+  }
+  renderQuake(quake, element) {
+    const quakeProperties = Object.entries(quake.properties);
+    // for the provided quake make a list of each of the properties associated with it. Then append the list to the provided element. Notice the first line of this method. Object.entries() is a slick way to turn an object into an array so that we can iterate over it easier! 
+  }
+}
+            </code></pre>
+            <p>Complete the View by finishing the methods.</p>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>QuakesController.js</h3>
+            <p>
+              Remember that that earlier I said that the Controller was like the
+              glue between the Model and View? Well in order to do that the
+              Controller has to know about both. Making our model and view
+              Classes and modules will make it easy to do that. As before
+              copy/paste the code below into your controller to get started.
+            </p>
+            <pre><code class="javascript">
+import { getLocation } from './utilities.js';
+import Quake from './Quake.js';
+import QuakesView from './QuakesView.js';
+
+// Quake controller
+export default class QuakesController {
+  constructor(parent, position = null) {
+    this.parent = parent;
+    // sometimes the DOM won't exist/be ready when the Class gets instantiated, so we will set this later in the init()
+    this.parentElement = null;
+    // let's give ourselves the option of using a location other than the current location by passing it in.
+    this.position = position || {
+      lat: 0,
+      lon: 0
+    };
+    // this is how our controller will know about the model and view...we add them right into the class as members.
+    this.quakes = new Quake();
+    this.quakesView = new QuakesView();
+  }
+  async init() {
+    // use this as a place to grab the element identified by this.parent, do the initial call of this.intiPos(), and display some quakes by calling this.getQuakesByRadius()
+    
+  }
+  async initPos() {
+    // if a position has not been set
+    if (this.position.lat === 0) {
+      try {
+        // try to get the position using getLocation()
+        
+        // if we get the location back then set the latitude and longitude into this.position
+        
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  async getQuakesByRadius(radius = 100) {
+    //set a loading message in case it takes long to get the quakes
+    this.parentElement.innerHTML = '<li>Loading...</li>';
+    // get the list of quakes in the specified radius of the location
+    
+
+    // render the list to html
+    
+    // add a listener to the new list of quakes to allow drill down in to the details. The listener should call this.getQuakeDetails on the targeted element
+    
+  }
+  async getQuakeDetails(quakeId) {
+    // get the details for the quakeId provided, then send them to the view to be displayed
+   
+  }
+}
+            </code></pre>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Putting it all together</h3>
+            <p>
+              The last step is to let our HTML know about our modules. Import in
+              your Controller, create an instance of the class, then call the
+              <code>init()</code> method. If everything has gone well you should
+              see a list of quakes on the screen.
+            </p>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Stretch Goals (optional)</h3>
+            <p>
+              If you want to take this further there are lots of improvements
+              that could be made.
+            </p>
+            <ol>
+              <li>
+                It would be great if we could specify the radius we would like
+                to include in the query for earthquakes. Make it so. You might
+                also allow the use to indicate the dates they would like to
+                search over as well.
+              </li>
+              <li>
+                We can drill down into a quake's details...but we currently have
+                no way to get back to the list other than a refresh of the page.
+                Add a 'Back' button.
+              </li>
+              <li>
+                What if we wanted to add more functionality? A Routing system
+                would make this easier. See if you can take the
+                <a
+                  href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/spa-example"
+                  target="_blank"
+                  >Routing module</a
+                >
+                from the SPA example app that we did earlier and integrate it
+                into this app.
+              </li>
+            </ol>
             <!-- END STEP -->
           </li>
         </ol>
