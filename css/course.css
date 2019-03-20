@@ -4,14 +4,28 @@
     houses all the default template formatting.
 ********************************************************/
 /* DO NOT DELETE OR MODIFY THIS IMPORT */
-@import url('https://content.byui.edu/integ/gen/599082e0-3e89-4fd9-ac69-2615865d63c7/0/online.css');
+/* @import url('https://content.byui.edu/integ/gen/599082e0-3e89-4fd9-ac69-2615865d63c7/0/online.css'); */
 
 /* Add Course Specific css Below */
-
-html {
+:root {
+  --header-background: #21a048;
+  --callout-background-color: #d8d8d8;
+}
+/* html {
   background: -webkit-radial-gradient(ellipse, #21a048 0%, #265169 100%) fixed;
   background: radial-gradient(ellipse, #21a048 0%, #265169 100%) fixed;
+} */
+* {
+  box-sizing: border-box;
 }
+body {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  font-size: 18px;
+  margin: 0;
+  line-height: 1.4;
+}
+
 img {
   max-width: 100%;
 }
@@ -22,7 +36,7 @@ h1 {
 
 h2,
 h4 {
-  color: #d9666;
+  color: #0d9666;
 }
 
 h3,
@@ -43,6 +57,161 @@ a:hover {
 a:visited {
   color: #74c946;
   border-bottom: 2px solid #74c946;
+}
+
+#content {
+  /* width: 90%; */
+  max-width: 950px;
+  margin: 0 auto;
+  background-color: white;
+  /* box-shadow: 0 0 12px #000000; */
+}
+
+/*
+<div>
+  <h1><span>WEB</span> Fundamentals</h1>
+  <h2>WDD 130</h2>
+</div> 
+*/
+.headerBanner {
+  padding: 0.2em 0;
+  background-color: var(--header-background);
+  font-family: 'Lucida Console', 'Lucida Grande', 'Lucida Sans', Arial,
+    sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -4px;
+}
+
+.headerBanner > div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 0.3em 0;
+  padding: 0.3em;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 20%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.headerBanner h1 {
+  color: #bbe4c9;
+  font-size: 2.8rem;
+  margin: 5px;
+  flex: 0 1 10em;
+  line-height: 0.9;
+  display: flex;
+}
+@media screen and (max-width: 500px) {
+  .headerBanner h1 {
+    font-size: 9vw;
+  }
+}
+.headerBanner h1 > span {
+  font-size: 100%;
+  writing-mode: vertical-lr;
+  line-height: 1.3;
+  transform: rotate(180deg);
+  padding-top: 0.2em;
+  margin-right: -0.2em;
+}
+.headerBanner h2 {
+  align-self: flex-end;
+  margin-right: 1.5em;
+  margin-bottom: 5px;
+  font-size: 2rem;
+  color: #bbe4c9;
+  letter-spacing: 1px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.headerLogo {
+  background-color: #14304f;
+
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0.8em;
+}
+
+.headerLogo h1 {
+  border-left: 1px solid;
+  line-height: 3em;
+  padding-left: 0.6em;
+  color: white;
+}
+.headerLogo .logo {
+  margin-right: 0.6em;
+
+  align-self: center;
+}
+
+main {
+  position: relative;
+  padding: 20px;
+  color: #3e3e3e;
+  /* background-color: #f0f0f0; */
+}
+@media screen and (min-width: 1200px) {
+  /* main {
+    columns: 2;
+    height: 80vh;
+    overflow: scroll;
+  } */
+}
+#mainNav {
+  background-color: #f0f0f0;
+  position: relative;
+}
+#mainNav > input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  height: 3em;
+  cursor: pointer;
+  z-index: 10;
+}
+#mainNav > h2 {
+  margin: 0;
+  text-align: center;
+  line-height: 2em;
+}
+
+i {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 5px;
+  margin: 0 0 3px 3px;
+}
+
+.arrow {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+#mainNav > input:checked + h2 > .arrow {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.navLists {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  opacity: 0;
+  transition: all 0.3s;
+}
+#mainNav > input:checked ~ .navLists {
+  display: flex;
+  opacity: 1;
+}
+nav ol > li,
+nav ul > li {
+  padding: 5px;
 }
 
 #footer {
@@ -98,9 +267,16 @@ a:visited {
 *******/
 
 /* Callout box */
+
 .callout {
+  display: block;
+
+  margin: 15px auto;
+  width: 90%;
+  padding: 10px;
+  border: 1px solid black;
   color: #171717;
-  background: #d8d8d8;
+  background: var(--callout-background-color);
 }
 
 /* Drop downs */
@@ -152,6 +328,15 @@ kbd {
   color: darkblue;
 }
 
+.requirements {
+  padding: 0;
+}
+@media screen and (min-width: 40em) {
+  .requirements {
+    padding: 0 5em;
+  }
+}
+
 .bigSteps {
   list-style: none;
   counter-reset: my-counter;
@@ -193,6 +378,9 @@ kbd {
 
 .bigSteps > li > h3,
 .bigSteps > li > h2 {
+  display: inline-block;
+}
+.bigSteps li > p:first-child {
   display: inline-block;
 }
 
