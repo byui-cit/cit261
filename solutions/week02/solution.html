@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Week 2 Team activity Solution</title>
+  </head>
+  <body>
+    <!-- I've left all the code for all three requirements. If you replaced code as you wnet and only have the code from #3 that is fine -->
+    <!-- Requirement 1 -->
+    <h2>Requirement 1</h2>
+    <input id="req1Input" type="text" />
+    <button id="req1Button" onclick="reqOne()">Submit</button>
+    <div id="req1Output"></div>
+
+    <!-- Requirement 2 -->
+    <h2>Requirement 2</h2>
+    <input id="req2Input" type="text" />
+    <button id="req2Button" onclick="reqTwo()">Sum</button>
+    <div id="req2Output"></div>
+
+    <!-- Requirement 3 -->
+    <h2>Requirement 3</h2>
+    <input id="req3Number1" placeholder="enter a number" type="number" /><input
+      id="req3Number2"
+      placeholder="enter a number"
+      type="number"
+    />
+    <button id="req3Button" onclick="add()">+</button>
+    <div id="req3Output"></div>
+
+    <script>
+      // req1
+      function reqOne() {
+        // we can use getElementById to grab the correct input...but we are interested in the value of the input...not the input itself...so we tell it that.
+        const input = document.getElementById('req1Input').value;
+        // Here we want the actual element so no .value...not to mention that only input elements HAVE a .value
+        const outputElement = document.getElementById('req1Output');
+        //  The content for most elements (other than inputs) lives in innerHTML
+        outputElement.innerHTML = 'You entered: ' + input;
+      }
+      // req 2
+      function reqTwo() {
+        const input = document.getElementById('req2Input').value;
+        const outputElement = document.getElementById('req2Output');
+        // make sure input is a number...we can convert it from the string we get from the input value to a number with parseInt.  If this fails it's not a number
+        const inputInt = parseInt(input);
+        if (inputInt !== NaN) {
+          outputElement.innerHTML = 'total: ' + sum(inputInt);
+        }
+      }
+      function sum(number) {
+        let total = 0;
+        for (let i = 1; i <= number; i++) {
+          total += i;
+        }
+        return total;
+      }
+
+      // req 3
+      function add() {
+        const number1 = document.getElementById('req3Number1').value;
+        const number2 = document.getElementById('req3Number2').value;
+        const outputElement = document.getElementById('req3Output');
+        //  we need to check for valid input again...this time decimals would be ok...so lets use parseFloat instead of parseInt
+        const num1Float = parseFloat(number1);
+        const num2Float = parseFloat(number2);
+        if ((num1Float !== NaN) & (num2Float !== NaN)) {
+          const total = num1Float + num2Float;
+          outputElement.innerHTML = 'Total: ' + total;
+        }
+      }
+    </script>
+  </body>
+</html>
