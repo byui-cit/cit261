@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>BYU-Idaho CIT 261 | Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/prism-light.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+  </head>
+
+  <body>
+    <div id="content">
+      <header class="headerBanner">
+        <div>
+          <h1><span>Web</span> Mobile App Development</h1>
+          <h2>CIT 261</h2>
+        </div>
+      </header>
+      <main>
+        <h1>Ponder: Team Activity</h1>
+        <hr />
+        <h2>Overview</h2>
+        <p>
+          This activity will review DOM manipulation with Javascript and events.
+          (<a href="http://eloquentjavascript.net/14_dom.html" target="_blank"
+            >Chapters 14-15</a
+          >
+          from Eloquent Javascript). We will do this by building an HTML/CSS/JS
+          based Tic-Tac-Toe board.
+        </p>
+        <h2>Instructions</h2>
+        <p>
+          Complete the following assignment as a team. Designate one team member
+          as the "main driver" and collaborate on their copy of the code.
+          Everyone on the team should be actively engaged in writing the code
+          and contributing to the solution. Once the solution is working, make
+          sure that everyone on the team gets a copy of the code and everyone
+          successfully deploys the code to their individual Heroku accounts.
+          Each week let someone else be the "main driver" of the coding.
+        </p>
+        <div class="requirements">
+          <h3>Core Requirements</h3>
+          <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                Build a 3X3 board in HTML and CSS.
+              </p>
+              <p>
+                You could do this with either a table element, or a collection
+                of divs. Both have their advantages and disadvantages.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Attach a <code>touchend</code> listener to the board.</p>
+              <p>
+                When a cell is touched it should add either an 'X or an 'O',
+                depending on whether it is player 1 or player 2's turn.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                Add a reset button.
+              </p>
+              <p>
+                When touched the reset button should remove all of the marks
+                from the board.
+              </p>
+              <!-- END STEP -->
+            </li>
+          </ol>
+          <h3>Stretch Goals</h3>
+          <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                If your board looks like the first image below...make it look
+                like the second.
+              </p>
+              <div class="fig-block">
+                <figure>
+                  <img
+                    src="../images/tic-board-1.png"
+                    alt="incorrect board borders"
+                  />
+                </figure>
+                <figure>
+                  <img
+                    src="../images/tic-board-2.png"
+                    alt="correct board borders"
+                  />
+                </figure>
+              </div>
+              <p>
+                Hint: look into <code>:nth-child(n)</code>,
+                <code>:last-child</code>, etc for help to target specific cells
+                to turn borders on or off.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Add Game logic</p>
+              <p>
+                Right now the players have to decide who won, or whether it was
+                a tie. Add some game logic to figure out when the game should
+                result in a tie.
+              </p>
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Add More Game logic</p>
+              <p>
+                Add the logic to figure out when someone wins.
+              </p>
+            </li>
+          </ol>
+        </div>
+        <h2>Instructors Solution</h2>
+        <p>
+          As a part of this team activity, you are expected to look over a
+          solution from the instructor, to compare your approach to that one.
+          One of the questions on the I-Learn submission will ask you to provide
+          insights from this comparison.
+        </p>
+        <p>
+          Please DO NOT open the solution until you have worked through this
+          activity as a team for the one hour period. At the end of the hour, if
+          you are still struggling with some of the core requirements, you are
+          welcome to view the instructor's solution and use it to help you
+          complete your own code. Even if you use the instructor's code to help
+          you, you are welcome to report that you finished the core
+          requirements, if you code them up yourself.
+        </p>
+        <p>
+          After working with your team for the one hour activity,
+          <a
+            href="https://github.com/byui-cit/cit261/tree/gh-pages/solutions/week04"
+            target="_blank"
+            >click here for the instructor's solution</a
+          >.
+        </p>
+        <h2>Submission</h2>
+        <p>
+          When you have finished this activity, please fill out the assessment
+          in I-Learn. You are welcome to complete any additional parts of this
+          activity by yourself or with others after your meeting before
+          submitting the assessment.
+        </p>
+      </main>
+      <!-- end #article -->
+    </div>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/prism.js"></script>
+  </body>
+</html>

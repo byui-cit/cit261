@@ -457,3 +457,26 @@ kbd {
 .hint input[type='checkbox']:checked ~ i:after {
   transform: translate(2px, 0) rotate(-45deg);
 }
+
+.fig-block {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1em auto;
+}
+
+.fig-block > * {
+  max-width: 100%;
+  flex: 1 1 auto;
+}
+
+.fig-block figure {
+  text-align: center;
+}
+.fig-block figure > a {
+  text-decoration: none;
+  border-bottom: none;
+}
+figcaption {
+  font-size: 0.8em;
+  text-align: center;
+}

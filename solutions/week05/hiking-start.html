@@ -11,49 +11,8 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       }
-      main > h1 {
-        text-align: center;
-        background-color: indianred;
-        padding: 1em;
-        margin-top: 0;
-        margin-bottom: -0.5em;
-      }
       img {
         max-width: 100%;
-      }
-      .hikeStyles {
-        padding: 0;
-        margin: 1em 0;
-        list-style-type: none;
-      }
-
-      .hikeStyles li > h2 {
-        text-align: center;
-        background-color: burlywood;
-        margin-bottom: 0.5em;
-      }
-
-      /* .hikeStyles li > img {
-        width: 100%;
-        max-width: 500px;
-      } */
-      .light {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-      .light > h2 {
-        width: 100%;
-        flex: 1 0 auto;
-      }
-
-      .light > div {
-        width: 40%;
-        margin-left: 1em;
-        flex: 1 1 auto;
-      }
-      .light h3 {
-        margin-bottom: -0.5em;
       }
     </style>
   </head>
@@ -62,31 +21,7 @@
     <main>
       <h1>Great hikes</h1>
       <ul id="hikes" class="hikeStyles">
-        <li>
-          <img src="falls.jpg" alt="Image of Bechler Falls" />
-          <h2>Bechler Falls</h2>
-          <div>
-            <h3>Distance</h3>
-            <p>3 miles</p>
-          </div>
-          <div>
-            <h3>Difficulty</h3>
-            <p>Easy</p>
-          </div>
-          <div>
-            <h3>Description</h3>
-            <p>Beautiful short hike along the Bechler river to Bechler Falls</p>
-          </div>
-          <div>
-            <h3>How to get there</h3>
-            <p>
-              Take Highway 20 north to Ashton. Turn right into the town and
-              continue through. Follow that road for a few miles then turn left
-              again onto the Cave Falls road. Drive to the end of the Cave Falls
-              road. There is a parking area at the trailhead.
-            </p>
-          </div>
-        </li>
+        <!-- your hike list should be build here. -->
       </ul>
     </main>
 
@@ -110,8 +45,7 @@
           imgAlt: 'Image of Bechler Falls',
           distance: '3 miles',
           difficulty: 'Easy',
-          description:
-            'Beautiful short hike along the Bechler river to Bechler Falls',
+          description: 'Beautiful short (or long) hike through Teton Canyon.',
           directions:
             'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short distance, then left onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
         },
@@ -119,16 +53,17 @@
           name: 'Denanda Falls',
           imgSrc: 'falls.jpg',
           imgAlt: 'Image of Bechler Falls',
-          distance: '3 miles',
-          difficulty: 'Easy',
+          distance: '7 miles',
+          difficulty: 'Moderate',
           description:
-            'Beautiful short hike along the Bechler river to Bechler Falls',
+            'Beautiful hike through Bechler meadows river to Denanda Falls',
           directions:
             'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
         }
       ];
 
-      //on load grab the array and insert it into the page
+      const imgBasePath = '//byui-cit.github.io/cit261/examples/';
+      //on load grab the array and insert it into the page on load
       window.addEventListener('load', renderHikeList);
 
       function renderHikeList() {
@@ -141,9 +76,11 @@
 
       function renderHikeLight(hike) {
         const item = document.createElement('li');
-        item.classList.add('light');
+
         item.innerHTML = ` <h2>${hike.name}</h2>
-        <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
+        <div class="image"><img src="${imgBasePath}${hike.imgSrc}" alt="${
+          hike.imgAlt
+        }"></div>
         <div>
                 <div>
                     <h3>Distance</h3>
@@ -155,32 +92,6 @@
                 </div>
         </div>`;
 
-        return item;
-      }
-      function renderHikeFull(hike) {
-        const item = document.createElement('li');
-        item.innerHTML = ` 
-            
-                <img src="${hike.imgSrc}" alt="${hike.imgAlt}">
-                <h2>${hike.name}</h2>
-                <div>
-                    <h3>Distance</h3>
-                    <p>${hike.distance}</p>
-                </div>
-                <div>
-                    <h3>Difficulty</h3>
-                    <p>${hike.difficulty}</p>
-                </div>
-                <div>
-                    <h3>Description</h3>
-                    <p>${hike.description}</p>
-                </div>
-                <div>
-                    <h3>How to get there</h3>
-                    <p>${hike.directions}</p>
-                </div>
-            
-            `;
         return item;
       }
     </script>
