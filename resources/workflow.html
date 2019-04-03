@@ -9,12 +9,15 @@
   </head>
 
   <body>
-    <div id="main">
-      <header>
-        <img src="../images/smallBanner.png" alt="Course Banner" />
+    <div id="content">
+      <header class="headerBanner">
+        <div>
+          <h1><span>Web</span> Mobile App Development</h1>
+          <h2>CIT 261</h2>
+        </div>
       </header>
-      <main id="article">
-        <h1>Managing the modern Front end workflow</h1>
+      <main>
+        <h1>Managing the modern Front-end workflow</h1>
         <hr />
 
         <p>
@@ -25,44 +28,48 @@
           using a CSS preprocessor like SASS or it could be transpiling the
           Javascript to make sure that new features will work in older browsers.
         </p>
+        <div class="callout">
+          <p>
+            A potential list of tasks that could need to happen everytime
+            something changes is this:
+          </p>
+          <ol>
+            <li>Lint CSS and Javascript to find any coding issues.</li>
+            <li>
+              Run unit tests to make sure nothing got broken with your last
+              changes
+            </li>
+            <li>compile all SCSS/LESS to CSS</li>
+            <li>concatinate all CSS into one file for faster loading,</li>
+            <li>Minify the CSS to reduce file size.</li>
+            <li>
+              Transpile Javascript with Babel for wider support for older
+              browsers
+            </li>
+            <li>Concatinate all JS files into one file for faster loading</li>
+            <li>Minify and Uglify Javascript to reduce size</li>
+            <li>Do the same for any 3rd party CSS or JS</li>
+            <li>
+              Move all the production assets into a distribution directory to
+              separate them from the development stuff
+            </li>
+          </ol>
+          <p>
+            Whew! That's a big list...and they have to happen A LOT!
+          </p>
+        </div>
         <p>
-          A potential list of tasks that could need to happen everytime
-          something changes is this:
+          It's no wonder that developers have produced tools to help manage all
+          of this. This activity will introduce a simple implementation of some
+          of these tools. The tools fall into three catagories:
         </p>
-        <ol>
-          <li>Lint CSS and Javascript to find any coding issues.</li>
-          <li>
-            Run unit tests to make sure nothing got broken with your last
-            changes
-          </li>
-          <li>compile all SCSS/LESS to CSS</li>
-          <li>concatinate all CSS into one file for faster loading,</li>
-          <li>Minify the CSS to reduce file size.</li>
-          <li>
-            Transpile Javascript with Babel for wider support for older browsers
-          </li>
-          <li>Concatinate all JS files into one file for faster loading</li>
-          <li>Minify and Uglify Javascript to reduce size</li>
-          <li>Do the same for any 3rd party CSS or JS</li>
-          <li>
-            Move all the production assets into a distribution directory to
-            separate them from the development stuff
-          </li>
-        </ol>
-        <p>
-          Whew! That's a big list...and they have to happen A LOT! It's no
-          wonder that developers have produced tools to help manage all of this.
-          This activity will introduce a simple implementation of some of these
-          tools.
-        </p>
-        <p>The tools fall into three catagories:</p>
         <ol>
           <li>
             Package managers: These keep track of all of the external
             dependencies for our app. Both development tools and libraries we
             might be using. It knows not only which packages to download...but
             tracks versions as well. We are using <code>npm</code> for our
-            package manager. NPM is another very common package manager.
+            package manager.
           </li>
           <li>
             Bundlers: bundlers handle the compiling, transpiling, concatinating,
@@ -193,8 +200,8 @@
           <li>
             You can run any of those scripts by navigating to the project
             directory and typing <kbd>npm run <em>command</em></kbd
-            >. So to start parcel running and launch it's built in web serer you
-            would type <kbd>npm run start</kbd>
+            >. So to start parcel running and launch it's built in web server
+            you would type <kbd>npm run start</kbd>
           </li>
           <li>
             Look next at the <kbd>devDependencies</kbd> section. This lists out
@@ -204,12 +211,13 @@
             <kbd>node_modules</kbd> directory is over 100MB!
           </li>
           <li>
-            To start up your tools go ahead and run <code>yarn start</code> in
-            the command line. You should see the <kbd>build</kbd> directory get
-            created and populated with files. And if you point your web browser
-            to <code>http://localhost:1234</code> you will see a simple page.
-            Make a change to any of the files in the project and the browser
-            will auto-refresh.
+            To start up your tools go ahead and run
+            <kbd>npm run start</kbd> in the command line. You should see the
+            <kbd>build</kbd> directory get created and populated with files. And
+            if you point your web browser to
+            <code>http://localhost:1234</code> you will see a simple page. Make
+            a change to any of the files in the project and the browser will
+            auto-refresh.
           </li>
           <li>
             When you are done working you can hit <code>ctrl-c</code> in your
