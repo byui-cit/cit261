@@ -35,6 +35,10 @@
         margin-bottom: 0.5em;
       }
 
+      /* .hikeStyles li > img {
+        width: 100%;
+        max-width: 500px;
+      } */
       .light {
         display: flex;
         flex-wrap: wrap;
@@ -53,6 +57,23 @@
       .light h3 {
         margin-bottom: -0.5em;
       }
+
+      #comments {
+        padding: 0.5em;
+      }
+      .addComment > h2 {
+        text-align: center;
+        background-color: indianred;
+      }
+      .addComment input {
+        width: 100%;
+        border: 1px solid;
+        font-size: 1.2em;
+      }
+      .addComment button {
+        padding: 0.5em;
+        border: 1px solid;
+      }
     </style>
   </head>
 
@@ -60,6 +81,7 @@
     <main>
       <h1>Great hikes</h1>
       <ul id="hikes" class="hikeStyles"></ul>
+      <section id="comments"></section>
     </main>
 
     <script type="module">

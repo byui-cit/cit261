@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SWAPI Exercise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="swstyles.css" />
+  </head>
+
+  <body>
+    <h1><a href="https://swapi.co/" target="_blank">SWAPI</a> Exercise</h1>
+    <main>
+      <div class="listbox">
+        <table id="shiplist">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Length</th>
+              <th>Crew</th>
+            </tr>
+          </thead>
+
+          <tbody></tbody>
+        </table>
+
+        <a id="prev" href="#">&lt;-Prev</a> <a id="next" href="#">Next -&gt;</a>
+      </div>
+      <div id="detailsbox" class="hidden">
+        <dl>
+          <dt>Name:</dt>
+          <dd class="name"></dd>
+          <dt>Model:</dt>
+          <dd class="model"></dd>
+          <dt>Class:</dt>
+          <dd class="class"></dd>
+          <dt>*Movies:</dt>
+          <dd class="movies"></dd>
+        </dl>
+      </div>
+    </main>
+
+    <script src="swapi-promises.js"></script>
+  </body>
+</html>

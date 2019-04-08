@@ -40,7 +40,9 @@ const hikesView = {
   renderOneHikeFull: function(parent, hike) {
     const backButton = document.createElement('button');
     backButton.innerHTML = '&lt;- All Hikes';
+
     const item = document.createElement('li');
+
     item.innerHTML = ` 
         
             <img src="${imgBasePath}${hike.imgSrc}" alt="${hike.imgAlt}">
@@ -63,8 +65,8 @@ const hikesView = {
             </div>
         
         `;
-    parent.innerHTML = '';
     item.insertBefore(backButton, item.childNodes[0]);
+    parent.innerHTML = '';
     parent.appendChild(item);
     // send the button back to the controller to attach a listener
     return backButton;
