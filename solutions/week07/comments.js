@@ -50,7 +50,7 @@ function renderCommentList(element, comments) {
     element.appendChild(item);
   });
 }
-
+// Comments controller
 class Comments {
   constructor(type, commentElementId) {
     this.type = type;

@@ -18,7 +18,9 @@ function getShips(url) {
 }
 //  View code
 function renderShipList(ships, shipListElement) {
-  shipListElement.children[1].innerHTML = '';
+  // I decided to use a table to display my list of ships. The shipList Element is that table and it has 2 children: thead and tbody...we need to put our ships into tbody...so I reference the second child.
+  const list = shipListElement.children[1];
+  list.innerHTML = '';
   //loop through the ships
   ships.forEach(function(ship) {
     //console.log(ship);
@@ -37,7 +39,7 @@ function renderShipList(ships, shipListElement) {
     });
 
     //add the list item to the list
-    shipListElement.children[1].appendChild(listItem);
+    list.appendChild(listItem);
   });
 }
 // need to write the code to render the details to HTML
@@ -58,7 +60,7 @@ function showShips(url = 'https://swapi.co/api/starships/') {
     // enable the next and prev buttons.
     if (data.next) {
       const next = document.getElementById('next');
-      // we need to set the once option option on the listener since the buttons do not get recreated with each page load. If we don't we will end up wiuth several listeners all trying to fire at once after a few pages
+      // we need to set the once option on the listener since the buttons do not get recreated with each page load. If we don't we will end up with several listeners all trying to fire at once after a few pages
       next.addEventListener(
         'touchend',
         () => {
