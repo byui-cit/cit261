@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>BYU-Idaho CIT 261 | Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/prism-light.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+  </head>
+
+  <body>
+    <div id="content">
+      <header class="headerBanner">
+        <div>
+          <h1><span>Web</span> Mobile App Development</h1>
+          <h2>CIT 261</h2>
+        </div>
+      </header>
+      <main>
+        <h1>Ponder: Team Activity: Comments</h1>
+        <hr />
+        <h2>Overview</h2>
+        <p>
+          This activity will have us look one more time at the Great hikes
+          application. This week we will practice using localStorage, and get
+          another opportunity to think about the architecture of our code by
+          adding a comments system for the hikes.
+        </p>
+        <h2>Instructions</h2>
+        <p>
+          Complete the following assignment as a team. Designate one team member
+          as the "main driver" and collaborate on their copy of the code.
+          Everyone on the team should be actively engaged in writing the code
+          and contributing to the solution. Once the solution is working, make
+          sure that everyone on the team gets a copy of the code. Each week let
+          someone else be the "main driver" of the coding.
+        </p>
+        <div class="requirements">
+          <h3>Core Requirements</h3>
+          <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                If you don't have a working copy of the Great hikes app then you
+                can pull down
+                <a
+                  href="https://github.com/byui-cit/cit261/tree/gh-pages/solutions/week05"
+                  target="_blank"
+                  >this version</a
+                >
+                as a starting point.
+              </p>
+              <p>
+                Review the code to refresh your memory on the structure we have
+                used. Discuss with your group what methods and properties you
+                might need to implement your comments. Try to organize these
+                methods and properties according to MVC. A comment should
+                consist of at least the name of the hike it is for, a type flag,
+                a date, and the actual text of the comment.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Build out the objects and modules decided on in step 1.</p>
+              <p>
+                Create a new module for our Comments code. (You have a choice
+                here whether you want to create one file and put model, view,
+                and controller in the one file, or to create three files, either
+                would be fine in this case) Create a class with a constructor to
+                act as the controller. The constructor should set a local
+                property called <code>type</code> when the class is
+                instantiated.
+              </p>
+              <p>
+                Create a method in the class called <kbd>showCommentsList</kbd>.
+                For now it can just return some static text or log something out
+                to the console.
+              </p>
+              <p>
+                Insert your comment controller into the hike constroller. Call
+                the <kbd>showCommentsList</kbd> method when the list of hikes is
+                shown to make sure that you have things connected up correctly.
+              </p>
+              <p>
+                When you are looking at a specific hike it should allow you to
+                enter a new comment, and should show all the comments below that
+                form.
+              </p>
+              <p>
+                Write the rest of the code to implement your commenting system.
+                For now just store your comments in an array.
+              </p>
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                Store It.
+              </p>
+              <p>
+                Create the model code to store and retrieve the comments to/from
+                local storage.
+              </p>
+              <!-- END STEP -->
+            </li>
+          </ol>
+          <h3>Stretch Goals</h3>
+          <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                Filtering comments
+              </p>
+
+              <p>
+                When you are looking at a hike details screen you should only
+                see the comments for that hike. When you are looking at all
+                hikes you should see all comments. Change your code to support
+                this.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Controlling comment entry</p>
+              <p>
+                When you are looking at a hike details screen...we should be
+                able to enter a comment, when you are looking at all hikes you
+                should not be able to enter a new comment. Change your code to
+                support this.
+              </p>
+            </li>
+          </ol>
+        </div>
+        <h2>Instructors Solution</h2>
+        <p>
+          As a part of this team activity, you are expected to look over a
+          solution from the instructor, to compare your approach to that one.
+          One of the questions on the I-Learn submission will ask you to provide
+          insights from this comparison.
+        </p>
+        <p>
+          Please DO NOT open the solution until you have worked through this
+          activity as a team for the one hour period. At the end of the hour, if
+          you are still struggling with some of the core requirements, you are
+          welcome to view the instructor's solution and use it to help you
+          complete your own code. Even if you use the instructor's code to help
+          you, you are welcome to report that you finished the core
+          requirements, if you code them up yourself.
+        </p>
+        <p>
+          After working with your team for the one hour activity,
+          <a
+            href="https://github.com/byui-cit/cit261/tree/gh-pages/solutions/week07"
+            target="_blank"
+            >click here for the instructor's solution</a
+          >.
+        </p>
+        <h2>Submission</h2>
+        <p>
+          When you have finished this activity, please fill out the assessment
+          in I-Learn. You are welcome to complete any additional parts of this
+          activity by yourself or with others after your meeting before
+          submitting the assessment.
+        </p>
+      </main>
+      <!-- end #article -->
+    </div>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/prism.js"></script>
+  </body>
+</html>

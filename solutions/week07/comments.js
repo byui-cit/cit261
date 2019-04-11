@@ -9,10 +9,10 @@ class CommentModel {
     if (this.type === 'All') {
     } else {
       if (q === null) {
+        // no query, get all comments of the type
         return JSON.parse(window.localStorage.getItem(this.type));
       } else {
         // comments for a specific post...add ability to add a comment here
-
         let comments = JSON.parse(window.localStorage.getItem(this.type));
         return comments.filter(el => el.name === q);
       }
