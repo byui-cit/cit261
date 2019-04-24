@@ -26,17 +26,19 @@
         margin: 1em 0;
         list-style-type: none;
       }
-
+      .hikeStyles > li {
+        margin-bottom: 2em;
+      }
       .hikeStyles li > h2 {
         text-align: center;
         background-color: burlywood;
         margin-bottom: 0.5em;
+        margin-top: 0;
       }
 
-      /* .hikeStyles li > img {
-        width: 100%;
-        max-width: 500px;
-      } */
+      .hikeStyles li > div {
+        padding: 0 0.5em;
+      }
       .light {
         display: flex;
         flex-wrap: wrap;
@@ -107,24 +109,23 @@
         {
           name: 'Teton Canyon',
           imgSrc: 'falls.jpg',
-          imgAlt: 'Image of Bechler Falls',
-          distance: '3 miles',
-          difficulty: 'Easy',
-          description:
-            'Beautiful short hike along the Bechler river to Bechler Falls',
+          imgAlt: 'Image of Teton Canyon',
+          distance: '5 miles',
+          difficulty: 'Moderate',
+          description: 'Beautiful short hike up Teton Canyon',
           directions:
-            'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short distance, then left onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
+            'Take Highway 33 to Driggs. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
         },
         {
           name: 'Denanda Falls',
           imgSrc: 'falls.jpg',
-          imgAlt: 'Image of Bechler Falls',
-          distance: '3 miles',
-          difficulty: 'Easy',
+          imgAlt: 'Image of Denanda Falls',
+          distance: '12 miles',
+          difficulty: 'Moderate',
           description:
-            'Beautiful short hike along the Bechler river to Bechler Falls',
+            'Beautiful short hike through Bechler Meadows to Denanda Falls',
           directions:
-            'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
+            'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
         }
       ];
 
@@ -132,13 +133,45 @@
       window.addEventListener('load', renderHikeList);
 
       function renderHikeList() {
-        const hikeListElement = document.getElementById('hikes');
-        hikeListElement.innerHTML = '';
+        // 1 get the element that will hold the list
+        const listElement = document.getElementById('hikes');
+        // 2 clear out the current contents
+        listElement.innerHTML = '';
+        // 3 for each element in the list...
         hikeList.forEach(hike => {
-          hikeListElement.appendChild(renderHikeLight(hike));
+          // 4 ...build and append an element
+          listElement.appendChild(renderHikeLight(hike));
         });
       }
 
+      // 5 function to build out an li element with the appropriate html structure using create/append DOM methods
+      // do this first then switch to the light version below to talk about template literals and events.
+      function createHike(hike) {
+        //create the DOM elements and append them together
+        // li to hold everything
+        const item = document.createElement('li');
+
+        //  we also need an img
+        const img = document.createElement('img');
+        //  and we need to set the src and alt attributes
+        console.dir(img);
+        img.alt = hike.imgAlt;
+        img.src = hike.imgSrc;
+
+        // and create elements for headlines and paragraphs
+        const title = document.createElement('h2');
+        title.innerText = hike.name;
+        // continue with the rest of the information
+
+        //  append all of the parts to our item
+        item.appendChild(img);
+        item.appendChild(title);
+
+        // return our new element
+        return item;
+      }
+
+      // same thing as above using template literal strings and with some classes added for styling.
       function renderHikeLight(hike) {
         const item = document.createElement('li');
         item.classList.add('light');
@@ -154,9 +187,30 @@
                     <p>${hike.difficulty}</p>
                 </div>
         </div>`;
+        // add event listener to watch for a touch...if there is time show how a detailed listing of the hike could be shown.
+        item.addEventListener('touchend', event => {
+          // show what is available in the event object
+          console.dir(event);
+          // take a look at this as well.
+          console.dir(event.currentTarget);
+          // we could send the name of the hike to another function, use it to look up that hike in our data, and render it out.
+          const hikeName = event.currentTarget.children[0].innerText;
+          console.log(hikeName);
+          renderOneHike(hikeName);
+        });
 
         return item;
       }
+
+      function renderOneHike(hikeName) {
+        const listElement = document.getElementById('hikes');
+        // clear out the current contents
+        listElement.innerHTML = '';
+        // get the hike
+        const hike = hikeList.find(item => item.name == hikeName);
+        listElement.appendChild(renderHikeFull(hike));
+      }
+      // full hike details.
       function renderHikeFull(hike) {
         const item = document.createElement('li');
         item.innerHTML = ` 
