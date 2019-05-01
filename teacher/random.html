@@ -106,20 +106,20 @@
       console.log(searchManufacturer('corp'));
       debugger;
       //random numbers: write a function that will return a random number in a range from 0 -> num-1
-      function random1(num) {
+      function random(num) {
         return Math.floor(Math.random() * 6);
       }
 
       // another random function demonstrating a closure
-      function random(num) {
+      function random1(num) {
         return function() {
           return Math.floor(Math.random() * num) + 1;
         };
       }
 
       const random2 = random;
-      const die6 = random(6);
-      const d20 = random(20);
+      const die6 = random1(6);
+      const d20 = random1(20);
       die6();
 
       // write a function to build a random sentence seeded from 3 arrays (color, adj, noun)

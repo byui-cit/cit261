@@ -34,9 +34,6 @@ const calculator = {
   operation: '',
   inputOutput: document.getElementById('calcInput')
 };
-const add = function() {
-  return calculator.number1 + calculator.number2;
-};
 const equal = function() {
   console.log(calculator);
   if (calculator.operation != '') {
@@ -84,6 +81,11 @@ const buttonClicked = function(button) {
       }
   }
 };
+
+const add = function() {
+  return calculator.number1 + calculator.number2;
+};
+
 // why can we use this function before it is declared? hoisting
 function clear() {
   if (calculator.inputOutput.value == '') {
