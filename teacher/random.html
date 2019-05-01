@@ -69,6 +69,29 @@
           url: 'http://swapi.co/api/starships/12/'
         }
       ];
+
+      //example of for loop to traverse array
+      for (let i = 0; i < colors.length; i++) {
+        console.log(colors[i]);
+      }
+      //what can we do with an array console.dir()
+      console.dir(colors);
+      // example of for of loop to traverse array
+      for (let color of colors) {
+        console.log(color);
+      }
+
+      colors.forEach(item => {
+        console.log(item);
+      });
+      //example of map
+      const newArray = numbers.map(function(number) {
+        return number * -1;
+      });
+      console.log(newArray);
+      //example of map with arrow function declaration
+      const negNumbers = numbers.map(number => number * -1);
+
       //filter array
 
       const filtered = ships.filter(el => el.cost_in_credits < 120000);
@@ -83,10 +106,30 @@
       console.log(searchManufacturer('corp'));
       debugger;
       //random numbers: write a function that will return a random number in a range from 0 -> num-1
-      function random(num) {
+      function random1(num) {
         return Math.floor(Math.random() * 6);
       }
+
+      // another random function demonstrating a closure
+      function random(num) {
+        return function() {
+          return Math.floor(Math.random() * num) + 1;
+        };
+      }
+
+      const random2 = random;
+      const die6 = random(6);
+      const d20 = random(20);
+      die6();
+
       // write a function to build a random sentence seeded from 3 arrays (color, adj, noun)
+      //   function sentence() {
+      //     //get random color
+      //     let color = colors[random(colors.length())];
+      //     let noun = nouns[random(7)];
+      //     let adj = adjectives[random(7)];
+      //     console.log(adj + ' ' + color + ' ' + noun);
+      //   }
     </script>
   </body>
 </html>
