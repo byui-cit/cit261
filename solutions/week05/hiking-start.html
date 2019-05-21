@@ -64,17 +64,20 @@
 
       const imgBasePath = '//byui-cit.github.io/cit261/examples/';
       //on load grab the array and insert it into the page on load
-      window.addEventListener('load', renderHikeList);
+      window.addEventListener('load', showHikeList);
 
-      function renderHikeList() {
+      function showHikeList() {
         const hikeListElement = document.getElementById('hikes');
         hikeListElement.innerHTML = '';
-        hikeList.forEach(hike => {
-          hikeListElement.appendChild(renderHikeLight(hike));
-        });
+        renderHikeList(hikeList, hikeListElement);
       }
 
-      function renderHikeLight(hike) {
+      function renderHikeList(hikes, parent) {
+        hikes.forEach(hike => {
+          parent.appendChild(renderOneHike(hike));
+        });
+      }
+      function renderOneHike(hike) {
         const item = document.createElement('li');
 
         item.innerHTML = ` <h2>${hike.name}</h2>
