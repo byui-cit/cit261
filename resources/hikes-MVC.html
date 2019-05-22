@@ -97,7 +97,7 @@
               code below to get you started. Copy it into your file.
             </p>
             <pre><code class="javascript">
-// normally the model would have more going on...retrieving the hikes from a database, filtering, etc. Our model will be very simple.  We could simply export the hikeList, but a better pattern would be to create a 'getter' function to do it instead. That way as our model changed...we could simply change the getter function and anything using it should be able to remain the same.
+// normally the model would have more going on...retrieving the hikes from a database, adding hikes, editing hikes, filtering, etc. Our model will be very simple.  We could simply export the hikeList, but a better pattern would be to create a 'getter' function to do it instead. That way as our model changed...we could simply change the getter function and anything using it should be able to remain the same.
 const hikeList = [
     {
     name: 'Bechler Falls',
@@ -136,7 +136,7 @@ const hikeList = [
 // Hike Model
 export default class HikeModel {
   constructor() {
-    // We need a contructor...but in this case it isn't doing much
+    // We need a constructor...but in this case it isn't doing much
   }
   getAllHikes() {
     // should return a list of all the hikes.
@@ -173,7 +173,7 @@ export default class HikesView {
     // loop through our list of hikes building out the appropriate HTML for each and append it to the listElement
   }
   renderOneHikeLight(hike) {
-    // this method will be used to create the list of hikes with less detail 
+    // this method will be used to create the list of hikes with less detail: name, image, distance, difficulty 
   }
   renderOneHikeFull(hike) {
     // this method will be used to one hike with full detail...you will need this for the stretch goal! 
