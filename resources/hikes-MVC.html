@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>BYU-Idaho CIT 261</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/solarized-light.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+  </head>
+
+  <body>
+    <div id="content">
+      <header class="headerBanner">
+        <div>
+          <h1><span>Web</span> Mobile App Development</h1>
+          <h2>CIT 261</h2>
+        </div>
+      </header>
+      <main>
+        <h1>Hikes: Model-View-Controller</h1>
+        <hr />
+
+        <p>
+          Here is a simple implementation of the MVC architecture of our Hikes
+          app. It will also show examples of using classes and ESModules.
+        </p>
+        <p>
+          Start by creating a simple HTML file. You can use the code below as a
+          starting point.
+        </p>
+        <pre><code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+        &lt;title&gt;Great Hikes&lt;/title&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;main&gt;
+            &lt;h1&gt;Great Hikes&lt;/h1&gt;
+            &lt;ul id="hikeList" &gt;&lt;/ul&gt;
+        &lt;/main&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+        </code></pre>
+        <p>
+          Create one more file: <kbd>index.js</kbd> and add it with a script
+          element into your html.
+        </p>
+        <h2>Activity</h2>
+        <ol class="bigSteps">
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>MVC</h3>
+            <p>
+              Before we take the next steps, let's think a moment about how we
+              would like to organize our code. Not taking this time will almost
+              always end up in what is known as 'Spaghetti code'. Hard to
+              follow, maintain, and understand.
+            </p>
+            <p>
+              For this project we will use the Model-View-Controller (MVC)
+              architecture. It provides a nice separation of concerns and will
+              help us stay organized. This is a simple application and so we
+              will probably only need one model, one view, and one controller.
+              Create three more files in your project called:
+            </p>
+            <ul>
+              <li><kbd>HikeModel.js</kbd></li>
+              <li><kbd>HikesView.js</kbd></li>
+              <li><kbd>HikesController.js</kbd></li>
+            </ul>
+            <p>
+              In MVC models are responsible to handle all of the interactions
+              with our data source. They often contain schema information
+              describing the data as well.
+            </p>
+            <p>
+              Views take information (usually from the Model) and display it in
+              whatever format is needed.
+            </p>
+            <p>
+              Controllers act as the glue between the model and view. Their job
+              is to request information from the model when needed, and pass it
+              on to the view to be displayed.
+            </p>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>HikeModel.js</h3>
+            <p>
+              Let's begin by building the model: HikeModel.js. We will use a
+              <kbd>class</kbd> to represent our model. I've provided a bit of
+              code below to get you started. Copy it into your file.
+            </p>
+            <pre><code class="javascript">
+// normally the model would have more going on...retrieving the hikes from a database, filtering, etc. Our model will be very simple.  We could simply export the hikeList, but a better pattern would be to create a 'getter' function to do it instead. That way as our model changed...we could simply change the getter function and anything using it should be able to remain the same.
+const hikeList = [
+    {
+    name: 'Bechler Falls',
+    imgSrc: 'falls.jpg',
+    imgAlt: 'Image of Bechler Falls',
+    distance: '3 miles',
+    difficulty: 'Easy',
+    description:
+        'Beautiful short hike along the Bechler river to Bechler Falls',
+    directions:
+        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+    },
+    {
+    name: 'Teton Canyon',
+    imgSrc: 'falls.jpg',
+    imgAlt: 'Image of Bechler Falls',
+    distance: '3 miles',
+    difficulty: 'Easy',
+    description:
+        'Beautiful short hike along the Bechler river to Bechler Falls',
+    directions:
+        'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short distance, then left onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
+    },
+    {
+    name: 'Denanda Falls',
+    imgSrc: 'falls.jpg',
+    imgAlt: 'Image of Bechler Falls',
+    distance: '3 miles',
+    difficulty: 'Easy',
+    description:
+        'Beautiful short hike along the Bechler river to Bechler Falls',
+    directions:
+        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to until you see the sign for Bechler Meadows on the left. Turn there. There is a parking area at the trailhead.'
+    }
+];
+// Hike Model
+export default class HikeModel {
+  constructor() {
+    // We need a contructor...but in this case it isn't doing much
+  }
+  getAllHikes() {
+    // should return a list of all the hikes.
+  }
+  getHikeByName(hikeName) {
+    // filter the hikes for the record identified by hikeName and return it
+    return ;
+  }
+}
+            </code></pre>
+            <p>
+              Notice I included a list of hike data at the top for us to work
+              with. More often the data would get pulled from a database.
+            </p>
+
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>HikesView.js</h3>
+            <p>
+              Now let's move on to the View. The view should get sent some data,
+              then format it and display it in the current page. As before we
+              will use a class, and I will give you a head start:
+            </p>
+            <pre><code class="javascript">
+  // Hike View handler
+export default class HikesView {
+    constructor(listElementId) {
+        // we should use the constructor to get and store the listElement we will be placing our generated HTML into.
+        
+    }
+  renderHikeList(hikeList) {
+    // loop through our list of hikes building out the appropriate HTML for each and append it to the listElement
+  }
+  renderOneHikeLight(hike) {
+    // this method will be used to create the list of hikes with less detail 
+  }
+  renderOneHikeFull(hike) {
+    // this method will be used to one hike with full detail...you will need this for the stretch goal! 
+  }
+}
+            </code></pre>
+
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>HikesController.js</h3>
+            <p>
+              Remember that that earlier I said that the Controller was like the
+              glue between the Model and View? Well in order to do that the
+              Controller has to know about both. Making our model and view using
+              Classes and modules will make it easy to do that. As before
+              copy/paste the code below into your controller to get started.
+            </p>
+            <pre><code class="javascript">
+import HikeModel from './HikeModel.js';
+import HikesView from './HikesView.js';
+
+// Hike controller
+export default class HikesController {
+  constructor(parentId) {
+        
+    // this is how our controller will know about the model and view...we add them right into the class as members.
+    this.hikeModel = new HikeModel();
+    this.hikesView = new HikesView(parentId);
+  }
+  
+  showHikeList() {
+    //  this will get called each time we need to display our full hike list. It should grab the list of hikes from the Model, and then send them to the view.
+  }
+
+  showOneHike(hikeName) {
+    // use this when you need to show just one hike...with full details
+    
+  }
+  addHikeListener() {
+    // for the stretch you will need to attach a listener to each of the listed hikes to watch for a touchend. 
+   
+  }
+}
+            </code></pre>
+
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Putting it all together</h3>
+            <p>
+              The next step is to let our HTML know about our modules. In the
+              <kbd>index.js</kbd> file import in your Controller, create an
+              instance of the class, then call the
+              <code>showHikeList()</code> method. You may want to console.log
+              something out from that method until we create it to help us know
+              if everything is working correctly. If there are errors, fix them
+              :) If not move on to the next step. Make sure that
+              <code>showHikeList()</code> does not get called before the DOM is
+              ready.
+            </p>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Finishing up</h3>
+            <p>
+              The last step is go back in our model, view, and controller and
+              finish writing the methods as indicated in the comments. I would
+              recommend starting with the Model. Complete the
+              <code>getAllHikes</code> method first (model), test it, then move
+              on to the <code>showAllHikes</code> and
+              <code>renderHikeList</code> methods. Test again.
+            </p>
+            <p>
+              After that work on the controller or View methods as it makes
+              sense. I would recommend following the same order...finish a
+              method, then test. It will keep your errors under control and make
+              your code easier to troubleshoot.
+            </p>
+            <!-- END STEP -->
+          </li>
+          <!-- <li>
+            
+            <h3>Stretch Goals (optional)</h3>
+            <p>
+              If you want to take this further there are lots of improvements
+              that could be made.
+            </p>
+            <ol>
+              <li>
+                It would be great if we could specify the radius we would like
+                to include in the query for earthquakes. Make it so. You might
+                also allow the use to indicate the dates they would like to
+                search over as well.
+              </li>
+              <li>
+                The styling leaves a lot to be desired on this project. Style it
+                up! Make it look and work better.
+              </li>
+              <li>
+                We can drill down into a quake's details...but we currently have
+                no way to get back to the list other than a refresh of the page.
+                Add a 'Back' button.
+              </li>
+              <li>
+                What if we wanted to add more functionality? A Routing system
+                would make this easier. See if you can take the
+                <a
+                  href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/spa-example"
+                  target="_blank"
+                  >Routing module</a
+                >
+                from the SPA example app that we did earlier and integrate it
+                into this app.
+              </li>
+            </ol>
+           
+          </li>
+          <li>
+            <h3>Finished Code</h3>
+            <p>
+              If you have been working for a while and feel stuck. Here is a
+              <a
+                href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/quakes"
+                target="_blank"
+                >link to my finished version</a
+              >
+              of this project (Or
+              <a
+                href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/quakes/finished"
+                target="_blank"
+                >here for the version with the routing stretch goal</a
+              >). Use it to figure out how to get unstuck, but resist the
+              temptation to copy/paste anything out of it.
+            </p>
+          </li> -->
+        </ol>
+      </main>
+      <!-- end #article -->
+    </div>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>
+      // <![CDATA[
+      hljs.initHighlightingOnLoad();
+      // ]]>
+    </script>
+  </body>
+</html>
