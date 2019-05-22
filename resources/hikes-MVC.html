@@ -166,16 +166,17 @@ export default class HikeModel {
   // Hike View handler
 export default class HikesView {
     constructor(listElementId) {
-        // we should use the constructor to get and store the listElement we will be placing our generated HTML into.
+        // will need this
+        this.imgBasePath = '//byui-cit.github.io/cit261/examples/';
         
     }
-  renderHikeList(hikeList) {
+  renderHikeList(hikeList, listElement) {
     // loop through our list of hikes building out the appropriate HTML for each and append it to the listElement
   }
   renderOneHikeLight(hike) {
     // this method will be used to create the list of hikes with less detail: name, image, distance, difficulty 
   }
-  renderOneHikeFull(hike) {
+  renderOneHikeFull(hike, parentElement) {
     // this method will be used to one hike with full detail...you will need this for the stretch goal! 
   }
 }
@@ -200,7 +201,7 @@ import HikesView from './HikesView.js';
 // Hike controller
 export default class HikesController {
   constructor(parentId) {
-        
+    this.parentElement = document.getElementById(parentId); 
     // this is how our controller will know about the model and view...we add them right into the class as members.
     this.hikeModel = new HikeModel();
     this.hikesView = new HikesView(parentId);

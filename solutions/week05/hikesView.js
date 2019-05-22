@@ -1,10 +1,10 @@
-// the dataset only has a relative path in it...we need more to find the images...so we have a path variable below. Why isn't this in the object? What advantages or disadvantages are there to having it here instead of as part of the View object?
+// the dataset only has a relative path in it...we need more to find the images...so we have a path variable below. Why isn't this in the model object? What advantages or disadvantages are there to having it here instead of as part of the View object?
 const imgBasePath = '//byui-cit.github.io/cit261/examples/';
 
 // since we have multiple methods we need to export, it would make sense to group them together with an object of some sort. This could be as simple as an object literal...or more complex as a class.
 
-const hikesView = {
-  renderHikeList: function(hikeListElement, hikeList) {
+class HikesView {
+  renderHikeList(hikeListElement, hikeList) {
     // I decided to let the controller handle where the list gets placed. So instead of getting the element here in the function, when I created the view I decided to pass the target element in.
     // const hikeListElement = document.getElementById('hikes');
 
@@ -14,8 +14,8 @@ const hikesView = {
       // notice the call to 'this' below. 'this' is like adding './' at the beginning of a path. It helps the computer find things.
       hikeListElement.appendChild(this.renderOneHikeLight(hike));
     });
-  },
-  renderOneHikeLight: function(hike) {
+  }
+  renderOneHikeLight(hike) {
     const item = document.createElement('li');
     item.classList.add('light');
     // setting this to make getting the details for a specific hike easier later.
@@ -36,8 +36,8 @@ const hikesView = {
     </div>`;
 
     return item;
-  },
-  renderOneHikeFull: function(parent, hike) {
+  }
+  renderOneHikeFull(parent, hike) {
     const backButton = document.createElement('button');
     backButton.innerHTML = '&lt;- All Hikes';
     const item = document.createElement('li');
@@ -69,5 +69,5 @@ const hikesView = {
     // send the button back to the controller to attach a listener
     return backButton;
   }
-};
-export default hikesView;
+}
+export default HikesView;
