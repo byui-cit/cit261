@@ -39,14 +39,47 @@
           Keep your comments short this week in your meeting to allow for
           students to ask questions about their projects. It would probably be
           helpful to give more examples of using the browser to
-          debug...breakpoints, stepping, etc.
+          debug...breakpoints, stepping, etc. Here is a simple module that
+          builds a
+          <a href="../examples/datepicker.html" target="_blank">datepicker</a>
+          for browsers that don't support the new <kbd>date</kbd> type for
+          inputs (ie Safari). Points to bring up:
         </p>
+        <ol>
+          <li>
+            Show how the <code>debugger;</code> statement can be used to stop
+            the code execution, as well as how to set a breakpoint in the
+            developer tools of the browser.
+          </li>
+          <li>Once the code is paused show how to step over, step in.</li>
+          <li>
+            Explain how we can follow the execution of an application with
+            stepping. You might step into a few functions and then draw
+            attention to the call stack and explain the significance.
+          </li>
+          <li>
+            Inspect the values of variables and objects, talk about how we are
+            looking to see if the values match what we expect...if not how can
+            we figure out why?
+          </li>
+          <li>
+            You might also point out lines 128-130 in <kbd>datepicker.js</kbd>.
+            It is testing to see if the browser supports the
+            <code>date</code> type and doing something if it doesn't.
+          </li>
+          <li>
+            If you have time show examples of other ways to avoid errors in our
+            code such as if statements checking for the existance of data before
+            we try to use it and using try/catch blocks to deal with errors more
+            gracefully.
+          </li>
+        </ol>
         <p>
           A word about project planning would be good here as well. Encourage
           the students to spend some time thinking through their project before
-          they jump into the code. You may also consider a short activity on
-          wireframing to help them remember and apply the design principles
-          discussed in the first week of class.
+          they jump into the code. Encourage them to build a wireframe or two to
+          help them remember and apply the design principles discussed in the
+          first week of class.
         </p>
       </main>
       <!-- end #article -->

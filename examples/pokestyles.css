@@ -1,50 +1,51 @@
 main {
-    display: flex;
-    flex-flow: row wrap;
-    
-}
-
-.hidden {
-    display: none;
+  width: 100vw;
+  display: flex;
+  overflow-x: hidden;
 }
 
 #pokelist li {
-    cursor: pointer;
+  cursor: pointer;
 }
-
-#detailsbox {
-    height: 400px;
-    width: 300px;
-    padding: 1em;
-    text-align: center;
-       border: 2px solid;
-}
-
-#detailsbox dl {
-    border: 1px solid;
-    text-align: left;
-}
-
 .listbox {
-    width: 50%;
+  transition: all 0.3s;
+  width: 100vw;
+  flex: 1 0 100vw;
+}
+#detailsbox {
+  height: 60vh;
+  width: 100vw;
+  padding: 1em;
+  text-align: center;
+  border: 2px solid;
+  transform: translateX(100vw);
+  transition: all 0.3s;
+  flex: 1 0 90vw;
+}
+#back {
+  padding: 1em;
+  display: block;
+}
+#detailsbox dl {
+  border: 1px solid;
+  text-align: left;
 }
 
 #pokelist {
-    display: flex;
-    flex-flow: row wrap;
-    list-style-type: none;
-    line-height: 2em;
-    
+  display: flex;
+  width: 100vw;
+  flex-flow: row wrap;
+  list-style-type: none;
+  line-height: 2em;
 }
 
 #pokelist li {
-    flex: 0 0 6em;
-    text-align: center;
-    border: 1px solid;
-    background-color: azure;
-    
+  flex: 0 0 6em;
+  text-align: center;
+  border: 1px solid;
+  background-color: azure;
 }
 #pokelist li:hover {
-    background-color: bisque;
-    text-decoration: underline;
+  background-color: bisque;
+  text-decoration: underline;
 }

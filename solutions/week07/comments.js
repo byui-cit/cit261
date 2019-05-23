@@ -8,24 +8,34 @@ class CommentModel {
   getComments(q = null) {
     if (this.type === 'All') {
     } else {
+      let comments = readFromLS(this.type) || [];
       if (q === null) {
         // no query, get all comments of the type
-        return JSON.parse(window.localStorage.getItem(this.type));
+        return comments;
       } else {
         // comments for a specific post...add ability to add a comment here
-        let comments = JSON.parse(window.localStorage.getItem(this.type));
         return comments.filter(el => el.name === q);
       }
     }
   }
   addComment(value) {
-    let comments = JSON.parse(window.localStorage.getItem(this.type));
+    let comments = readFromLS(this.type);
     if (comments === null) {
       comments = [];
     }
     comments.push(value);
-    window.localStorage.setItem(this.type, JSON.stringify(comments));
+    writeToLS(this.type, comments);
   }
+}
+
+function writeToLS(key, data) {
+  // we can use JSON.stringify to convert our object to a string that can be stored in localStorage.
+  window.localStorage.setItem(key, JSON.stringify(data));
+}
+
+function readFromLS(key) {
+  // the string we retrieve from localStorage needs to be converted back to an object with JSON.parse
+  return JSON.parse(window.localStorage.getItem(key));
 }
 
 // commentsView
