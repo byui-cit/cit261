@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Authentication
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .errors {
+        border: 1px solid darkred;
+        background-color: lightcoral;
+        padding: 0.5em;
+      }
+      form input {
+        margin: 0.5em 0;
+        font-size: 1.4em;
+        background-color: antiquewhite;
+        width: 300px;
+      }
+      form button {
+        font-size: 1.2em;
+        padding: 0.4em;
+        background-color: cornflowerblue;
+      }
+      input:invalid {
+        box-shadow: 0 0 5px 1px red;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="text-center">Authentication Example</h1>
+      <nav></nav>
+    </header>
+    <div id="errors" class="errors hidden"></div>
+    <div id="login">
+      <form>
+        <div>
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Username"
+            value="user1@email.com"
+          />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary center-block"
+          onclick="myAuth.login()"
+        >
+          Login
+        </button>
+      </form>
+      <div id="token-display"></div>
+    </div>
+
+    <div id="posts" class="hidden">
+      <form name="postForm">
+        <div>
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="title"
+            required
+          />
+        </div>
+        <div>
+          <label for="content">Content</label>
+          <input
+            type="text"
+            class="form-control"
+            name="content"
+            placeholder="content"
+            required
+          />
+        </div>
+        <div id="postError"></div>
+        <!-- <button
+          type="button"
+          class="btn btn-primary center-block"
+          onclick="createPost()"
+        >
+          New Post
+        </button> -->
+        <input type="submit" onclick="createPost()" />
+      </form>
+      <ul id="list"></ul>
+    </div>
+    <script>
+      //let token = '';
+      //let user = {};
+      const baseUrl = 'http://127.0.0.1:3000/';
+      const errorElement = document.getElementById('errors');
+
+      function displayError(error) {
+        errorElement.innerHTML = error;
+        errorElement.classList.remove('hidden');
+      }
+      function clearError(error) {
+        errorElement.innerHTML = '';
+        errorElement.classList.add('hidden');
+      }
+
+      // helper function to make an http request with fetch.
+      // returns a promise to a json object
+      function makeRequest(url, method = 'GET', body = null, token = null) {
+        let options = {
+          method: method,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
+        // if we are sending any data with the request add it here
+        if (method == 'POST' || method == 'PUT') {
+          options.body = JSON.stringify(body);
+        }
+        // if a token was passed in we should send it on.
+        if (token) {
+          options.headers.Authorization = `Bearer ${token}`;
+        }
+        return fetch(url, options).then(function(response) {
+          if (response.status === 500) {
+            // server will send a 500 server error if the token expires...we need to address it here. Simplest way would be to have the user login back in.
+            document.getElementById('login').classList.remove('hidden');
+            document.getElementById('posts').classList.add('hidden');
+            console.log(response);
+            throw Error('Token Expired');
+          }
+          //  parse the response as json to get the details.
+          return response.json().then(data => {
+            // now lets check the status to see if things worked
+
+            if (
+              response.ok &&
+              (response.status === 200 || response.status === 201)
+            ) {
+              // yes, send back the data
+              return data;
+            } else {
+              //no, throw an error with the error message text and make sure the login form is visible
+
+              document.getElementById('login').classList.remove('hidden');
+              document.getElementById('posts').classList.add('hidden');
+              throw Error(data.message);
+            }
+          });
+        });
+      }
+      class Auth {
+        constructor() {
+          this.jwtToken = '';
+          this.user = {};
+        }
+        async login() {
+          const password = document.getElementById('password');
+          const postData = {
+            email: document.getElementById('username').value,
+            password: password.value
+          };
+          try {
+            const data = await makeRequest(baseUrl + 'login', 'POST', postData);
+            // a successful response...we have a token!  Store it since we will need to send it with every request to the API.
+            this.jwtToken = data.accessToken;
+            // let's get the user details as well
+            this.user = await this.getCurrentUser(
+              document.getElementById('username').value
+            );
+            console.log(data);
+            document.getElementById('token-display').innerHTML =
+              data.accessToken;
+            // hide the login form.
+            document.getElementById('login').classList.add('hidden');
+            // clear the password
+            password.value = '';
+            // clear any errors from the login process
+            clearError();
+            // since we have a token let's go grab some data from the API
+            getPosts();
+          } catch (error) {
+            displayError(error);
+            console.log(error);
+          }
+        }
+        // uses the email of the currently logged in user to pull up the full user details for that user from the database
+        async getCurrentUser(email) {
+          try {
+            const data = await makeRequest(
+              baseUrl + 'users?email=' + email,
+              'GET',
+              null,
+              this.jwtToken
+            );
+
+            console.log(data);
+            return data[0];
+          } catch (error) {
+            console.log(error);
+          }
+        }
+        async updateUser() {
+          //first we have to figure out what the current userId is...we can use email to look it up.
+          //const user = await getCurrentUser();
+          this.user.age = 40;
+          try {
+            const result = await makeRequest(
+              baseUrl + 'users/' + this.user.id,
+              'PUT',
+              this.user,
+              this.jwtToken
+            );
+            console.log('Update user:', result);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+
+        set token(value) {
+          // we need this for the getter to work...but we don't want to allow setting the token through this.
+        }
+        get token() {
+          return this.jwtToken;
+        }
+      }
+      async function getPosts() {
+        try {
+          const data = await makeRequest(
+            baseUrl + 'posts',
+            'GET',
+            null,
+            myAuth.token
+          );
+          // make sure the element is shown
+          document.getElementById('posts').classList.remove('hidden');
+          console.log(data);
+          var ul = document.getElementById('list');
+          ul.innerHTML = '';
+          for (var i = 0; i < data.length; i++) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(data[i].title));
+            ul.appendChild(li);
+          }
+          clearError();
+        } catch (error) {
+          displayError(error);
+          console.log(error);
+        }
+      }
+
+      const createPost = async function() {
+        const form = document.forms.postForm;
+        console.dir(form);
+        if (form.title.validity.valid && form.content.validity.valid) {
+          clearError();
+          const data = {
+            title: form.title.value,
+            content: form.content.value
+          };
+          try {
+            const res = await makeRequest(
+              baseUrl + 'posts',
+              'POST',
+              data,
+              myAuth.token
+            );
+            console.log('Post create:', data);
+            form.title.value = '';
+            form.content.value = '';
+            getPosts();
+          } catch (error) {
+            displayError(error);
+            console.log(error);
+          }
+        } else {
+          displayError('Title and Content are required');
+        }
+      };
+
+      const myAuth = new Auth();
+    </script>
+  </body>
+</html>
