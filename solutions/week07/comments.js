@@ -9,13 +9,12 @@ class CommentModel {
   }
   // I decided I could combine my getAllComments, and filterCommentsByName methods into one by passing in an optional query argument
   getComments(q = null) {
-    // let comments = readFromLS(this.type) || [];
     if (q === null) {
       // no query, get all comments of the type
-      return comments;
+      return this.comments;
     } else {
       // comments for a specific post...filter by name
-      return comments.filter(el => el.name === q);
+      return this.comments.filter(el => el.name === q);
     }
   }
 
