@@ -108,8 +108,18 @@
       const baseUrl = 'http://127.0.0.1:3000/';
       const errorElement = document.getElementById('errors');
 
+      function handleError(error) {
+        // parse out the error code from the error string
+        const code = error.message.substring(0, 3);
+        displayError(error);
+        if (code == 500) {
+          showLogin();
+        }
+        console.log(code);
+      }
+
       function displayError(error) {
-        errorElement.innerHTML = error;
+        errorElement.innerHTML = error.message;
         errorElement.classList.remove('hidden');
       }
       function clearError(error) {
@@ -117,9 +127,19 @@
         errorElement.classList.add('hidden');
       }
 
+      function showLogin() {
+        document.getElementById('login').classList.remove('hidden');
+        document.getElementById('posts').classList.add('hidden');
+      }
+
       // helper function to make an http request with fetch.
       // returns a promise to a json object
-      function makeRequest(url, method = 'GET', body = null, token = null) {
+      async function makeRequest(
+        url,
+        method = 'GET',
+        body = null,
+        token = null
+      ) {
         let options = {
           method: method,
           headers: {
@@ -134,33 +154,18 @@
         if (token) {
           options.headers.Authorization = `Bearer ${token}`;
         }
-        return fetch(url, options).then(function(response) {
-          if (response.status === 500) {
-            // server will send a 500 server error if the token expires...we need to address it here. Simplest way would be to have the user login back in.
-            document.getElementById('login').classList.remove('hidden');
-            document.getElementById('posts').classList.add('hidden');
-            console.log(response);
-            throw Error('Token Expired');
-          }
-          //  parse the response as json to get the details.
-          return response.json().then(data => {
-            // now lets check the status to see if things worked
+        const response = await fetch(url, options);
+        const data = await response.json();
 
-            if (
-              response.ok &&
-              (response.status === 200 || response.status === 201)
-            ) {
-              // yes, send back the data
-              return data;
-            } else {
-              //no, throw an error with the error message text and make sure the login form is visible
+        if (!response.ok) {
+          // server will send a 500 server error if the token expires...or a 401 if we are not authorized, ie bad username/password combination, and a 404 if the URL we requested does not exist.
 
-              document.getElementById('login').classList.remove('hidden');
-              document.getElementById('posts').classList.add('hidden');
-              throw Error(data.message);
-            }
-          });
-        });
+          console.log(response);
+          throw new Error(`${data.status}: ${data.message}`);
+        } else return data;
+
+        //  parse the response as json to get the details.
+        //return response.json();
       }
       class Auth {
         constructor() {
@@ -193,7 +198,9 @@
             // since we have a token let's go grab some data from the API
             getPosts();
           } catch (error) {
+            // if there were any errors display them
             displayError(error);
+            handleError(error);
             console.log(error);
           }
         }
@@ -210,6 +217,9 @@
             console.log(data);
             return data[0];
           } catch (error) {
+            // if there were any errors display them
+            handleError(error);
+
             console.log(error);
           }
         }
@@ -226,7 +236,7 @@
             );
             console.log('Update user:', result);
           } catch (error) {
-            console.log(error);
+            handleError(error);
           }
         }
 
@@ -236,7 +246,8 @@
         get token() {
           return this.jwtToken;
         }
-      }
+      } // end auth class
+
       async function getPosts() {
         try {
           const data = await makeRequest(
@@ -257,8 +268,8 @@
           }
           clearError();
         } catch (error) {
-          displayError(error);
-          console.log(error);
+          // if there were any errors display them
+          handleError(error);
         }
       }
 
@@ -283,11 +294,10 @@
             form.content.value = '';
             getPosts();
           } catch (error) {
-            displayError(error);
-            console.log(error);
+            handleError(error);
           }
         } else {
-          displayError('Title and Content are required');
+          displayError({ message: 'Title and Content are required' });
         }
       };
 
