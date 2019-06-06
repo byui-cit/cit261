@@ -48,43 +48,70 @@
                   target="_blank"
                   >this version</a
                 >
-                as a starting point (<a href="../solutions/week05/hikes5.zip">Zip archive</a
-                  >).
+                as a starting point (<a href="../solutions/week05/hikes5.zip"
+                  >Zip archive</a
+                >).
               </p>
               <p>
                 Review the code to refresh your memory on the structure we have
                 used. Discuss with your group what methods and properties you
                 might need to implement your comments. Try to organize these
                 methods and properties according to MVC. A comment should
-                consist of at least the name of the hike it is for,
-                a date, and the actual text of the comment. You will also need a comment <kbd>type</kbd> to use as a key for when we store these to local storage.
+                consist of at least the name of the hike it is for, a date, and
+                the actual text of the comment. You will also need a comment
+                <kbd>type</kbd> to use as a key for when we store these to local
+                storage.
               </p>
-              <p class="callout">Type? This is just to allow us to re-use this code. Later you might want to expand on this application and add something like favorite parks or climbs, etc. It would be nice to re-use this module for each of those. Adding a <kbd>type</kbd> flag allows us to add comments for different things and grab all of them or keep them separate.</p>
-              <p>It might help here to write out a list of steps that need to happen in order to capture a comment. A sample starter list can be found below.</p>
+              <p class="callout">
+                Type? This is just to allow us to re-use this code. Later you
+                might want to expand on this application and add something like
+                favorite parks or climbs, etc. It would be nice to re-use this
+                module for each of those. Adding a <kbd>type</kbd> flag allows
+                us to add comments for different things and grab all of them or
+                keep them separate.
+              </p>
+              <p>
+                It might help here to write out a list of steps that need to
+                happen in order to capture a comment. A sample starter list can
+                be found below.
+              </p>
               <ol>
-                <li>When the app loads we see a list of all hikes...below we should also see a list of all comments with type:hike.</li>
-                <li>When a hike is touched it will show us the details for that hike. We should also see any comments for that hike, and an input and button to add a new comment.</li>
+                <li>
+                  When the app loads we see a list of all hikes...below we
+                  should also see a list of all comments with type:hike.
+                </li>
+                <li>
+                  When a hike is touched it will show us the details for that
+                  hike. We should also see any comments for that hike, and an
+                  input and button to add a new comment.
+                </li>
                 <li>When the submit comment button is touched...</li>
               </ol>
-              <p>From this we can start to infer some of the methods and properties we will need:</p>
+              <p>
+                From this we can start to infer some of the methods and
+                properties we will need:
+              </p>
               <ul>
-                <li>A <code>getAllComments</code> and <code>renderCommentList</code> method.</li>
+                <li>
+                  A <code>getAllComments</code> and
+                  <code>renderCommentList</code> method.
+                </li>
                 <li>A comment <code>type</code> to use as a key.</li>
                 <li>A <code>filterCommentsByName</code> method.</li>
                 <li>An array to hold all of our comments.</li>
-                <li>A comment should look something like this:
-                    <pre><code class="lang-js">
+                <li>
+                  A comment should look something like this:
+                  <pre><code class="lang-js">
     const newComment = {
       name: hikeName,
       date: new Date(),
-      content: value
+      content: comment
     };
                     </code></pre>
-                  </li>
+                </li>
                 <li>A method to add an event listener to the submit button.</li>
                 <li>An <code>addComment</code> method</li>
                 <li>...</li>
-                
               </ul>
 
               <!-- END STEP -->
@@ -111,7 +138,16 @@
                 the <kbd>showCommentsList</kbd> method when the list of hikes is
                 shown to make sure that you have things connected up correctly.
               </p>
-              <p class="callout">If you are unclear on how to do this...go look at the existing <kbd>hikesController</kbd> class. Pay attention to how we inserted the hike model and view into the controller. Something similar would work well to bring our comments module (controller) in. Once the commentsController is part of the hikesController we have access to all of the class methods and can call them when needed (such as after we show the list of hikes).</p>
+              <p class="callout">
+                If you are unclear on how to do this...go look at the existing
+                <kbd>hikesController</kbd> class. Pay attention to how we
+                inserted the hike model and view into the controller. Something
+                similar would work well to bring our comments module
+                (controller) in. Once the commentsController is part of the
+                hikesController we have access to all of the class methods and
+                can call them when needed (such as after we show the list of
+                hikes).
+              </p>
               <p>
                 When you are looking at a specific hike it should allow you to
                 enter a new comment, and should show all the comments below that
@@ -146,8 +182,8 @@
               <p>
                 When you are looking at a hike details screen you should only
                 see the comments for that hike. When you are looking at all
-                hikes you should see all comments of type hike. Change your code to support
-                this.
+                hikes you should see all comments of type hike. Change your code
+                to support this.
               </p>
 
               <!-- END STEP -->
@@ -185,7 +221,8 @@
           <a
             href="https://github.com/byui-cit/cit261/tree/gh-pages/solutions/week07"
             target="_blank"
-            >click here for the instructor's solution .
+            >click here for the instructor's solution </a
+          >.
         </p>
         <h2>Submission</h2>
         <p>

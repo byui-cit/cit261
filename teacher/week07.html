@@ -42,7 +42,115 @@
 
         <p>
           The reading for this week introduces Asynchronous programming and AJAX
-          using <code>fetch</code> and promises. This would be a good time to
+          using <code>fetch</code> and promises.
+        </p>
+        <p>A list of things you might discuss is below</p>
+        <ol>
+          <li>Make a list of foods in a json file.</li>
+          <li>
+            make a fetch call to get the list of foods. Explain that we can grab
+            some data from a database, some html from a file, an image, etc with
+            fetch. Used to use XMLHTTPRequest.
+          </li>
+          <li>
+            explain that this takes time and JS runs asynchronously...it doesn't
+            wait for it to finish before executing the next statement
+          </li>
+          <li>add some logs to show this. for loop, setTimeout.</li>
+          <li>
+            Callbacks are the traditional way to handle this...but could often
+            lead to unreadable code..."callback hell"
+          </li>
+          <li>
+            Now we have Promises which address some of the issues from
+            callbacks. Show the promise returned from our fetch.
+          </li>
+          <li>
+            Promises must be processed with a then() call. Anything that should
+            happen after the promise resolves should go in the then().
+          </li>
+          <li>
+            Fetching data from a server is not the only thing that can take
+            time. create a longProcess function with a timeout in it. it should
+            return a number after a delay. Try adding that number to another
+            one.
+            <pre><code class="lang-js">
+function longProcess() {
+   setTimeout(() => {
+      return 42
+    }, 200);
+  });
+  const total = 100 + longProcess();
+  console.log('total', total);
+}</code></pre>
+          </li>
+          <li>
+            Show how to create your own Promise, and show how we can get things
+            to add up successfully.
+            <pre><code class="lang-js">
+function longProcess() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (1) {
+        resolve(42);
+      } else reject('failed');
+    }, 200);
+  });
+}
+longProcess()
+  .then(result => {
+    let total = 100 + result;
+    console.log('total', total);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+            </code></pre>
+          </li>
+          <li>
+            Finish example with food list...create a getJson function with some
+            error checking and use it to grab the list of things and then render
+            it to the HTML.
+            <pre><code class="lang-js">
+function getJson(url) {
+  return fetch(url)
+    .then(response => {
+      if (response.ok) {
+        console.log('in then', response);
+        return response.json();
+      } else {
+        throw new Error('not ok');
+        console.log('will not run');
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+} </code></pre>
+          </li>
+          <li>
+            Pulling from a remote server works just the same as from
+            locally...show pokeapi.co and look at the data it sends back.
+            <pre><code class="lang-js">
+const baseUrl = 'https://pokeapi.co/api/v2/';
+const myList = getJson(baseUrl + 'type/3');
+
+myList.then(data => {
+  console.log(data);
+  buildList(data);
+});
+
+function buildList(data) {
+  const myListElement = document.getElementById('list');
+  myListElement.innerHTML = data.pokemon
+    .map(item => `&lt;li&gt;${item.pokemon.name}&lt;/li&gt;`)
+    .join('');
+}
+            </code></pre>
+          </li>
+          <li>Talk about CORS</li>
+        </ol>
+        <!-- <p>This would be a good time to
           really talk about Single Page Applications (SPA) as this gives us the
           last piece we need to really build one. A possible example could be a
           <a
@@ -65,7 +173,7 @@
             target="_blank"
             >https://github.com/byui-cit/cit261/tree/gh-pages/teacher/spa-example-start.zip</a
           >
-        </p>
+        </p> -->
       </main>
       <!-- end #article -->
     </div>
