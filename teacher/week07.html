@@ -48,15 +48,16 @@
         <ol>
           <li>Make a list of foods in a json file.</li>
           <li>
-            make a fetch call to get the list of foods. Explain that we can grab
-            some data from a database, some html from a file, an image, etc with
-            fetch. Used to use XMLHTTPRequest.
+            Make a <code>fetch</code> call to get the list of foods. Explain
+            that we can grab some data from a database, some html from a file,
+            an image, etc with fetch. This has traditionally been done with
+            XMLHTTPRequest.
           </li>
           <li>
-            explain that this takes time and JS runs asynchronously...it doesn't
-            wait for it to finish before executing the next statement
+            Explain that this takes time and JS runs asynchronously...it doesn't
+            wait for things to finish before executing the next statement
           </li>
-          <li>add some logs to show this. for loop, setTimeout.</li>
+          <li>Add some logs to show this. for loop, setTimeout.</li>
           <li>
             Callbacks are the traditional way to handle this...but could often
             lead to unreadable code..."callback hell"
@@ -70,8 +71,14 @@
             happen after the promise resolves should go in the then().
           </li>
           <li>
+            Once processed the Promise gives us a stream. That must be converted
+            into the data that was sent back. It can be processed as
+            <code>text()</code>, <code>json()</code>, or as a
+            <code>blob()</code>
+          </li>
+          <li>
             Fetching data from a server is not the only thing that can take
-            time. create a longProcess function with a timeout in it. it should
+            time. Create a longProcess function with a timeout in it. It should
             return a number after a delay. Try adding that number to another
             one.
             <pre><code class="lang-js">
@@ -81,7 +88,7 @@ function longProcess() {
     }, 200);
   });
   const total = 100 + longProcess();
-  console.log('total', total);
+  console.log('total', total); // NaN
 }</code></pre>
           </li>
           <li>
