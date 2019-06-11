@@ -58,26 +58,18 @@ async function showShips(url = 'https://swapi.co/api/starships/') {
   // enable the next and prev buttons.
   if (results.next) {
     const next = document.getElementById('next');
-    // we need to set the once option option on the listener since the buttons do not get recreated with each page load. If we don't we will end up wiuth several listeners all trying to fire at once after a few pages
-    next.addEventListener(
-      'touchend',
-      () => {
-        // notice to show the next page we just re-call the showShips function with a new URL
-        showShips(results.next);
-      },
-      { once: true }
-    );
+    // normally we would prefer the addEventListener method of adding a listener. Using something like 'element.onEvent = event_function' has the limitation of only being able to hold one listener of the type. In this case that is a good thing however. Because we are not re-creating the buttons each time we load a new batch of data we could end up with several listeners attached to each button by the last page. We won't have that issue here.
+    next.ontouchend = () => {
+      // notice to show the next page we just re-call the showShips function with a new URL
+      showShips(data.next);
+    };
   }
   if (results.previous) {
     const prev = document.getElementById('prev');
     // we need to set the once option on the listener since the buttons do not get recreated with each page load. If we don't we will end up with several listeners all trying to fire at once after a few pages
-    prev.addEventListener(
-      'touchend',
-      () => {
-        showShips(results.previous);
-      },
-      { once: true }
-    );
+    prev.ontouchend = () => {
+      showShips(data.previous);
+    };
   }
 }
 
