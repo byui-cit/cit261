@@ -42,33 +42,203 @@
         <div class="requirements">
           <h3>Core Requirements</h3>
           <ol class="bigSteps">
+           
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Setup</p>
+              <p>We need a few things to succeusfully complete this activity. The most important thing is a backend server to respond to our authentication requests. Download <a href="../resources/auth.zip">this node server boilerplate</a>. Expand it then open the folder in your editor. We need to install the dependencies for this application before we can use it, so you need to open a command line prompt and change to the folder that contains the code you downloaded. Then type: <pre><code class="lang-bash">npm install</code></pre> Once that finishes you can type:  <pre><code class="lang-bash">npm run start-auth</code></pre> This will start up our authentication server. It will be listening at <kbd>http://127.0.0.1:3000/</kbd> (Note this is a local address and can only be accessed from the computer running the server). </p>
+              <p>
+                We are also going to be making many AJAX calls for this activity.
+                Some will get simple <kbd>GET</kbd>s, but we will also need to
+                do our first <kbd>POST</kbd> as well to send the login
+                information to our authentication server. We also want to pay
+                close attention to handling errors. Begin this activity by
+                creating a function we can use to make these requests. It will
+                be similar to the <code>getJSON</code> method we created last
+                week, but it needs to do more.
+              </p>
+              <p>If you review that function it looked like this:</p>
+              <pre><code class="lang-js">
+function getJSON(url) {
+  return fetch(url)
+    .then(function(response) {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      } else {
+        return response.json();
+      }
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+}
+              </code></pre>
+              <p>
+                We can use this as a starting point, but our new function needs
+                to allow for different verbs (GET, or POST), and the addition of
+                the data we might need to send. We can use this as a model for
+                our new function:
+              </p>
+              <pre><code class="lang-js">
+// Server Address
+const baseURL = 'http://127.0.0.1:3000/';
+// helper function to make an http request with fetch.
+// returns a json object
+async function makeRequest(url, method = 'GET', body = null) {
+  // we will need to set some custom options for our fetch call
+    let options = {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  // if we are sending any data with the request add it here
+  if (method == 'POST' || method == 'PUT') {
+    options.body = JSON.stringify(body);
+  }
+  
+  const response = await fetch(baseURL + url, options);
+  // in this case we are processing the response as JSON before we check the status. The API we are using will send back more meaningful error messages than the default messages in the response, but we have to convert it before we can get to them.
+  const data = await response.json();
+
+  if (!response.ok) {
+    // server will send a 500 server error if the token expires...or a 401 if we are not authorized, ie bad username/password combination, and a 404 if the URL we requested does not exist. All of these would cause response.ok to be false
+
+    console.log(response);
+    throw new Error(`${data.status}: ${data.message}`);
+  } else return data;
+
+  // not catching the error here...so we will need to catch it later on and handle it.
+}
+              </code></pre>
+              <p>Note a few things:</p>
+              <ol>
+                <li>
+                  We are passing in several things...a url, a method that will
+                  be set to <kbd>GET</kbd> if nothing else is provided, and a
+                  <kbd>body</kbd> argument that will sometimes contain the
+                  information we need to send to the API, and sometimes will be
+                  null.
+                </li>
+                <li>
+                  We will need to send in a custom options object to
+                  <kbd>fetch</kbd>. We need to specify method (GET is the
+                  default), and then we will need to set some headers. Headers
+                  contain information that changes how the server we are
+                  communicating to will treat our request. We have set one for
+                  now: we tell the server that we are sending/expecting JSON.
+                </li>
+                <li>
+                  Next we check if the method is either <kbd>POST</kbd> or
+                  <kbd>PUT</kbd>. Both of these methods involve sending data
+                  with the request. We add that to the <kbd>body</kbd> of our
+                  request...making sure to convert it to a string
+                  (JSON.stringify).
+                </li>
+                <li>
+                  This example also uses async/await to process the Promises.
+                  The next line actually makes the fetch request, passing in the
+                  URL (which we have been doing) and also our options object
+                  (which we haven't done before)
+                </li>
+                <li>Next we process the response as JSON.</li>
+                <li>
+                  Now we do some error checking to see if our request worked the
+                  way we expected. If it didn't we throw and error, if it did we
+                  return the data.
+                </li>
+                <li>
+                  Notice that we aren't catching the error here...we will need
+                  to make sure we do that later.
+                </li>
+                
+              </ol>
+              <p>Create a folder to contain the client side files for the project. Create an <kbd>authHelpers.js</kbd> file and put our <code>makeRequest</code> function in there...export it. Create also an HTML file called <kbd>index.html</kbd>. Test your server and function by trying this:</p>
+              <pre><code class="lang-js">
+makeRequest('login', 'POST', {
+password: 'user1',
+email: 'user1@email.com'
+});
+              </code></pre>
+              <p>If you open the debugger tools and select the "Network" tab in Chrome you should see all of the requests that your browser has made. Some were to load the html, css, and JS resources, but at the bottom you should see one or two requests to <kbd>login</kbd>. That was in result of our call with <code>makeRequest</code>. Click on the last one. You can see the Request and Response headers, and if you select the Resonpse tab you can see what was sent back. You should see an object with an accessToken in it.</p>
+              <!-- END STEP -->
+            </li>
             <li>
               <!-- BEGIN STEP -->
               <p>
-                Open
-                <a href="../resources/quakes.html" target="_blank"
-                  >the quakes activity</a
-                >
-                and work through step 9.
+                Login Form and Auth module.
               </p>
+              <p>
+                Add a Login form to your <kbd>index.html</kbd>. You will need a two inputs: one for the email (username) and one for password. Create an <kbd>auth.js</kbd> file, add a class to it called <code>Auth</code> and export it.
+              </p>
+              <p>To help you get your authentication working you can start with this code:</p>
+              <pre><code class="lang-js">//Auth class which provides basic JWT based authentication for our app.
+// Requires: access to the makeRequest  functions
+import { makeRequest } from './authHelpers.js';
+export default class Auth {
+  constructor() {
+    this.jwtToken = '';
+    this.user = {};
+  }
+
+  async login(callback) {
+    // replace the ids below with whatever you used in your form.
+    const password = document.getElementById('password');
+    const username = document.getElementById('username');
+    const postData = {
+      email: username.value,
+      password: password.value  
+    };
+    try {
+      // use the makeRequest function to pass our credentials to the server
+      
+      // if we get a successful response...we have a token!  Store it since we will need to send it with every request to the API.
+      
+      // let's get the user details as well and store them locally in the class
+      // you can pass a query to the API by appending it on the end of the url like this: 'users?email=' + email
+      
+      // hide the login form.
+      document.getElementById('login').classList.add('hidden');
+      // clear the password
+      password.value = '';
+      
+      // since we have a token let's go grab some data from the API by executing the callback if one was passed in
+      if(callback) {
+        callback();
+      }
+    } catch (error) {
+      // if there were any errors display them
+      console.log(error);
+    }
+  }
+  // uses the email of the currently logged in user to pull up the full user details for that user from the database
+  async getCurrentUser(email) {
+    try {
+      
+    } catch (error) {
+      // if there were any errors display them
+      console.log(error);
+    }
+  }
+  
+  set token(value) {
+    // we need this for the getter to work...but we don't want to allow setting the token through this.
+  }
+  get token() {
+    return this.jwtToken;
+  }
+} // end auth class
+              </code></pre>
+              <p>Add the code above to your Auth module. Then import your module into your HTML file. Create an instance of your Auth class and try calling the login method. If you look in the console of the browser you should see a 401 error. Since we did not pass in a correct username and password that makes sense.</p>
+              <p>Attach a listener to the submit button on your login form that will call the <code>login</code> method from our Auth class when pressed. Then finish writing the code for the <code>login</code> method.</p>
+              <p>Once you have the login working complete the <code>getCurrentUser</code> method. Remember that you will need to pass the token we recieved from the server with every request except for login or the server will reject the request.</p>
 
               <!-- END STEP -->
             </li>
             <li>
               <!-- BEGIN STEP -->
               <p>
-                Step 10.
-              </p>
-              <p>
-                Create a functional app by finishing step 10.
-              </p>
-
-              <!-- END STEP -->
-            </li>
-            <li>
-              <!-- BEGIN STEP -->
-              <p>
-                Style it.
+                Error Handling
               </p>
 
               <p>
@@ -83,7 +253,7 @@
             <li>
               <!-- BEGIN STEP -->
               <p>
-                Settings
+                Show Posts
               </p>
 
               <p>
@@ -97,28 +267,14 @@
             </li>
             <li>
               <!-- BEGIN STEP -->
-              <p>Back button</p>
+              <p>Add a Post</p>
               <p>
                 We can drill down into a quake's details...but we currently have
                 no way to get back to the list other than a refresh of the page.
                 Add a 'Back' button.
               </p>
             </li>
-            <li>
-              <!-- BEGIN STEP -->
-              <p>Routing</p>
-              <p>
-                What if we wanted to add more functionality? A Routing system
-                would make this easier. See if you can take the
-                <a
-                  href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/spa-example-complete"
-                  target="_blank"
-                  >Routing module</a
-                >
-                from the SPA example app that we did earlier and integrate it
-                into this app.
-              </p>
-            </li>
+            
           </ol>
         </div>
         <h2>Instructors Solution</h2>
