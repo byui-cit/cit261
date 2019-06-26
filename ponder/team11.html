@@ -46,7 +46,7 @@
             <li>
               <!-- BEGIN STEP -->
               <p>Setup</p>
-              <p>We need a few things to succeusfully complete this activity. The most important thing is a backend server to respond to our authentication requests. Download <a href="../resources/auth.zip">this node server boilerplate</a>. Expand it then open the folder in your editor. We need to install the dependencies for this application before we can use it, so you need to open a command line prompt and change to the folder that contains the code you downloaded. Then type: <pre><code class="lang-bash">npm install</code></pre> Once that finishes you can type:  <pre><code class="lang-bash">npm run start-auth</code></pre> This will start up our authentication server. It will be listening at <kbd>http://127.0.0.1:3000/</kbd> (Note this is a local address and can only be accessed from the computer running the server). </p>
+              <p>We need a few things to successfully complete this activity. The most important thing is a backend server to respond to our authentication requests. Download <a href="../resources/auth.zip">this node server boilerplate</a>. Expand it then open the folder in your editor. We need to install the dependencies for this application before we can use it, so you need to open a command line prompt and change to the folder that contains the code you downloaded. Then type: <pre><code class="lang-bash">npm install</code></pre> Once that finishes you can type:  <pre><code class="lang-bash">npm run start-auth</code></pre> This will start up our authentication server. It will be listening at <kbd>http://127.0.0.1:3000/</kbd> (Note this is a local address and can only be accessed from the computer running the server). </p>
               <p>
                 We are also going to be making many AJAX calls for this activity.
                 Some will get simple <kbd>GET</kbd>s, but we will also need to
@@ -160,7 +160,7 @@ password: 'user1',
 email: 'user1@email.com'
 });
               </code></pre>
-              <p>If you open the debugger tools and select the "Network" tab in Chrome you should see all of the requests that your browser has made. Some were to load the html, css, and JS resources, but at the bottom you should see one or two requests to <kbd>login</kbd>. That was in result of our call with <code>makeRequest</code>. Click on the last one. You can see the Request and Response headers, and if you select the Resonpse tab you can see what was sent back. You should see an object with an accessToken in it.</p>
+              <p>If you open the debugger tools and select the "Network" tab in Chrome you should see all of the requests that your browser has made. Some were to load the html, css, and JS resources, but at the bottom you should see one or two requests to <kbd>login</kbd>. That was in result of our call with <code>makeRequest</code>. Click on the last one. You can see the Request and Response headers, and if you select the Response tab you can see what was sent back. You should see an object with an accessToken in it.</p>
               <!-- END STEP -->
             </li>
             <li>
@@ -238,43 +238,49 @@ export default class Auth {
             <li>
               <!-- BEGIN STEP -->
               <p>
-                Error Handling
-              </p>
-
-              <p>
-                Add CSS to make the application look and work better.
-              </p>
-
-              <!-- END STEP -->
-            </li>
-          </ol>
-          <h3>Stretch Goals</h3>
-          <ol class="bigSteps">
-            <li>
-              <!-- BEGIN STEP -->
-              <p>
                 Show Posts
               </p>
 
               <p>
-                It would be great if we could specify the radius we would like
-                to include in the query for earthquakes. Make it so. You might
-                also allow the use to indicate the dates they would like to
-                search over as well.
+                After logging in it would be nice to show the user something. Create a function to pull all of the posts from the API and call it after a successful login. (API endpoint would be <code>baseUrl + 'posts'</code>). To have your function called automatically after login you can pass the function into the <code>login</code> method. It will accept a callback function that will be executed if things go well if you used the code sample above.
               </p>
 
               <!-- END STEP -->
             </li>
+            
+          </ol>
+          <h3>Stretch Goals</h3>
+          <ol class="bigSteps">
+            
             <li>
               <!-- BEGIN STEP -->
               <p>Add a Post</p>
               <p>
-                We can drill down into a quake's details...but we currently have
-                no way to get back to the list other than a refresh of the page.
-                Add a 'Back' button.
+                Add a form above or below the list of posts you returned to allow for the creation of a new post. Write the functions you would need to successfully make the call to the API to save the post. (You would need to make a <code>post</code> request with the data for the post to <code>baseUrl + 'posts'</code>)
               </p>
             </li>
-            
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                Error Handling
+              </p>
+
+              <p>
+                Giving good feedback to your users about what is going on is very important...especially when something goes wrong. Let's add an Error reporting module to our code to pass messages on to our users. Add the following at the top of your HTML body:
+              </p>
+              <pre><code class="lang-html">&lt;div id="errors" class="errors hidden"&gt;&lt;/div&gt;</code></pre>
+<p>Then create a new class called Errors in your <kbd>authHelpers.js</kbd> file. Add the methods to show errors in that div when appropriate, and clear them when it is time. </p>
+<pre><code class="lang-js">
+  export class Errors {
+    constructor(errorElementId) {
+      this.errorElement = document.getElementById(errorElementId);
+    }
+  
+  }
+</code></pre>
+<p>Create a new instance of your Errors class to use. Pass it into your <kbd>Auth</kbd> class in the constructor so that it has access...then use it in the <code>catch</code> blocks when appropriate.</p>
+              <!-- END STEP -->
+            </li>
           </ol>
         </div>
         <h2>Instructors Solution</h2>
@@ -296,16 +302,11 @@ export default class Auth {
         <p>
           After working with your team for the one hour activity,
           <a
-            href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/quakes"
+            href="https://github.com/byui-cit/cit261/tree/gh-pages/solutions/week11"
             target="_blank"
             >click here for the instructor's solution</a
           >
-          of this project. (Or
-          <a
-            href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/quakes/finished"
-            target="_blank"
-            >here for the version with the routing stretch goal</a
-          >)
+          of this project.
         </p>
         <h2>Submission</h2>
         <p>

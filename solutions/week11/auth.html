@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Authentication
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .errors {
+        border: 1px solid darkred;
+        background-color: lightcoral;
+        padding: 0.5em;
+      }
+      form input {
+        margin: 0.5em 0;
+        font-size: 1.4em;
+        background-color: antiquewhite;
+        width: 300px;
+      }
+      form button {
+        font-size: 1.2em;
+        padding: 0.4em;
+        background-color: cornflowerblue;
+      }
+      input:invalid {
+        box-shadow: 0 0 5px 1px red;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 class="text-center">Authentication Example</h1>
+      <nav></nav>
+    </header>
+    <div id="errors" class="errors hidden"></div>
+    <div id="login">
+      <form>
+        <div>
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Username"
+            value="user1@email.com"
+          />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <button type="button" class="btn btn-primary center-block">
+          Login
+        </button>
+      </form>
+      <div id="token-display"></div>
+    </div>
+
+    <div id="content" class="hidden">
+      <form name="postForm">
+        <div>
+          <label for="title">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="title"
+            required
+          />
+        </div>
+        <div>
+          <label for="content">Content</label>
+          <input
+            type="text"
+            class="form-control"
+            name="content"
+            placeholder="content"
+            required
+          />
+        </div>
+        <div id="postError"></div>
+
+        <input type="submit" id="createSubmit" />
+      </form>
+      <ul id="list"></ul>
+    </div>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
