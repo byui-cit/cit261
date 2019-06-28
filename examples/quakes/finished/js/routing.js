@@ -5,6 +5,11 @@ const routes = [
     controller: new QuakesController('#quakeList'),
     file: 'views/quakeList.html',
     label: 'Local Quakes'
+  },
+  {
+    controller: new QuakesController('#quakeList'),
+    file: 'views/quakeList.html',
+    label: 'Yellowstone Quakes'
   }
 ];
 

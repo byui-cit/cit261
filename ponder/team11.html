@@ -42,15 +42,32 @@
         <div class="requirements">
           <h3>Core Requirements</h3>
           <ol class="bigSteps">
-           
             <li>
               <!-- BEGIN STEP -->
               <p>Setup</p>
-              <p>We need a few things to successfully complete this activity. The most important thing is a backend server to respond to our authentication requests. Download <a href="../resources/auth.zip">this node server boilerplate</a>. Expand it then open the folder in your editor. We need to install the dependencies for this application before we can use it, so you need to open a command line prompt and change to the folder that contains the code you downloaded. Then type: <pre><code class="lang-bash">npm install</code></pre> Once that finishes you can type:  <pre><code class="lang-bash">npm run start-auth</code></pre> This will start up our authentication server. It will be listening at <kbd>http://127.0.0.1:3000/</kbd> (Note this is a local address and can only be accessed from the computer running the server). </p>
               <p>
-                We are also going to be making many AJAX calls for this activity.
-                Some will get simple <kbd>GET</kbd>s, but we will also need to
-                do our first <kbd>POST</kbd> as well to send the login
+                We need a few things to successfully complete this activity. The
+                most important thing is a backend server to respond to our
+                authentication requests. Download
+                <a href="../resources/auth.zip">this node server boilerplate</a
+                >. Expand it then open the folder in your editor. We need to
+                install the dependencies for this application before we can use
+                it, so you need to open a command line prompt and change to the
+                folder that contains the code you downloaded. Then type:
+              </p>
+              <pre><code class="lang-bash">npm install</code></pre>
+              <p>Once that finishes you can type:</p>
+              <pre><code class="lang-bash">npm run start-auth</code></pre>
+              <p>
+                This will start up our authentication server. It will be
+                listening at <kbd>http://127.0.0.1:3000/</kbd> (Note this is a
+                local address and can only be accessed from the computer running
+                the server).
+              </p>
+              <p>
+                We are also going to be making many AJAX calls for this
+                activity. Some will get simple <kbd>GET</kbd>s, but we will also
+                need to do our first <kbd>POST</kbd> as well to send the login
                 information to our authentication server. We also want to pay
                 close attention to handling errors. Begin this activity by
                 creating a function we can use to make these requests. It will
@@ -151,16 +168,31 @@ async function makeRequest(url, method = 'GET', body = null) {
                   Notice that we aren't catching the error here...we will need
                   to make sure we do that later.
                 </li>
-                
               </ol>
-              <p>Create a folder to contain the client side files for the project. Create an <kbd>authHelpers.js</kbd> file and put our <code>makeRequest</code> function in there...export it. Create also an HTML file called <kbd>index.html</kbd>. Test your server and function by trying this:</p>
+              <p>
+                Create a folder to contain the client side files for the
+                project. Create an <kbd>authHelpers.js</kbd> file and put our
+                <code>makeRequest</code> function in there...export it. Create
+                also an HTML file called <kbd>index.html</kbd>. Test your server
+                and function by trying this:
+              </p>
               <pre><code class="lang-js">
 makeRequest('login', 'POST', {
 password: 'user1',
 email: 'user1@email.com'
 });
               </code></pre>
-              <p>If you open the debugger tools and select the "Network" tab in Chrome you should see all of the requests that your browser has made. Some were to load the html, css, and JS resources, but at the bottom you should see one or two requests to <kbd>login</kbd>. That was in result of our call with <code>makeRequest</code>. Click on the last one. You can see the Request and Response headers, and if you select the Response tab you can see what was sent back. You should see an object with an accessToken in it.</p>
+              <p>
+                If you open the debugger tools and select the "Network" tab in
+                Chrome you should see all of the requests that your browser has
+                made. Some were to load the html, css, and JS resources, but at
+                the bottom you should see one or two requests to
+                <kbd>login</kbd>. That was in result of our call with
+                <code>makeRequest</code>. Click on the last one. You can see the
+                Request and Response headers, and if you select the Response tab
+                you can see what was sent back. You should see an object with an
+                accessToken in it.
+              </p>
               <!-- END STEP -->
             </li>
             <li>
@@ -169,9 +201,15 @@ email: 'user1@email.com'
                 Login Form and Auth module.
               </p>
               <p>
-                Add a Login form to your <kbd>index.html</kbd>. You will need a two inputs: one for the email (username) and one for password. Create an <kbd>auth.js</kbd> file, add a class to it called <code>Auth</code> and export it.
+                Add a Login form to your <kbd>index.html</kbd>. You will need a
+                two inputs: one for the email (username) and one for password.
+                Create an <kbd>auth.js</kbd> file, add a class to it called
+                <code>Auth</code> and export it.
               </p>
-              <p>To help you get your authentication working you can start with this code:</p>
+              <p>
+                To help you get your authentication working you can start with
+                this code:
+              </p>
               <pre><code class="lang-js">//Auth class which provides basic JWT based authentication for our app.
 // Requires: access to the makeRequest  functions
 import { makeRequest } from './authHelpers.js';
@@ -229,9 +267,25 @@ export default class Auth {
   }
 } // end auth class
               </code></pre>
-              <p>Add the code above to your Auth module. Then import your module into your HTML file. Create an instance of your Auth class and try calling the login method. If you look in the console of the browser you should see a 401 error. Since we did not pass in a correct username and password that makes sense.</p>
-              <p>Attach a listener to the submit button on your login form that will call the <code>login</code> method from our Auth class when pressed. Then finish writing the code for the <code>login</code> method.</p>
-              <p>Once you have the login working complete the <code>getCurrentUser</code> method. Remember that you will need to pass the token we recieved from the server with every request except for login or the server will reject the request.</p>
+              <p>
+                Add the code above to your Auth module. Then import your module
+                into your HTML file. Create an instance of your Auth class and
+                try calling the login method. If you look in the console of the
+                browser you should see a 401 error. Since we did not pass in a
+                correct username and password that makes sense.
+              </p>
+              <p>
+                Attach a listener to the submit button on your login form that
+                will call the <code>login</code> method from our Auth class when
+                pressed. Then finish writing the code for the
+                <code>login</code> method.
+              </p>
+              <p>
+                Once you have the login working complete the
+                <code>getCurrentUser</code> method. Remember that you will need
+                to pass the token we recieved from the server with every request
+                except for login or the server will reject the request.
+              </p>
 
               <!-- END STEP -->
             </li>
@@ -242,21 +296,30 @@ export default class Auth {
               </p>
 
               <p>
-                After logging in it would be nice to show the user something. Create a function to pull all of the posts from the API and call it after a successful login. (API endpoint would be <code>baseUrl + 'posts'</code>). To have your function called automatically after login you can pass the function into the <code>login</code> method. It will accept a callback function that will be executed if things go well if you used the code sample above.
+                After logging in it would be nice to show the user something.
+                Create a function to pull all of the posts from the API and call
+                it after a successful login. (API endpoint would be
+                <code>baseUrl + 'posts'</code>). To have your function called
+                automatically after login you can pass the function into the
+                <code>login</code> method. It will accept a callback function
+                that will be executed if things go well if you used the code
+                sample above.
               </p>
 
               <!-- END STEP -->
             </li>
-            
           </ol>
           <h3>Stretch Goals</h3>
           <ol class="bigSteps">
-            
             <li>
               <!-- BEGIN STEP -->
               <p>Add a Post</p>
               <p>
-                Add a form above or below the list of posts you returned to allow for the creation of a new post. Write the functions you would need to successfully make the call to the API to save the post. (You would need to make a <code>post</code> request with the data for the post to <code>baseUrl + 'posts'</code>)
+                Add a form above or below the list of posts you returned to
+                allow for the creation of a new post. Write the functions you
+                would need to successfully make the call to the API to save the
+                post. (You would need to make a <code>post</code> request with
+                the data for the post to <code>baseUrl + 'posts'</code>)
               </p>
             </li>
             <li>
@@ -266,11 +329,18 @@ export default class Auth {
               </p>
 
               <p>
-                Giving good feedback to your users about what is going on is very important...especially when something goes wrong. Let's add an Error reporting module to our code to pass messages on to our users. Add the following at the top of your HTML body:
+                Giving good feedback to your users about what is going on is
+                very important...especially when something goes wrong. Let's add
+                an Error reporting module to our code to pass messages on to our
+                users. Add the following at the top of your HTML body:
               </p>
               <pre><code class="lang-html">&lt;div id="errors" class="errors hidden"&gt;&lt;/div&gt;</code></pre>
-<p>Then create a new class called Errors in your <kbd>authHelpers.js</kbd> file. Add the methods to show errors in that div when appropriate, and clear them when it is time. </p>
-<pre><code class="lang-js">
+              <p>
+                Then create a new class called Errors in your
+                <kbd>authHelpers.js</kbd> file. Add the methods to show errors
+                in that div when appropriate, and clear them when it is time.
+              </p>
+              <pre><code class="lang-js">
   export class Errors {
     constructor(errorElementId) {
       this.errorElement = document.getElementById(errorElementId);
@@ -278,7 +348,12 @@ export default class Auth {
   
   }
 </code></pre>
-<p>Create a new instance of your Errors class to use. Pass it into your <kbd>Auth</kbd> class in the constructor so that it has access...then use it in the <code>catch</code> blocks when appropriate.</p>
+              <p>
+                Create a new instance of your Errors class to use. Pass it into
+                your <kbd>Auth</kbd> class in the constructor so that it has
+                access...then use it in the <code>catch</code> blocks when
+                appropriate.
+              </p>
               <!-- END STEP -->
             </li>
           </ol>
