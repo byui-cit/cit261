@@ -64,6 +64,21 @@
                 local address and can only be accessed from the computer running
                 the server).
               </p>
+              <div class="callout">
+                <p>
+                  If none of the instructions above look familiar...go and
+                  complete the
+                  <a href="../resources/workflow.html" target="_blank"
+                    >modern workflow</a
+                  >
+                  activity from week09.
+                </p>
+              </div>
+              <p>
+                You should leave this server running until you are done with the
+                activity. <kbd>ctrl-c</kbd> will terminate the program when you
+                are ready.
+              </p>
               <p>
                 We are also going to be making many AJAX calls for this
                 activity. Some will get simple <kbd>GET</kbd>s, but we will also
@@ -170,11 +185,13 @@ async function makeRequest(url, method = 'GET', body = null) {
                 </li>
               </ol>
               <p>
-                Create a folder to contain the client side files for the
-                project. Create an <kbd>authHelpers.js</kbd> file and put our
-                <code>makeRequest</code> function in there...export it. Create
-                also an HTML file called <kbd>index.html</kbd>. Test your server
-                and function by trying this:
+                Create a folder to contain the client side files for the project
+                called <kbd>Auth</kbd>. Create an <kbd>authHelpers.js</kbd> file
+                and put our <code>makeRequest</code> function in there...export
+                it. Create also an HTML file called <kbd>index.html</kbd> and
+                add the HTML to make a simple page. Add a
+                <code>&lt;script type="module"&gt;</code> block, import in your
+                <code>makeRequest</code> function and test it by trying this:
               </p>
               <pre><code class="lang-js">
 makeRequest('login', 'POST', {
@@ -182,6 +199,21 @@ password: 'user1',
 email: 'user1@email.com'
 });
               </code></pre>
+              <div class="callout">
+                <p>
+                  Here is a screenshot of my setup for this activity using VS
+                  Code and Live Server. Notice that I have two projects
+                  open...my Auth project (frontend code) and the Json-server
+                  code (backend code). The Auth project I am previewing using
+                  the Live Server extention, and the server code is being run in
+                  the built in command line in VS Code. (Type
+                  <kbd>ctrl+~</kbd> to bring up the command line in VS Code)
+                </p>
+                <img
+                  src="../images/team11-setup.jpg"
+                  alt="Editor setup for team activity 11"
+                />
+              </div>
               <p>
                 If you open the debugger tools and select the "Network" tab in
                 Chrome you should see all of the requests that your browser has
@@ -193,6 +225,31 @@ email: 'user1@email.com'
                 you can see what was sent back. You should see an object with an
                 accessToken in it.
               </p>
+              <div class="callout">
+                <p>
+                  If the function call above didn't work, verify the following:
+                </p>
+                <ul>
+                  <li>
+                    The server code we setup above is running. (You should have
+                    a terminal window somewhere that has the application running
+                    in it.) Try entering
+                    <kbd>http://127.0.0.1:3000/login</kbd> into a browser. If it
+                    is working you should see
+                    <pre><kbd>{
+"status": 401,
+"message": "Error in authorization format"
+}</kbd></pre>
+                  </li>
+                  <li>
+                    You are accessing your <kbd>index.html</kbd> file through a
+                    webserver. If you are using Brackets or VS Code with the
+                    Live Server extention you are. When looking at your html
+                    file in the browser check the address. It should start with
+                    either <kbd>127.0.0.1</kbd> or <kbd>localhost</kbd>.
+                  </li>
+                </ul>
+              </div>
               <!-- END STEP -->
             </li>
             <li>
