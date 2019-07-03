@@ -48,12 +48,15 @@
               <p>
                 We need a few things to successfully complete this activity. The
                 most important thing is a backend server to respond to our
-                authentication requests. Download
+                authentication requests. Create a folder on your computer called
+                <kbd>week11</kbd>. Download
                 <a href="../resources/auth.zip">this node server boilerplate</a
-                >. Expand it then open the folder in your editor. We need to
-                install the dependencies for this application before we can use
-                it, so you need to open a command line prompt and change to the
-                folder that contains the code you downloaded. Then type:
+                >. Expand it into your <kbd>week11</kbd> folder, then open the
+                folder in your editor. We need to install the dependencies for
+                this application before we can use it, so you need to open a
+                command line prompt and change to the folder that contains the
+                server code you downloaded (should be called
+                <kbd>json-server</kbd>). Then type:
               </p>
               <pre><code class="lang-bash">npm install</code></pre>
               <p>Once that finishes you can type:</p>
@@ -185,13 +188,17 @@ async function makeRequest(url, method = 'GET', body = null) {
                 </li>
               </ol>
               <p>
-                Create a folder to contain the client side files for the project
-                called <kbd>Auth</kbd>. Create an <kbd>authHelpers.js</kbd> file
-                and put our <code>makeRequest</code> function in there...export
-                it. Create also an HTML file called <kbd>index.html</kbd> and
-                add the HTML to make a simple page. Add a
-                <code>&lt;script type="module"&gt;</code> block, import in your
-                <code>makeRequest</code> function and test it by trying this:
+                Create a folder inside of your <kbd>week11</kbd> folder called
+                <kbd>client</kbd> to contain the client side files for the
+                project. Create an <kbd>authHelpers.js</kbd> file and put our
+                <code>makeRequest</code> function in there...export it. Create
+                also an HTML file called <kbd>week11.html</kbd> and add the HTML
+                to make a simple page. Create one more file called
+                <kbd>week11.js</kbd> and add it to your html via a
+                <code>script</code> element (We will be using modules so don't
+                forget <code>type="module"</code>). Import in your
+                <code>makeRequest</code> function into the
+                <kbd>week11.js</kbd> file and test it by trying this:
               </p>
               <pre><code class="lang-js">
 makeRequest('login', 'POST', {
@@ -202,11 +209,10 @@ email: 'user1@email.com'
               <div class="callout">
                 <p>
                   Here is a screenshot of my setup for this activity using VS
-                  Code and Live Server. Notice that I have two projects
-                  open...my Auth project (frontend code) and the Json-server
-                  code (backend code). The Auth project I am previewing using
-                  the Live Server extention, and the server code is being run in
-                  the built in command line in VS Code. (Type
+                  Code and Live Server. Notice the file structure. The client
+                  code I am previewing using the Live Server extention
+                  (127.0.0.1:5500), and the server code is being run in the
+                  built in command line in VS Code (127.0.0.1:3000). (Type
                   <kbd>ctrl+~</kbd> to bring up the command line in VS Code)
                 </p>
                 <img
