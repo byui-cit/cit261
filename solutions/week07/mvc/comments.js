@@ -1,4 +1,4 @@
-// A the code that is responsible to get and set data for a part of the application is often called a model. I've used that terminology here.
+// I've left the model view and controller code together in the one file for simplicity
 
 //commentModel
 class CommentModel {
@@ -39,8 +39,7 @@ function readFromLS(key) {
   return JSON.parse(window.localStorage.getItem(key));
 }
 
-// These methods create the HTML that is needed to output our list of comments to the screen.  Anything dealing with outpuit to the browser is catagorized as view code.
-
+// commentsView
 const commentUI = `<div class="addComment">
 <h2>Add a comment</h2>
 <input type="text" id="commentEntry" />
@@ -62,9 +61,7 @@ function renderCommentList(element, comments) {
     element.appendChild(item);
   });
 }
-
-// Comments: this code handles getting the list of comments from the data source, and outputting them to the screen at the right time.  This is often catagorized as Controller code.
-
+// Comments controller
 class Comments {
   constructor(type, commentElementId) {
     this.type = type;
