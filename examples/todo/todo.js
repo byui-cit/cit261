@@ -10,57 +10,21 @@ Filter ToDos (complete/not complete)
 Read toDos from local storage
 Write ToDos to local storage
 
-Then organize it into Model, view, and controller functionality
-Model:
+Then organize it into things that the interface needs (public) and things that it doesn't need direct access to (private)
+Public:
 Add Todo
 Edit Todo
 filter Todos
 Delete todo
+list todos
+
+
+private:
 read/write localStorage
 
-View:
-List Todos
-
-Controller: 
-Pretty much everything!  Explain that each action that is the result of a user action needs a method in the controller. As well as everything necessary to get and display the initial state of the app.
 */
+//  private code here. Not exported from the module
 
-//  model code here.
-class ToDoModel {
-  constructor(key) {
-    // key for localStorage saving and lookup
-    this.key = key;
-    // try and read from localStorage to see if there are any pre-existing todos...otherwise set the list to an empty array
-    this.toDos = readFromLS(this.key) || [];
-  }
-  getToDos() {
-    // make sure the stored list of toDos matches what is in localstorage. Do we really need to do this? Maybe not.
-    this.toDos = readFromLS(this.key);
-    //check to make sure we found something...mention that maybe this error checking may be better done in the readFromLS function
-    if (!this.toDos) {
-      this.toDos = [];
-    }
-    return this.toDos;
-  }
-  // this would be done last if you still have time...and if you haven't blown too many minds yet :)  If you do get here...mention how similar this method is with getToDos...they could probably be combined easily.
-  filterToDos(completed = true) {
-    this.toDos = readFromLS(this.key);
-    // return a list of either completed or not completed toDos based on the parameter.
-    return this.toDos.filter(item => item.completed === hidden);
-  }
-  addToDo(value) {
-    // use Date.now() for UTC millisecond string.
-    const newToDo = {
-      id: new Date(),
-      content: value,
-      completed: false
-    };
-    this.toDos.push(newToDo);
-    writeToLS(this.key, this.toDos);
-  }
-  findTodo(id) {}
-  completeTodo(id) {}
-}
 function writeToLS(key, data) {
   // we can use JSON.stringify to convert our object to a string that can be stored in localStorage.
   window.localStorage.setItem(key, JSON.stringify(data));
@@ -71,25 +35,6 @@ function readFromLS(key) {
   return JSON.parse(window.localStorage.getItem(key));
 }
 
-// Controller
-export default class ToDoController {
-  constructor(listElement) {
-    // opted to store the listElement inside the class.
-    this.listElement = listElement;
-    // create a new instance of our model and add it to the controller.
-    this.toDoModel = new ToDoModel('todo');
-    this.listToDos();
-  }
-
-  newToDo(value) {
-    this.toDoModel.addToDo(value);
-    this.listToDos();
-  }
-
-  listToDos(hidden = true) {
-    renderList(this.toDoModel.getToDos(), this.listElement, hidden);
-  }
-}
 // View code here
 function renderList(list, element, hidden) {
   console.log(list);
@@ -103,31 +48,73 @@ function renderList(list, element, hidden) {
     element.appendChild(item);
   });
 }
+function getToDos(key) {
+  let toDos = readFromLS(key);
+  //check to make sure we found something...mention that maybe this error checking may be better done in the readFromLS function
+  if (!toDos) {
+    toDos = [];
+  }
+  return toDos;
+}
 
-// Another model for OOP in Javascript is factory functions.  This is an example of the todoModel as a factory function
-// factory function
-// function ToDoModel(key) {
-//   const readFromLS = function(key) {
-//     return JSON.parse(window.localStorage.getItem(key));
-//   };
-//   const writeToLS = function(key, data) {
-//     window.localStorage.setItem(key, JSON.stringify(data));
-//   };
-//   let toDos = readFromLS(key) || [];
-//   return {
-//     get: function() {
-//       return toDos;
-//     },
-//     add: function(value) {
-//       // use Date.now() for UTC millisecond string.
-//       const newToDo = {
-//         id: new Date(),
-//         content: value,
-//         completed: false
-//       };
-//       toDos.push(newToDo);
-//       writeToLS(key, toDos);
-//     }
-//   };
-// }
-// const myToDos = ToDoModel('todo');
+function addToDo(value, key) {
+  // use Date.now() for UTC millisecond string.
+  const newToDo = {
+    id: new Date(),
+    content: value,
+    completed: false
+  };
+  let toDos = getToDos(key);
+  toDos.push(newToDo);
+  writeToLS(key, toDos);
+}
+// this would be done last if you still have time...and if you haven't blown too many minds yet :)  If you do get here...mention how similar this method is with getToDos...they could probably be combined easily.
+function filterToDos(key, completed = true) {
+  let toDos = readFromLS(key);
+  if (!toDos) {
+    return [];
+  } else {
+    // return a list of either completed or not completed toDos based on the parameter.
+    return toDos.filter(item => item.completed === hidden);
+  }
+}
+function findTodo(id) {}
+function completeTodo(id) {}
+
+// public
+export default class ToDos {
+  constructor(listElement, key) {
+    // opted to store the listElement inside the class.
+    this.listElement = listElement;
+    // key for localStorage saving and lookup
+    this.key = key;
+    // try and read from localStorage to see if there are any pre-existing todos...otherwise set the list to an empty array
+    this.toDos = readFromLS(this.key) || [];
+
+    this.listToDos();
+  }
+
+  newToDo(value) {
+    addToDo(value);
+    this.listToDos();
+  }
+
+  listToDos(hidden = true) {
+    renderList(getToDos(), this.listElement, hidden);
+  }
+}
+
+//  This could also be done as a simple object literal as well.
+// const ToDos = {
+//   _key: null,
+//   _listElement: null,
+//   newToDo: function(value) {
+//     addToDo(value);
+//     this.listToDos();
+//   },
+//   listToDos: function(hidden = true) {
+//     renderList(getToDos(), this.listElement, hidden);
+//   }
+// };
+
+// export default toDos;
