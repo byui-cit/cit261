@@ -24,7 +24,8 @@ read/write localStorage
 
 */
 //  private code here. Not exported from the module
-
+// we need a place to store our list of todos in memory
+let liveToDos = null;
 function writeToLS(key, data) {
   // we can use JSON.stringify to convert our object to a string that can be stored in localStorage.
   window.localStorage.setItem(key, JSON.stringify(data));
@@ -32,6 +33,7 @@ function writeToLS(key, data) {
 
 function readFromLS(key) {
   // the string we retrieve from localStorage needs to be converted back to an object with JSON.parse
+
   return JSON.parse(window.localStorage.getItem(key));
 }
 
@@ -44,17 +46,17 @@ function renderList(list, element, hidden) {
     const item = document.createElement('li');
     const formattedDate = new Date(toDo.id).toLocaleDateString('en-US');
 
-    item.innerHTML = `${formattedDate}: ${toDo.content}`;
+    item.innerHTML = `<input type="checkbox"><label>${toDo.content}</label><button>X</button>`;
     element.appendChild(item);
   });
 }
 function getToDos(key) {
-  let toDos = readFromLS(key);
-  //check to make sure we found something...mention that maybe this error checking may be better done in the readFromLS function
-  if (!toDos) {
-    toDos = [];
+  if (liveToDos === null) {
+    // we need to go read the list from the data store
+    liveToDos = readFromLS(key) || [];
   }
-  return toDos;
+
+  return liveToDos;
 }
 
 function addToDo(value, key) {
@@ -64,23 +66,28 @@ function addToDo(value, key) {
     content: value,
     completed: false
   };
-  let toDos = getToDos(key);
-  toDos.push(newToDo);
-  writeToLS(key, toDos);
+
+  liveToDos.push(newToDo);
+  writeToLS(key, liveToDos);
 }
 // this would be done last if you still have time...and if you haven't blown too many minds yet :)  If you do get here...mention how similar this method is with getToDos...they could probably be combined easily.
 function filterToDos(key, completed = true) {
-  let toDos = readFromLS(key);
-  if (!toDos) {
-    return [];
-  } else {
-    // return a list of either completed or not completed toDos based on the parameter.
-    return toDos.filter(item => item.completed === hidden);
-  }
+  let toDos = getToDos(key);
+
+  // return a list of either completed or not completed toDos based on the parameter.
+  return toDos.filter(item => item.completed === hidden);
 }
 function findTodo(id) {}
 function completeTodo(id) {}
-
+// uses a touchend for mobile devices and falls back to a click for desktop
+function bindTouch(selector, callback) {
+  const element = document.querySelector(selector);
+  element.addEventListener('touchend', e => {
+    e.preventDefault();
+    callback();
+  });
+  element.addEventListener('click', callback);
+}
 // public
 export default class ToDos {
   constructor(listElement, key) {
@@ -88,19 +95,20 @@ export default class ToDos {
     this.listElement = listElement;
     // key for localStorage saving and lookup
     this.key = key;
-    // try and read from localStorage to see if there are any pre-existing todos...otherwise set the list to an empty array
-    this.toDos = readFromLS(this.key) || [];
 
+    bindTouch('#addToDo', this.newToDo.bind(this));
     this.listToDos();
   }
 
-  newToDo(value) {
-    addToDo(value);
+  newToDo() {
+    const task = document.getElementById('todoInput');
+    addToDo(task.value, this.key);
+    task.value = '';
     this.listToDos();
   }
 
   listToDos(hidden = true) {
-    renderList(getToDos(), this.listElement, hidden);
+    renderList(getToDos(this.key), this.listElement, hidden);
   }
 }
 

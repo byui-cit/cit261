@@ -55,10 +55,9 @@
               <p>
                 Review the code to refresh your memory on the structure we have
                 used. Discuss with your group what methods and properties you
-                might need to implement your comments. Try to organize these
-                methods and properties according to MVC. A comment should
-                consist of at least the name of the hike it is for, a date, and
-                the actual text of the comment. You will also need a comment
+                might need to implement your comments. A comment should consist
+                of at least the name of the hike it is for, a date, and the
+                actual text of the comment. You will also need a comment
                 <kbd>type</kbd> to use as a key for when we store these to local
                 storage.
               </p>
@@ -120,12 +119,9 @@
               <!-- BEGIN STEP -->
               <p>Build out the objects and modules decided on in step 1.</p>
               <p>
-                Create a new module for our Comments code. (You have a choice
-                here whether you want to create one file and put model, view,
-                and controller in the one file, or to create three files, either
-                would be fine in this case) Create a class with a constructor to
-                act as the controller. The constructor should set a local
-                property called <code>type</code> when the class is
+                Create a new module for our Comments code. Create a class with a
+                constructor to act as the controller. The constructor should set
+                a local property called <code>type</code> when the class is
                 instantiated.
               </p>
               <p>
@@ -134,11 +130,13 @@
                 to the console.
               </p>
               <p>
-                Insert your comment controller into the hike controller. Call
-                the <kbd>showCommentsList</kbd> method when the list of hikes is
-                shown to make sure that you have things connected up correctly.
+                Insert your comment class into the hike class by adding a
+                <code>new</code> instance of the comment class in the
+                constructor. Call the <kbd>showCommentsList</kbd> method when
+                the list of hikes is shown to make sure that you have things
+                connected up correctly.
               </p>
-              <p class="callout">
+              <!-- <p class="callout">
                 If you are unclear on how to do this...go look at the existing
                 <kbd>hikesController</kbd> class. Pay attention to how we
                 inserted the hike model and view into the controller. Something
@@ -147,7 +145,7 @@
                 hikesController we have access to all of the class methods and
                 can call them when needed (such as after we show the list of
                 hikes).
-              </p>
+              </p> -->
               <p>
                 When you are looking at a specific hike it should allow you to
                 enter a new comment, and should show all the comments below that
