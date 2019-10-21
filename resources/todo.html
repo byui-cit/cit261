@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>BYU-Idaho CIT 261</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/solarized-light.css" />
+    <link rel="stylesheet" href="../css/course.css" />
+  </head>
+
+  <body>
+    <div id="content">
+      <header class="headerBanner">
+        <div>
+          <h1><span>Web</span> Mobile App Development</h1>
+          <h2>CIT 261</h2>
+        </div>
+      </header>
+      <main id="article">
+        <h1>Todo application</h1>
+        <hr />
+        <ol>
+          <li>
+            Description: Build a simple web app to manage a ToDo list. It should
+            allow the creation of new tasks, the viewing of tasks, a process to
+            mark tasks as complete, ability to remove tasks, and the ability to
+            filter by complete/not complete.
+          </li>
+          <li>
+            Wireframes for each view.
+            <div class="fig-bloc">
+              <figure>
+                <img
+                  src="../images/todo-wireframe.png"
+                  alt="Todo app wireframe"
+                />
+              </figure>
+            </div>
+          </li>
+          <li>
+            UI actions
+            <ol>
+              <li>Show a list of tasks</li>
+              <li>Add a new task</li>
+              <li>Complete a task</li>
+              <li>Remove a task</li>
+              <li>Filter tasks (complete/incomplete)</li>
+            </ol>
+          </li>
+          <li>
+            Data sources: localStorage
+            <ol>
+              <li>
+                todo: { id : timestamp, content: string, completed: bool }
+              </li>
+              <li>toDoList = [toDo];</li>
+            </ol>
+          </li>
+          <li>
+            Initial Module list: ToDos.js, localStorage helpers (ls.js),
+            utilities.js
+          </li>
+          <li>
+            Colors/Typography/specific Element styling: Student to determine
+          </li>
+          <li>
+            Schedule to provide yourself mile markers along the way to help you
+            stay on target.
+            <ul>
+              <li>
+                Review this
+                <a
+                  href="https://trello.com/b/94QLblUO/todo-project"
+                  target="_blank"
+                  >Trello board</a
+                >. If you want to follow those steps, create a Trello account
+                and copy the board to your account.
+              </li>
+              <li>
+                There are no dates assigned to the board. Assign yourself some
+                due dates to make sure you complete the project in the allotted
+                time.
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </main>
+      <!-- end #article -->
+    </div>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script>
+      // <![CDATA[
+      hljs.initHighlightingOnLoad();
+      // ]]>
+    </script>
+  </body>
+</html>
