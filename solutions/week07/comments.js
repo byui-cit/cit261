@@ -39,7 +39,7 @@ function readFromLS(key) {
   return JSON.parse(window.localStorage.getItem(key));
 }
 
-// These methods create the HTML that is needed to output our list of comments to the screen.  Anything dealing with outpuit to the browser is catagorized as view code.
+// These methods create the HTML that is needed to output our list of comments to the screen.  Anything dealing with output to the browser is catagorized as view code.
 
 const commentUI = `<div class="addComment">
 <h2>Add a comment</h2>

@@ -124,6 +124,49 @@
                 a local property called <code>type</code> when the class is
                 instantiated.
               </p>
+              <div class="callout">
+                <p>
+                  As you start thinking about implementing your module...think
+                  back to the Todo list we made. This is in many ways similar to
+                  that. We need a form to gather some user input, we need a
+                  button with a listener to store that into an array (and
+                  eventually LocalStorage), and we need to display a list of our
+                  comments. The biggest difference here is that we don't always
+                  want to show the entry form, and we want our module to be
+                  reusable.
+                </p>
+                <p>
+                  Still there are enough simularities that you could probably
+                  use your ToDo code as a starting point for this. A couple of
+                  recommendations for changes:
+                </p>
+                <ol>
+                  <li>
+                    We could end up with more than one type of comments, and
+                    more than one list of comments. If you haven't already, take
+                    the methods for adding and removing comments and our comment
+                    list and build an additional class around them. Call it
+                    something like
+                    <code>CommentModel</code>.
+                  </li>
+                  <li>
+                    Depending on how you hide/show your comment entry form you
+                    could end up with issues with your listeners. If you start
+                    getting funny behavior try using
+                    <code>element.ontouchend = callback</code>, instead of
+                    <code>element.addEventListener('touchend', callback)</code>
+                    when you attach the listener to your button. This will
+                    ensure that you only ever have one listener attached to the
+                    button at a time.
+                  </li>
+                  <li>
+                    One additional change (for the stretch) is that we need to
+                    include the name of the hike the comment is for in our saved
+                    comment. Consider how you will get that information into
+                    your listener so that the callback can use it.
+                  </li>
+                </ol>
+              </div>
               <p>
                 Create a method in the class called <kbd>showCommentsList</kbd>.
                 For now it can just return some static text or log something out
