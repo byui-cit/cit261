@@ -280,7 +280,7 @@ export default class Quake {
   constructor() {
     this.baseUrl =
       'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-03-02';
-    // store the last batch of retrieved quakes in the model.  I don't always do this...in this case the api doesn't have an endpoint to request one quake.
+    // this is where we will store the last batch of retrieved quakes in the model.  I don't always do this...in this case the api doesn't have an endpoint to request one quake.
     this._quakes = [];
   }
   async getEarthQuakesByRadius(position, radius = 100) {
@@ -289,7 +289,7 @@ export default class Quake {
   }
   getQuakeById(id) {
     // filter this._quakes for the record identified by id and return it
-    return ;
+    return this._quakes.features.filter(item => item.id === id)[0];
   }
 }
             </code></pre>
@@ -313,6 +313,13 @@ export default class Quake {
 export default class QuakesView {
   renderQuakeList(quakeList, listElement) {
     //build a list of the quakes...include the title and time of each quake then append the list to listElement. You should also add the id of the quake record as a data- property to the li. ie. &lt;li data-id=""&gt;
+    listElement.innerHTML = quakeList.features
+    .map(quake => {
+      return `<li data-id=${quake.id}>${quake.properties.title}, ${new Date(
+        quake.properties.time
+      )}</li>`;
+    })
+    .join('');
   }
   renderQuake(quake, element) {
     const quakeProperties = Object.entries(quake.properties);
@@ -354,8 +361,10 @@ export default class QuakesController {
     this.quakesView = new QuakesView();
   }
   async init() {
-    // use this as a place to grab the element identified by this.parent, do the initial call of this.intiPos(), and display some quakes by calling this.getQuakesByRadius()
-    
+    // use this as a place to grab the element identified by this.parent, do the initial call of this.initPos(), and display some quakes by calling this.getQuakesByRadius()
+    this.parentElement = document.querySelector(this.parent);
+    await this.initPos();
+    this.getQuakesByRadius(100);
   }
   async initPos() {
     // if a position has not been set
@@ -372,18 +381,23 @@ export default class QuakesController {
   }
 
   async getQuakesByRadius(radius = 100) {
-    //set a loading message in case it takes long to get the quakes
+    // this method provides the glue between the model and view. Notice it first goes out and requests the appropriate data from the model, then it passes it to the view to be rendered.
+    //set loading message
     this.parentElement.innerHTML = '<li>Loading...</li>';
     // get the list of quakes in the specified radius of the location
-    
-
+    const quakeList = await this.quakes.getEarthQuakesByRadius(
+      this.position,
+      100
+    );
     // render the list to html
-    
-    // add a listener to the new list of quakes to allow drill down in to the details. The listener should call this.getQuakeDetails on the targeted element
-    
+    this.quakesView.renderQuakeList(quakeList, this.parentElement);
+    // add a listener to the new list of quakes to allow drill down in to the details
+    this.parentElement.addEventListener('touchend', e => {
+      this.getQuakeDetails(e.target.dataset.id);
+    });
   }
   async getQuakeDetails(quakeId) {
-    // get the details for the quakeId provided, then send them to the view to be displayed
+    // get the details for the quakeId provided from the model, then send them to the view to be displayed
    
   }
 }
@@ -395,13 +409,28 @@ export default class QuakesController {
             <!-- BEGIN STEP -->
             <h3>Putting it all together</h3>
             <p>
-              The next step is to let our HTML know about our modules. Import in
-              your Controller, create an instance of the class, then call the
-              <code>init()</code> method. You may want to console.log something
-              out from that method until we create it to help us know if
-              everything is working correctly. If there are errors, fix them :)
-              If not move on to the next step
+              The next step is to let our HTML know about our modules. Import
+              your Controller into the <kbd>index.js</kbd> file, create an
+              instance of the class (<code>new QuakeController()</code>), then
+              call the <code>init()</code> method. You may want to console.log
+              something out from that method until we create the methods it
+              calls to help us know if everything is working correctly. If there
+              are errors, fix them :) If not move on to the next step
             </p>
+            <div class="callout">
+              <p>
+                If you get an error that talks about <code>import</code> not
+                recognized or something similar...remember that to use ES
+                Modules we have to tell the browser that we want to use modules.
+                <code>&lt;script src="index.js" type="module" &gt;</code>
+              </p>
+              <p>
+                The other error that pops up often is a file not found for your
+                imported modules. If you see this check your file path. You
+                probably need to add a './' to the front of your path like this:
+                <code>import Quake from './Quake.js';</code>
+              </p>
+            </div>
             <!-- END STEP -->
           </li>
           <li>
@@ -409,16 +438,17 @@ export default class QuakesController {
             <h3>Finishing up</h3>
             <p>
               The last step is go back in our model, view, and controller and
-              finish writing the methods as indicated in the comments. I would
-              recommend starting with the Model. Complete the
-              <code>getEarthQuakesByRadius</code> method first, test it, then
-              move on to the <code>getQuakeById</code> method. Test again.
+              finish writing the methods as indicated in the comments. The two
+              first methods to complete should be the
+              <code>initPos</code> method from the controller, then the
+              <code>getEarthQuakesByRadius</code> method from the model, test
+              each method as you finish them.
             </p>
             <p>
-              After that work on the controller or View methods as it makes
-              sense. I would recommend following the same order...finish a
-              method, then test. It will keep your errors under control and make
-              your code easier to troubleshoot.
+              After that work on the rest of the controller or View methods as
+              it makes sense. I would recommend following the same
+              order...finish a method, then test. It will keep your errors under
+              control and make your code easier to troubleshoot.
             </p>
             <!-- END STEP -->
           </li>
