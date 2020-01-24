@@ -265,6 +265,35 @@ email: 'user1@email.com'
                   </li>
                 </ul>
               </div>
+              <p>
+                The only thing this server will allow us to do without a token
+                is login. For everything else we will need to
+                <a href="https://tools.ietf.org/html/rfc6750" target="_blank"
+                  >provide the token with our request</a
+                >. The most common way to do this is with an
+                <kbd>Authorization</kbd> header. In the
+                <kbd>makeRequest</kbd> function provided above you can see an
+                example of setting a custom header on a request. In that case we
+                set <code>'Content-Type': 'application/json'</code>. We can do
+                something similar with our authorization header. Before we add
+                the header though we need to make sure that a token as passed
+                into the function. Let's test for the token after we check for a
+                POST or PUT request. Add these lines there.
+              </p>
+              <pre><code class="lang-javascript">
+  // if a token was passed in we should send it on.
+  if (token) {
+    options.headers.Authorization = `Bearer ${token}`;
+  }
+              </code></pre>
+              <p>
+                You will also need to modify the function declaration to add
+                <kbd>token=null</kbd> as a potential argument. (<code
+                  >async function makeRequest(url, method = 'GET', body = null,
+                  token = null)</code
+                >)
+              </p>
+              <p>That's it...now we can send a token with any request.</p>
               <!-- END STEP -->
             </li>
             <li>
@@ -275,7 +304,8 @@ email: 'user1@email.com'
               <p>
                 Add a Login form to your <kbd>index.html</kbd>. You will need a
                 two inputs: one for the email (username) and one for password.
-                Create an <kbd>auth.js</kbd> file, add a class to it called
+                Don't forget to add a submit button as well. Create an
+                <kbd>auth.js</kbd> file, add a class to it called
                 <code>Auth</code> and export it.
               </p>
               <p>
@@ -300,13 +330,13 @@ export default class Auth {
       password: password.value  
     };
     try {
-      // use the makeRequest function to pass our credentials to the server
+      // 1. use the makeRequest function to pass our credentials to the server
       
-      // if we get a successful response...we have a token!  Store it since we will need to send it with every request to the API.
+      // 2. if we get a successful response...we have a token!  Store it since we will need to send it with every request to the API.
       
       // let's get the user details as well and store them locally in the class
       // you can pass a query to the API by appending it on the end of the url like this: 'users?email=' + email
-      
+      this.user = await this.getCurrentUser(username.value);
       // hide the login form.
       document.getElementById('login').classList.add('hidden');
       // clear the password
@@ -324,7 +354,7 @@ export default class Auth {
   // uses the email of the currently logged in user to pull up the full user details for that user from the database
   async getCurrentUser(email) {
     try {
-      
+      // 3. add the code here to make a request for the user identified by email...don't forget to send the token!
     } catch (error) {
       // if there were any errors display them
       console.log(error);
