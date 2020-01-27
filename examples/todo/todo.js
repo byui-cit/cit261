@@ -23,28 +23,19 @@ private:
 read/write localStorage
 
 */
+import { qs, writeToLS, readFromLS, bindTouch } from "./utils.js";
 //  private code here. Not exported from the module
 // we need a place to store our list of todos in memory
 let liveToDos = null;
-function writeToLS(key, data) {
-  // we can use JSON.stringify to convert our object to a string that can be stored in localStorage.
-  window.localStorage.setItem(key, JSON.stringify(data));
-}
-
-function readFromLS(key) {
-  // the string we retrieve from localStorage needs to be converted back to an object with JSON.parse
-
-  return JSON.parse(window.localStorage.getItem(key));
-}
 
 // View code here
 function renderList(list, element, hidden) {
   console.log(list);
-  element.innerHTML = '';
+  element.innerHTML = "";
 
   list.forEach(toDo => {
-    const item = document.createElement('li');
-    const formattedDate = new Date(toDo.id).toLocaleDateString('en-US');
+    const item = document.createElement("li");
+    const formattedDate = new Date(toDo.id).toLocaleDateString("en-US");
 
     item.innerHTML = `<input type="checkbox"><label>${toDo.content}</label><button>X</button>`;
     element.appendChild(item);
@@ -79,15 +70,7 @@ function filterToDos(key, completed = true) {
 }
 function findTodo(id) {}
 function completeTodo(id) {}
-// uses a touchend for mobile devices and falls back to a click for desktop
-function bindTouch(selector, callback) {
-  const element = document.querySelector(selector);
-  element.addEventListener('touchend', e => {
-    e.preventDefault();
-    callback();
-  });
-  element.addEventListener('click', callback);
-}
+
 // public
 export default class ToDos {
   constructor(listElement, key) {
@@ -95,15 +78,15 @@ export default class ToDos {
     this.listElement = listElement;
     // key for localStorage saving and lookup
     this.key = key;
-
-    bindTouch('#addToDo', this.newToDo.bind(this));
+    // why bind here?
+    bindTouch("#addToDo", this.newToDo.bind(this));
     this.listToDos();
   }
 
   newToDo() {
-    const task = document.getElementById('todoInput');
+    const task = document.getElementById("todoInput");
     addToDo(task.value, this.key);
-    task.value = '';
+    task.value = "";
     this.listToDos();
   }
 
