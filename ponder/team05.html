@@ -42,10 +42,10 @@
             <li>
               <!-- BEGIN STEP -->
               <p>
-                Take a look at the
+                Take a look at this
                 <a href="../solutions/week05/hiking-start.html" target="_blank"
-                  >Starter code</a
-                >.
+                  >code</a
+                >. It is an example of a small application that takes some data ( in this case an array of objects), and builds out the HTML necessary to display it in the browser. It is simply a collection of functions and variables with no attempt at organization. Since this is a small app we can get away with it, but if it were larger and more complex it could quickly become hard to follow. As complexity increases, code that has no thought towards organization usually turns into 'spaghetti code'.
               </p>
               <p>
                 Think about how you could use modules, objects, or classes to
@@ -72,8 +72,23 @@
                 above to organize the Hikes code.
               </p>
               <p>Before you do this, compare your plans with this <a href="https://github.com/byui-cit/cit261/blob/gh-pages/solutions/week05/hikes-stub.js" target="_blank">partial solution file</a>. It has a class with methods stubbed out. How does it differ from your plans? Discuss this with your team.  You do not need to implement yours exactly like the example...but make sure you understand why each of the properties, methods, and functions are there before continuing.</p>
-              
+              <p>With either your groups ideas or using the partial solution file above, write the rest of the code to make the application work.</p>
+              <p>I would recommend a structure similar to the following for your application:</p>
+              <pre>
+  index.html 
+  main.js 
+  hikes.js 
+  styles.css 
+              </pre>
               <p>
+                <p>Here are a few tips/reminders if you need a bit of help getting your module and class connected up and working. Some of these assume that your module looks similar to the example above: </p>
+                <ul>
+                  <li>You will need a main entry point where you will bring in your modules. Create a <kbd>main.js</kbd> and add that to your HTML with your script element.</li>
+                  <li>When using modules you need to tell the HTML file that you want to use modules...<code>&lt;script src="main.js" type="module"&gt;</code></li>
+                  <li>You need to <kbd>import</kbd> your module before you can use it. <code>import Hikes from './hikes.js';</code> (This would go in <kbd>main.js</kbd>)</li>
+                  <li>If you organized your code using a class that you exported from your module, you need to create an instance of that class before you can use it. You would do this in <kbd>main.js</kbd>: <code>const myHike = new Hikes('hikeListId');</code></li>
+                  <li>Once you have your instance, you use it to call the <kbd>showHikeList</kbd> method. <code>myHike.showHikeList()</code></li>
+                </ul>
               <p class="callout">
                 Alternatively, if you would like to implement this using the MVC
                 (Model, View, Controller) pattern you can follow
@@ -93,10 +108,9 @@
               </p>
               <p>
                 Add the CSS required to make your list of hikes match this
-                <a href="https://wireframe.cc/EuNuwg" target="_blank"
-                  >wireframe</a
-                >.
+                wireframe.
               </p>
+              <img src="../images/hikes-wireframe.png" alt="wireframe for the hikes team activity">
               <!-- END STEP -->
             </li>
           </ol>
