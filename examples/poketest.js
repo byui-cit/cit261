@@ -12,6 +12,22 @@ function getJSON(url) {
       console.log(error);
     });
 }
+
+function revealDetails(e) {
+  //console.log(this.attr('data-url'));
+  const list = document.querySelector('.listbox');
+  const details = document.getElementById('detailsbox');
+  getPokemonDetails(e.target.getAttribute('data-url'));
+  list.style.transform = 'translateX(-100vw)';
+  details.style.transform = 'translateX(-100vw)';
+}
+
+function hideDetails() {
+  const list = document.querySelector('.listbox');
+  const details = document.getElementById('detailsbox');
+  list.style.transform = 'translateX(0)';
+  details.style.transform = 'translateX(100vw)';
+}
 function pokemonFromApi() {
   getJSON('https://pokeapi.co/api/v2/type/3').then(function(data) {
     console.log(data);
@@ -25,14 +41,7 @@ function pokemonFromApi() {
           ${value.pokemon.name}</li>`;
       pokelist.appendChild(item);
     });
-    pokelist.addEventListener('click', function(e) {
-      //console.log(this.attr('data-url'));
-      let list = document.querySelector('.listbox');
-      let details = document.getElementById('detailsbox');
-      getPokemonDetails(e.target.getAttribute('data-url'));
-      list.style.transform = 'translateX(-100vw)';
-      details.style.transform = 'translateX(-100vw)';
-    });
+    pokelist.addEventListener('click', revealDetails);
   });
 }
 
@@ -48,9 +57,4 @@ function getPokemonDetails(url) {
 }
 pokemonFromApi();
 const backButton = document.getElementById('back');
-backButton.addEventListener('click', () => {
-  let list = document.querySelector('.listbox');
-  let details = document.getElementById('detailsbox');
-  list.style.transform = 'translateX(0)';
-  details.style.transform = 'translateX(100vw)';
-});
+backButton.addEventListener('click', hideDetails);

@@ -4,9 +4,6 @@ main {
   overflow-x: hidden;
 }
 
-#pokelist li {
-  cursor: pointer;
-}
 .listbox {
   transition: all 0.3s;
   width: 100vw;
@@ -14,7 +11,7 @@ main {
 }
 #detailsbox {
   height: 60vh;
-  width: 100vw;
+  width: 95vw;
   padding: 1em;
   text-align: center;
   border: 2px solid;
@@ -33,17 +30,19 @@ main {
 
 #pokelist {
   display: flex;
-  width: 100vw;
+  width: 95vw;
   flex-flow: row wrap;
   list-style-type: none;
   line-height: 2em;
+  padding: 0;
 }
 
 #pokelist li {
-  flex: 0 0 6em;
+  flex: 1 0 6em;
   text-align: center;
   border: 1px solid;
   background-color: azure;
+  cursor: pointer;
 }
 #pokelist li:hover {
   background-color: bisque;

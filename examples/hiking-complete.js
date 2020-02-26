@@ -1,11 +1,11 @@
 //on load grab the array and insert it into the page
-window.addEventListener('load', renderHikeList);
+window.addEventListener("load", renderHikeList);
 
 function renderHikeList() {
   // 1 get the element that will hold the list
-  const listElement = document.getElementById('hikes');
+  const listElement = document.getElementById("hikes");
   // 2 clear out the current contents
-  listElement.innerHTML = '';
+  listElement.innerHTML = "";
   // 3 for each element in the list...
   hikeList.forEach(hike => {
     // 4 ...build and append an element
@@ -18,17 +18,17 @@ function renderHikeList() {
 function createHike(hike) {
   //create the DOM elements and append them together
   // li to hold everything
-  const item = document.createElement('li');
+  const item = document.createElement("li");
 
   //  we also need an img
-  const img = document.createElement('img');
+  const img = document.createElement("img");
   //  and we need to set the src and alt attributes
   console.dir(img);
   img.alt = hike.imgAlt;
   img.src = hike.imgSrc;
 
   // and create elements for headlines and paragraphs
-  const title = document.createElement('h2');
+  const title = document.createElement("h2");
   title.innerText = hike.name;
   // continue with the rest of the information
 
@@ -42,8 +42,8 @@ function createHike(hike) {
 
 // same thing as above using template literal strings and with some classes added for styling.
 function renderHikeLight(hike) {
-  const item = document.createElement('li');
-  item.classList.add('light');
+  const item = document.createElement("li");
+  item.classList.add("light");
   item.innerHTML = ` <h2>${hike.name}</h2>
         <div class="image"><img src="${hike.imgSrc}" alt="${hike.imgAlt}"></div>
         <div>
@@ -57,7 +57,8 @@ function renderHikeLight(hike) {
                 </div>
         </div>`;
   // add event listener to watch for a touch...if there is time show how a detailed listing of the hike could be shown.
-  item.addEventListener('touchend', event => {
+
+  item.addEventListener("touchend", event => {
     // show what is available in the event object
     console.dir(event);
     // take a look at this as well.
@@ -72,16 +73,16 @@ function renderHikeLight(hike) {
 }
 
 function renderOneHike(hikeName) {
-  const listElement = document.getElementById('hikes');
+  const listElement = document.getElementById("hikes");
   // clear out the current contents
-  listElement.innerHTML = '';
+  listElement.innerHTML = "";
   // get the hike
   const hike = hikeList.find(item => item.name == hikeName);
   listElement.appendChild(renderHikeFull(hike));
 }
 // full hike details.
 function renderHikeFull(hike) {
-  const item = document.createElement('li');
+  const item = document.createElement("li");
   item.innerHTML = ` 
             
                 <img src="${hike.imgSrc}" alt="${hike.imgAlt}">

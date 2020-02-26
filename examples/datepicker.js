@@ -21,20 +21,20 @@ function populateDays(month) {
 
   // 31 or 30 days?
   if (
-    month === 'January' ||
-    month === 'March' ||
-    month === 'May' ||
-    month === 'July' ||
-    month === 'August' ||
-    month === 'October' ||
-    month === 'December'
+    month === "January" ||
+    month === "March" ||
+    month === "May" ||
+    month === "July" ||
+    month === "August" ||
+    month === "October" ||
+    month === "December"
   ) {
     dayNum = 31;
   } else if (
-    month === 'April' ||
-    month === 'June' ||
-    month === 'September' ||
-    month === 'November'
+    month === "April" ||
+    month === "June" ||
+    month === "September" ||
+    month === "November"
   ) {
     dayNum = 30;
   } else {
@@ -46,7 +46,7 @@ function populateDays(month) {
 
   // inject the right number of new <option> elements into the day <select>
   for (let i = 1; i <= dayNum; i++) {
-    let option = document.createElement('option');
+    let option = document.createElement("option");
     option.textContent = i;
     daySelect.appendChild(option);
   }
@@ -61,15 +61,15 @@ function populateDays(month) {
     // you chose a month with less total days in it (e.g. February),
     // this part of the code ensures that the highest day available
     // is selected, rather than showing a blank daySelect
-    if (daySelect.value === '') {
+    if (daySelect.value === "") {
       daySelect.value = previousDay - 1;
     }
 
-    if (daySelect.value === '') {
+    if (daySelect.value === "") {
       daySelect.value = previousDay - 2;
     }
 
-    if (daySelect.value === '') {
+    if (daySelect.value === "") {
       daySelect.value = previousDay - 3;
     }
   }
@@ -82,7 +82,7 @@ function populateYears() {
 
   // Make this year, and the 100 years before it available in the year <select>
   for (let i = 0; i <= 100; i++) {
-    let option = document.createElement('option');
+    let option = document.createElement("option");
     option.textContent = year - i;
     yearSelect.appendChild(option);
   }
@@ -124,16 +124,16 @@ function buildDateSelector(labelText) {
 export default function datePicker(className, labelText) {
   pickerContainer = document.querySelector(className);
   // test whether a new date input falls back to a text input or not
-  let test = document.createElement('input');
-  test.type = 'date';
-
+  let test = document.createElement("input");
+  test.type = "date";
+  debugger;
   // if it does, run the code inside the if() {} block
-  if (test.type === 'text') {
+  if (test.type === "text") {
     // remove the native picker and show the fallback
     pickerContainer.innerHTML = buildDateSelector(labelText);
-    yearSelect = document.querySelector('#year');
-    monthSelect = document.querySelector('#month');
-    daySelect = document.querySelector('#day');
+    yearSelect = document.querySelector("#year");
+    monthSelect = document.querySelector("#month");
+    daySelect = document.querySelector("#day");
     // populate the days and years dynamically
     // (the months are always the same, therefore hardcoded)
     populateDays(monthSelect.value);
