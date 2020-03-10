@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Countdown Clock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        /* bump up the default font size...it's often too small these days */
+        font-size: 20px;
+        /* body has some margin around it by default...in this case we don't want that. */
+        margin: 0;
+      }
+      header {
+        padding: 0.5em;
+        background-color: #0076b6;
+        display: flex;
+        align-items: center;
+      }
+      main {
+        padding: 0.5em;
+      }
+      .logo img {
+        width: 100px;
+      }
+      .title {
+        text-align: right;
+        font-size: 1.4em;
+        margin: 0;
+        color: white;
+        flex: 1;
+      }
+      #time {
+        font-size: 4.5rem;
+        font-family: Impact, Courier, monospace;
+        border: 2px solid;
+        padding: 0 10px;
+        background-color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img src="../images/byui-logo_white.png" alt="BYUI logo" />
+      </div>
+      <h1 class="title">Countdown Clock</h1>
+    </header>
+    <main>
+      <p class="clock">
+        Number of seconds until the end of the next semester:
+      </p>
+      <div id="time"></div>
+    </main>
+    <script>
+      // get the number of milliseconds from 1970-1-1 until the end of the next semester.
+      // Change this date to the correct end of semester for the current semester
+      const end = new Date('December 1, 2019 23:59:00').getTime();
+      // get the number of milliseconds from 1970-1-1 until now
+      const now = new Date().getTime();
+      //subtract them and divide by 1000 (1000ms = 1s) to convert to the number of seconds between now and the end of the semester
+      const seconds = Math.floor((end - now) / 1000);
+      // if you are not familiar with const and let...they are the newer ways to declare variables in javascript instead of the traditional var...we will talk more about this next week.
+      let left = seconds;
+
+      // setInterval allows us to schedule a function to run on a specified schedule. In this case it will be every 1s (1000ms = 1s)
+      setInterval(updateClock, 1000);
+      // this function should update the time on the screen and decrement our seconds everytime it is run.
+      function updateClock() {
+        const timeElement = document.getElementById('time');
+        timeElement.innerHTML = left;
+        left--;
+      }
+    </script>
+  </body>
+</html>

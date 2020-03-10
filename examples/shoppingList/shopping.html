@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Shopping Lister</title>
+    <script src="main.js" type="module"></script>
+    <style>
+      #shoppingList {
+        max-width: 360px;
+      }
+      #shoppingList td:nth-child(2) input {
+        width: 150px;
+        height: 30px;
+        font-size: 1.2em;
+      }
+      #shoppingList td:nth-child(3) input {
+        width: 40px;
+        height: 30px;
+        font-size: 1.2em;
+      }
+      #shoppingList button {
+        width: 44px;
+        height: 44px;
+      }
+      #shoppingList option {
+        height: 30px;
+        font-size: 1.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Shopping Lister</h1>
+    </header>
+    <main>
+      <table id="shoppingList">
+        <thead>
+          <tr>
+            <th>Catagory</th>
+            <td>Item</td>
+            <td>Qty</td>
+          </tr>
+          <tr>
+            <td>
+              <select>
+                <option value="Dairy">Dairy</option>
+                <option value="Produce">Produce</option>
+                <option value="Bread">Bread</option>
+                <option value="Meat">Meat</option>
+                <option value="Frozen">Frozen</option>
+              </select>
+            </td>
+            <td><input type="text" name="item" /></td>
+            <td><input type="text" name="quantity" /></td>
+            <td><button id="addItem">+</button></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>
