@@ -9,7 +9,10 @@
 /* Add Course Specific css Below */
 :root {
   --header-background: #21a048;
-  --callout-background-color: #d8d8d8;
+  --callout-background-color: #eaeaea;
+  --link-color: #0e7a2e;
+  --link-visited: #29530c;
+  --code-color: #2f4e4e;
 }
 /* html {
   background: -webkit-radial-gradient(ellipse, #21a048 0%, #265169 100%) fixed;
@@ -19,8 +22,8 @@
   box-sizing: border-box;
 }
 body {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
-    'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: 18px;
   margin: 0;
   line-height: 1.4;
@@ -29,12 +32,17 @@ body {
 img {
   max-width: 100%;
 }
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: #171717;
   padding-top: 15px;
 }
 
-h2,
+/* h2,
 h4 {
   color: #0d9666;
 }
@@ -42,21 +50,21 @@ h4 {
 h3,
 h5 {
   color: #296f58;
-}
+} */
 
 a {
-  color: #4e8930;
-  border-bottom: 2px solid #4e8930;
+  color: var(--link-color);
+  border-bottom: 2px solid var(--link-color);
 }
 
 a:hover {
-  color: #74c946;
-  border-bottom: 2px solid #74c946;
+  color: var(--link-visited);
+  border-bottom: 2px solid var(--link-visited);
 }
 
 a:visited {
-  color: #74c946;
-  border-bottom: 2px solid #74c946;
+  color: var(--link-visited);
+  border-bottom: 2px solid var(--link-visited);
 }
 
 #content {
@@ -76,7 +84,7 @@ a:visited {
 .headerBanner {
   padding: 0.2em 0;
   background-color: var(--header-background);
-  font-family: 'Lucida Console', 'Lucida Grande', 'Lucida Sans', Arial,
+  font-family: "Lucida Console", "Lucida Grande", "Lucida Sans", Arial,
     sans-serif;
   text-transform: uppercase;
   letter-spacing: -4px;
@@ -124,8 +132,8 @@ a:visited {
   font-size: 2rem;
   color: #bbe4c9;
   letter-spacing: 1px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .headerLogo {
   background-color: #14304f;
@@ -321,7 +329,7 @@ nav ul > li {
 }
 code {
   font-weight: bold;
-  color: #457273;
+  color: var(--code-color);
 }
 kbd {
   font-weight: bold;
@@ -355,11 +363,11 @@ kbd {
   font-weight: bold;
   font-size: 3rem;
   margin-right: 0.5rem;
-  font-family: 'Impact', serif;
+  font-family: "Impact", serif;
   line-height: 1;
 }
 .bigSteps > li:nth-child(-n + 9):before {
-  content: '0' counter(my-counter);
+  content: "0" counter(my-counter);
 }
 
 .bigSteps ol {
@@ -371,7 +379,7 @@ kbd {
   margin-bottom: 0.6em;
 }
 .bigSteps ol > li::before {
-  content: counters(sub-counter, '.') '.';
+  content: counters(sub-counter, ".") ".";
   font-weight: bold;
   padding-right: 0.5em;
 }
@@ -415,7 +423,7 @@ kbd {
   display: none;
 }
 
-.hint input[type='checkbox'] {
+.hint input[type="checkbox"] {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -424,7 +432,7 @@ kbd {
   cursor: pointer;
 }
 
-.hint input[type='checkbox']:checked ~ div {
+.hint input[type="checkbox"]:checked ~ div {
   display: block;
 }
 
@@ -438,7 +446,7 @@ kbd {
 }
 .hint i:before,
 .hint i:after {
-  content: '';
+  content: "";
   position: absolute;
   background-color: black;
   width: 3px;
@@ -451,10 +459,10 @@ kbd {
   transform: translate(-2px, 0) rotate(-45deg);
 }
 
-.hint input[type='checkbox']:checked ~ i:before {
+.hint input[type="checkbox"]:checked ~ i:before {
   transform: translate(-2px, 0) rotate(45deg);
 }
-.hint input[type='checkbox']:checked ~ i:after {
+.hint input[type="checkbox"]:checked ~ i:after {
   transform: translate(2px, 0) rotate(-45deg);
 }
 
