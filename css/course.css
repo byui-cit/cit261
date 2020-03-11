@@ -488,3 +488,16 @@ figcaption {
   font-size: 0.8em;
   text-align: center;
 }
+
+@media screen and (max-width: 400px) {
+  #content {
+    width: 100%;
+  }
+  .callout {
+    width: 98%;
+  }
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+}
