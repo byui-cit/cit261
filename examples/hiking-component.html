@@ -23,7 +23,7 @@
     </style>
     <template id="hikeTemplate">
       <style>
-        /* notice that even though the rule above has a higher specificity...this local rule gets applied */
+        /* notice that even though the rule above has a higher specificity, this local rule gets applied */
         h2 {
           text-align: center;
           background-color: salmon;
@@ -132,14 +132,14 @@
           }
         }
       );
-      //on load grab the array and insert it into the page
+      // On load grab the array and insert it into the page
 
       const listElement = document.getElementById('hikes');
       hikeList.forEach(hike => {
         listElement.appendChild(createHike(hike));
       });
 
-      // function to build out an li element with the appropriate html structure
+      // Function to build out an li element with the appropriate html structure
       function createHike(hike) {
         //create the DOM elements and append them together
         // li to hold everything
@@ -160,12 +160,12 @@
           details.appendChild(detailElement);
         }
         item.appendChild(details);
-        // return our new element
+        // Return our new element.
         return item;
       }
 
       function renderHike(hike) {
-        // Do it again with a template literal string
+        // Do it again with a template literal string.
         const item = document.createElement('li');
         item.innerHTML = `
 

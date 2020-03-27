@@ -32,8 +32,8 @@ function addNavEvent(element, path) {
   });
 }
 
-// inserts the view into the content area of index.html
-// remember that getView returns a promise!
+// Inserts the view into the content area of index.html
+// Remember that getView returns a promise!
 function insertView(viewPromise) {
   const contentElement = document.getElementById('content');
   debugger;

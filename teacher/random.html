@@ -8,7 +8,7 @@
 
   <body>
     <script>
-      //open your editor and create an array of colors...5 or so should do it.
+      //open your editor and create an array of colors. Five or so should do it.
       const colors = ['red', 'blue', 'green', 'yellow', 'orange'];
       const adjectives = [
         'bold',
@@ -70,13 +70,13 @@
         }
       ];
 
-      //example of for loop to traverse array
+      // Example of for loop to traverse array
       for (let i = 0; i < colors.length; i++) {
         console.log(colors[i]);
       }
-      //what can we do with an array console.dir()
+      // What can we do with an array console.dir()
       console.dir(colors);
-      // example of for of loop to traverse array
+      // Example of for of loop to traverse array
       for (let color of colors) {
         console.log(color);
       }
@@ -84,15 +84,15 @@
       colors.forEach(item => {
         console.log(item);
       });
-      //example of map
+      // Example of map
       const newArray = numbers.map(function(number) {
         return number * -1;
       });
       console.log(newArray);
-      //example of map with arrow function declaration
+      // Example of map with arrow function declaration
       const negNumbers = numbers.map(number => number * -1);
 
-      //filter array
+      // filter array
 
       const filtered = ships.filter(el => el.cost_in_credits < 120000);
 
@@ -105,7 +105,7 @@
       console.log(filtered);
       console.log(searchManufacturer('corp'));
       debugger;
-      //random numbers: write a function that will return a random number in a range from 0 -> num-1
+      // Random numbers: write a function that will return a random number in a range from 0 -> num-1
       function random(num) {
         return Math.floor(Math.random() * 6);
       }

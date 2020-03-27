@@ -10,7 +10,7 @@ export function readFromLS(key) {
 export function writeToLS(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
-// uses a touchend for mobile devices and falls back to a click for desktop
+// Uses a touchend for mobile devices and falls back to a click for desktop.
 export function bindTouch(selector, callback) {
   const element = qs(selector);
   element.addEventListener("touchend", e => {

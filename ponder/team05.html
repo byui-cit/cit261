@@ -13,7 +13,7 @@
       <header class="headerBanner">
         <div>
           <h1><span>Web</span> Mobile App Development</h1>
-          <h2>CIT 261</h2>
+          <h2>WDD 330</h2>
         </div>
       </header>
       <main>
@@ -55,12 +55,12 @@
               <p>
                 You might start by making a list of all of the functions and
                 properties you think you will need (look that the code for a
-                starting point!). Notice also the stretch goals below...make
+                starting point!). Notice also the stretch goals below. Make
                 sure your pattern will allow for the stretch goals to be
                 completed as well.
               </p>
               <div class="callout">
-                <p>The process of evaluating code like we are doing to improve it is called <strong>refactoring</strong>, and is a pretty common practice. Note that the output of the code should not change...it should accomplish the same thing at the end as it did in the beginning.  Only the organization and structure of the code should change to make it more portable, maintainable, reusable, etc.</p>
+                <p>The process of evaluating code like we are doing to improve it is called <strong>refactoring</strong>, and is a pretty common practice. Note that the output of the code should not change, it should accomplish the same thing at the end as it did in the beginning. Only the organization and structure of the code should change to make it more portable, maintainable, reusable, etc.</p>
               </div>
 
               <!-- END STEP -->
@@ -71,7 +71,7 @@
                 Implement the modules, objects, and/or classes you discussed
                 above to organize the Hikes code.
               </p>
-              <p>Before you do this, compare your plans with this <a href="https://github.com/byui-cit/cit261/blob/gh-pages/solutions/week05/hikes-stub.js" target="_blank">partial solution file</a>. It has a class with methods stubbed out. How does it differ from your plans? Discuss this with your team.  You do not need to implement yours exactly like the example...but make sure you understand why each of the properties, methods, and functions are there before continuing.</p>
+              <p>Before you do this, compare your plans with this <a href="https://github.com/byui-cit/cit261/blob/gh-pages/solutions/week05/hikes-stub.js" target="_blank">partial solution file</a>. It has a class with methods stubbed out. How does it differ from your plans? Discuss this with your team. You do not need to implement yours exactly like the example, but make sure you understand why each of the properties, methods, and functions are there before continuing.</p>
               <p>With either your groups ideas or using the partial solution file above, write the rest of the code to make the application work.</p>
               <p>I would recommend a structure similar to the following for your application:</p>
               <pre>
@@ -84,7 +84,7 @@
                 <p>Here are a few tips/reminders if you need a bit of help getting your module and class connected up and working. Some of these assume that your module looks similar to the example above: </p>
                 <ul>
                   <li>You will need a main entry point where you will bring in your modules. Create a <kbd>main.js</kbd> and add that to your HTML with your script element.</li>
-                  <li>When using modules you need to tell the HTML file that you want to use modules...<code>&lt;script src="main.js" type="module"&gt;</code></li>
+                  <li>When using modules you need to tell the HTML file that you want to use modules <code>&lt;script src="main.js" type="module"&gt;</code></li>
                   <li>You need to <kbd>import</kbd> your module before you can use it. <code>import Hikes from './hikes.js';</code> (This would go in <kbd>main.js</kbd>)</li>
                   <li>If you organized your code using a class that you exported from your module, you need to create an instance of that class before you can use it. You would do this in <kbd>main.js</kbd>: <code>const myHike = new Hikes('hikeListId');</code></li>
                   <li>Once you have your instance, you use it to call the <kbd>showHikeList</kbd> method. <code>myHike.showHikeList()</code></li>
@@ -148,7 +148,7 @@
           insights from this comparison.
         </p>
         <p>
-          Please DO NOT open the solution until you have worked through this
+          Please do not open the solution until you have worked through this
           activity as a team for the one hour period. At the end of the hour, if
           you are still struggling with some of the core requirements, you are
           welcome to view the instructor's solution and use it to help you

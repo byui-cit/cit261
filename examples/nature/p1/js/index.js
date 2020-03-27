@@ -8,10 +8,10 @@ const navElement = document.getElementById('mainNav');
 //  console.log(res);
 //});
 
-// observations in 2018 for Yellowstone
+// Observations in 2018 for Yellowstone
 // https://api.inaturalist.org/v1/observations?geo=true&native=true&photos=true&place_id=10211&year=2018&order=desc&order_by=created_at
 
-// build drop down based off of info in data.js, vertebrateClasses
+// Build drop down based off of info in data.js, vertebrateClasses
 
 function buildDropdown(data, listElementId) {
   const list = document.getElementById(listElementId);

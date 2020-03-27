@@ -16,7 +16,7 @@ export default function buildNavigation(parent) {
   });
 }
 
-// makes an AJAX request for the html file found at viewPath and returns it as text
+// Makes an AJAX request for the html file found at viewPath and returns it as text.
 function getView(viewPath) {
   return fetch(viewPath)
     .then(response => {
@@ -39,23 +39,23 @@ async function getViewAsync(viewPath) {
   }
 }
 
-// adds a touchend event to element that will insert the view found at path into the content area of the index.html
+// Adds a touchend event to element that will insert the view found at path into the content area of the index.html
 function addNavEvent(element, path, controller) {
   element.addEventListener('touchend', e => {
     insertView(getView(path), controller);
   });
 }
 
-// using async/await
+// Using async/await
 function addNavEventAsync(element, path, controller) {
   element.addEventListener('touchend', e => {
     insertViewAsync(getViewAsync(path), controller);
   });
 }
 
-// inserts the view into the content area of index.html
-// remember that getView returns a promise!
-// runs a function from the controller to load any dynamic elements
+// Inserts the view into the content area of index.html
+// Remember that getView returns a promise!
+// Runs a function from the controller to load any dynamic elements.
 function insertView(viewPromise, controller) {
   const contentElement = document.getElementById('content');
   viewPromise.then(data => {
@@ -64,7 +64,7 @@ function insertView(viewPromise, controller) {
   });
 }
 
-// using async/await
+// Using async/await
 async function insertViewAsync(viewPromise, controller) {
   const contentElement = document.getElementById('content');
   debugger;

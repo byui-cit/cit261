@@ -13,7 +13,7 @@
       <header class="headerBanner">
         <div>
           <h1><span>Web</span> Mobile App Development</h1>
-          <h2>CIT 261</h2>
+          <h2>WDD 330</h2>
         </div>
       </header>
       <main>
@@ -23,7 +23,7 @@
         <p>
           The team activity for this week should feel like mostly review. We
           will revisit the Hikes app one last time. Our goal is to add some new
-          functionality...the ability to add comments. The students can start
+          functionality. The ability to add comments. The students can start
           with
           <a
             href="https://github.com/byui-cit/cit261/tree/gh-pages/solutions/week05"
@@ -54,13 +54,13 @@
             XMLHTTPRequest.
           </li>
           <li>
-            Explain that this takes time and JS runs asynchronously...it doesn't
-            wait for things to finish before executing the next statement
+            Explain that this takes time, and JS runs asynchronously. It doesn't
+            wait for things to finish before executing the next statement.
           </li>
           <li>Add some logs to show this. for loop, setTimeout.</li>
           <li>
-            Callbacks are the traditional way to handle this...but could often
-            lead to unreadable code..."callback hell"
+            Callbacks are the traditional way to handle this, but could often
+            lead to unreadable code (known as "callback hell").
           </li>
           <li>
             Now we have Promises which address some of the issues from
@@ -115,8 +115,8 @@ longProcess()
             </code></pre>
           </li>
           <li>
-            Finish example with food list...create a getJson function with some
-            error checking and use it to grab the list of things and then render
+            Finish the example with food list. Create a getJson function with some
+            error checking and use it to grab the list of things. Then render
             it to the HTML.
             <pre><code class="lang-js">
 function getJson(url) {
@@ -137,7 +137,7 @@ function getJson(url) {
           </li>
           <li>
             Pulling from a remote server works just the same as from
-            locally...show pokeapi.co and look at the data it sends back.
+            locally, show pokeapi.co and look at the data it sends back.
             <pre><code class="lang-js">
 const baseUrl = 'https://pokeapi.co/api/v2/';
 const myList = getJson(baseUrl + 'type/3');
