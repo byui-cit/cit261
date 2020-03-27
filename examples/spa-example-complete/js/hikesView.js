@@ -1,7 +1,7 @@
-// the dataset only has a relative path in it...we need more to find the images...so we have a path variable below. Why isn't this in the object? What advantages or disadvantages are there to having it here instead of as part of the View object?
+// The dataset only has a relative path in it. We need more to find the images, so we have a path variable below. Why isn't this in the object? What advantages or disadvantages are there to having it here instead of as part of the View object?
 const imgBasePath = '//byui-cit.github.io/cit261/examples/';
 
-// since we have multiple methods we need to export, it would make sense to group them together with an object of some sort. This could be as simple as an object literal...or more complex as a class.
+// Since we have multiple methods we need to export, it would make sense to group them together with an object of some sort. This could be as simple as an object literal...or more complex as a class.
 
 const hikesView = {
   renderHikeList: function(hikeListElement, hikeList) {
@@ -9,7 +9,7 @@ const hikesView = {
     // const hikeListElement = document.getElementById('hikes');
 
     hikeListElement.innerHTML = '';
-    // the list of hikes doesn't exist here in the view either...so I've passed that in as well.
+    // the list of hikes doesn't exist here in the view either, so I've passed that in as well.
     hikeList.forEach(hike => {
       // notice the call to 'this' below. 'this' is like adding './' at the beginning of a path. It helps the computer find things.
       hikeListElement.appendChild(this.renderOneHikeLight(hike));
@@ -66,7 +66,7 @@ const hikesView = {
     parent.innerHTML = '';
     item.insertBefore(backButton, item.childNodes[0]);
     parent.appendChild(item);
-    // send the button back to the controller to attach a listener
+    // Send the button back to the controller to attach a listener.
     return backButton;
   }
 };

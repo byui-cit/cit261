@@ -98,9 +98,9 @@
       const listElement = document.getElementById('hikes');
       // 2 clear out the current contents
 
-      // 3 for each element in the list...
+      // 3 for each element in the list.
       hikeList.forEach(hike => {
-        // 4 ...build and append an element
+        // 4 build and append an element
         listElement.appendChild(createHike(hike));
       });
 
@@ -109,20 +109,20 @@
         //create the DOM elements and append them together
         // li to hold everything
         const item = document.createElement('li');
-        //  we also need an img
+        // We also need an img
 
-        //  and we need to set the src and alt attributes
+        // and we need to set the src and alt attributes
 
         // and create elements for headlines and paragraphs
 
-        //  append all of the parts to our item
+        // append all of the parts to our item
 
         // return our new element
         return item;
       }
 
       function renderHike(hike) {
-        // Do it again with a template literal string
+        // Do it again with a template literal string.
         const item = document.createElement('li');
         item.innerHTML = `
             

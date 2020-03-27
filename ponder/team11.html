@@ -13,7 +13,7 @@
       <header class="headerBanner">
         <div>
           <h1><span>Web</span> Mobile App Development</h1>
-          <h2>CIT 261</h2>
+          <h2>WDD 330</h2>
         </div>
       </header>
       <main>
@@ -69,12 +69,12 @@
               </p>
               <div class="callout">
                 <p>
-                  If none of the instructions above look familiar...go and
+                  If none of the instructions above look familiar, go and
                   complete the
                   <a href="../resources/workflow.html" target="_blank"
                     >modern workflow</a
                   >
-                  activity from week09.
+                  activity from Week 09.
                 </p>
               </div>
               <p>
@@ -137,19 +137,19 @@ async function makeRequest(url, method = 'GET', body = null) {
   const data = await response.json();
 
   if (!response.ok) {
-    // server will send a 500 server error if the token expires...or a 401 if we are not authorized, ie bad username/password combination, and a 404 if the URL we requested does not exist. All of these would cause response.ok to be false
+    // server will send a 500 server error if the token expires, or a 401 if we are not authorized, ie bad username/password combination, and a 404 if the URL we requested does not exist. All of these would cause response.ok to be false
 
     console.log(response);
     throw new Error(`${data.status}: ${data.message}`);
   } else return data;
 
-  // not catching the error here...so we will need to catch it later on and handle it.
+  // not catching the error here, so we will need to catch it later on and handle it.
 }
               </code></pre>
               <p>Note a few things:</p>
               <ol>
                 <li>
-                  We are passing in several things...a url, a method that will
+                  We are passing in several things, a url, a method that will
                   be set to <kbd>GET</kbd> if nothing else is provided, and a
                   <kbd>body</kbd> argument that will sometimes contain the
                   information we need to send to the API, and sometimes will be
@@ -167,7 +167,7 @@ async function makeRequest(url, method = 'GET', body = null) {
                   Next we check if the method is either <kbd>POST</kbd> or
                   <kbd>PUT</kbd>. Both of these methods involve sending data
                   with the request. We add that to the <kbd>body</kbd> of our
-                  request...making sure to convert it to a string
+                  request, making sure to convert it to a string
                   (JSON.stringify).
                 </li>
                 <li>
@@ -183,19 +183,19 @@ async function makeRequest(url, method = 'GET', body = null) {
                   return the data.
                 </li>
                 <li>
-                  Notice that we aren't catching the error here...we will need
+                  Notice that we aren't catching the error here, we will need
                   to make sure we do that later.
                 </li>
               </ol>
               <p>
                 Create a folder inside of your <kbd>week11</kbd> folder called
-                <kbd>client</kbd> to contain the client side files for the
+                <kbd>client</kbd> to contain the client-side files for the
                 project. Create an <kbd>authHelpers.js</kbd> file and put our
-                <code>makeRequest</code> function in there...export it. Create
-                also an HTML file called <kbd>week11.html</kbd> and add the HTML
+                <code>makeRequest</code> function in there. Export it. Create
+                an HTML file called <kbd>week11.html</kbd> and add the HTML
                 to make a simple page. Create one more file called
-                <kbd>week11.js</kbd> and add it to your html via a
-                <code>script</code> element (We will be using modules so don't
+                <kbd>week11.js</kbd> and add it to your HTML via a
+                <code>script</code> element (we will be using modules so don't
                 forget <code>type="module"</code>). Import in your
                 <code>makeRequest</code> function into the
                 <kbd>week11.js</kbd> file and test it by trying this:
@@ -210,7 +210,7 @@ email: 'user1@email.com'
                 <p>
                   Here is a screenshot of my setup for this activity using VS
                   Code and Live Server. Notice the file structure. The client
-                  code I am previewing using the Live Server extention
+                  code I am previewing using the Live Server extension
                   (127.0.0.1:5500), and the server code is being run in the
                   built in command line in VS Code (127.0.0.1:3000). (Type
                   <kbd>ctrl+~</kbd> to bring up the command line in VS Code)
@@ -232,7 +232,7 @@ email: 'user1@email.com'
               <p>
                 If you open the debugger tools and select the "Network" tab in
                 Chrome you should see all of the requests that your browser has
-                made. Some were to load the html, css, and JS resources, but at
+                made. Some were to load the HTML, CSS, and JS resources, but at
                 the bottom you should see one or two requests to
                 <kbd>login</kbd>. That was in result of our call with
                 <code>makeRequest</code>. Click on the last one. You can see the
@@ -259,7 +259,7 @@ email: 'user1@email.com'
                   <li>
                     You are accessing your <kbd>index.html</kbd> file through a
                     webserver. If you are using Brackets or VS Code with the
-                    Live Server extention you are. When looking at your html
+                    Live Server extention you are. When looking at your HTML
                     file in the browser check the address. It should start with
                     either <kbd>127.0.0.1</kbd> or <kbd>localhost</kbd>.
                   </li>
@@ -293,7 +293,7 @@ email: 'user1@email.com'
                   token = null)</code
                 >)
               </p>
-              <p>That's it...now we can send a token with any request.</p>
+              <p>That's it. Now we can send a token with any request.</p>
               <!-- END STEP -->
             </li>
             <li>
@@ -332,7 +332,7 @@ export default class Auth {
     try {
       // 1. use the makeRequest function to pass our credentials to the server
       
-      // 2. if we get a successful response...we have a token!  Store it since we will need to send it with every request to the API.
+      // 2. if we get a successful response, we have a token!  Store it since we will need to send it with every request to the API.
       
       // let's get the user details as well and store them locally in the class
       // you can pass a query to the API by appending it on the end of the url like this: 'users?email=' + email
@@ -354,7 +354,7 @@ export default class Auth {
   // uses the email of the currently logged in user to pull up the full user details for that user from the database
   async getCurrentUser(email) {
     try {
-      // 3. add the code here to make a request for the user identified by email...don't forget to send the token!
+      // 3. add the code here to make a request for the user identified by email, don't forget to send the token!
     } catch (error) {
       // if there were any errors display them
       console.log(error);
@@ -362,7 +362,7 @@ export default class Auth {
   }
   
   set token(value) {
-    // we need this for the getter to work...but we don't want to allow setting the token through this.
+    // we need this for the getter to work, but we don't want to allow setting the token through this.
   }
   get token() {
     return this.jwtToken;
@@ -432,13 +432,13 @@ export default class Auth {
 
               <p>
                 Giving good feedback to your users about what is going on is
-                very important...especially when something goes wrong. Let's add
+                very important, especially when something goes wrong. Let's add
                 an Error reporting module to our code to pass messages on to our
                 users. Add the following at the top of your HTML body:
               </p>
               <pre><code class="lang-html">&lt;div id="errors" class="errors hidden"&gt;&lt;/div&gt;</code></pre>
               <p>
-                Then create a new class called Errors in your
+                Then create a new class called errors in your
                 <kbd>authHelpers.js</kbd> file. Add the methods to show errors
                 in that div when appropriate, and clear them when it is time.
               </p>
@@ -453,7 +453,7 @@ export default class Auth {
               <p>
                 Create a new instance of your Errors class to use. Pass it into
                 your <kbd>Auth</kbd> class in the constructor so that it has
-                access...then use it in the <code>catch</code> blocks when
+                access, then use it in the <code>catch</code> blocks when
                 appropriate.
               </p>
               <!-- END STEP -->
@@ -468,7 +468,7 @@ export default class Auth {
           insights from this comparison.
         </p>
         <p>
-          Please DO NOT open the solution until you have worked through this
+          Please do not open the solution until you have worked through this
           activity as a team for the one hour period. At the end of the hour, if
           you are still struggling with some of the core requirements, you are
           welcome to view the instructor's solution and use it to help you

@@ -1,4 +1,4 @@
-//create an array of parks
+//Create an array of parks.
 const parkList = [
   {
     id: 1,

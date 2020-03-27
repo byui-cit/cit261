@@ -1,6 +1,6 @@
 // Example of using Classes and modules to organize the code needed to render our list of hikes. Not using MVC here.
 
-//create an array of hikes
+// Create an array of hikes.
 const hikeList = [
   {
     name: "Bechler Falls",
@@ -37,15 +37,15 @@ const hikeList = [
 ];
 
 const imgBasePath = "//byui-cit.github.io/cit261/examples/";
-//on load grab the array and insert it into the page on load
+// On load grab the array and insert it into the page.
 
 export default class Hikes {
   constructor(elementId) {
     this.parentElement = document.getElementById(elementId);
-    // we need a back button to return back to the list. This will build it and hide it. When we need it we just need to remove the 'hidden' class
+    // We need a back button to return back to the list. This will build it and hide it. When we need it we just need to remove the 'hidden' class
     this.backButton = this.buildBackButton();
   }
-  // why is this function necessary?  hikeList is not exported, and so it cannot be seen outside of this module. I added this in case I ever need the list of hikes outside of the module. This also sets me up nicely if my data were to move. I can just change this method to the new source and everything will still work if I only access the data through this getter.
+  // Why is this function necessary? hikeList is not exported, and so it cannot be seen outside of this module. I added this in case I ever need the list of hikes outside of the module. This also sets me up nicely if my data were to move. I can just change this method to the new source and everything will still work, as long as I only access the data through this getter.
   getAllHikes() {
     return hikeList;
   }
@@ -53,13 +53,13 @@ export default class Hikes {
   getHikeByName(hikeName) {
     return this.getAllHikes().find(hike => hike.name === hikeName);
   }
-  //show a list of hikes in the parentElement
+  // Show a list of hikes in the parentElement.
   showHikeList() {}
-  // show one hike with full details in the parentElement
+  // Show one hike with full details in the parentElement.
   showOneHike(hikeName) {}
-  // in order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
+  // In order to show the details of a hike ontouchend we will need to attach a listener AFTER the list of hikes has been built. The function below does that.
   addHikeListener() {
-    // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList...not an array. So in order to use something like a forEach we need to convert it to an array.
+    // We need to loop through the children of our list and attach a listener to each, remember though that children is a nodeList, not an array. So in order to use something like a forEach we need to convert it to an array.
   }
   buildBackButton() {
     const backButton = document.createElement("button");
@@ -67,7 +67,7 @@ export default class Hikes {
     return backButton;
   }
 }
-// methods responsible for building HTML.  Why aren't these in the class?  They don't really need to be, and by moving them outside of the exported class, they cannot be called outside the module...they become private.
+// Methods responsible for building HTML.  Why aren't these in the class?  They don't really need to be, and by moving them outside of the exported class, they cannot be called outside the module, they become private.
 function renderHikeList(parent, hikes) {}
 function renderOneHikeLight(hike) {
   const item = document.createElement("li");

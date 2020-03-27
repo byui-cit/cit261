@@ -32,7 +32,7 @@ function createHike(hike) {
   title.innerText = hike.name;
   // continue with the rest of the information
 
-  //  append all of the parts to our item
+  // Append all of the parts to our item.
   item.appendChild(img);
   item.appendChild(title);
 
@@ -40,7 +40,7 @@ function createHike(hike) {
   return item;
 }
 
-// same thing as above using template literal strings and with some classes added for styling.
+// Same thing as above using template literal strings and with some classes added for styling.
 function renderHikeLight(hike) {
   const item = document.createElement('li');
   item.classList.add('light');
@@ -56,13 +56,13 @@ function renderHikeLight(hike) {
                     <p>${hike.difficulty}</p>
                 </div>
         </div>`;
-  // add event listener to watch for a touch...if there is time show how a detailed listing of the hike could be shown.
+  // Add event listener to watch for a touch, if there is time show how a detailed listing of the hike could be shown.
   item.addEventListener('touchend', event => {
-    // show what is available in the event object
+    // Show what is available in the event object.
     console.dir(event);
-    // take a look at this as well.
+    // Take a look at this as well.
     console.dir(event.currentTarget);
-    // we could send the name of the hike to another function, use it to look up that hike in our data, and render it out.
+    // We could send the name of the hike to another function, use it to look up that hike in our data, and render it out.
     const hikeName = event.currentTarget.children[0].innerText;
     console.log(hikeName);
     renderOneHike(hikeName);
@@ -73,13 +73,13 @@ function renderHikeLight(hike) {
 
 function renderOneHike(hikeName) {
   const listElement = document.getElementById('hikes');
-  // clear out the current contents
+  // Clear out the current contents
   listElement.innerHTML = '';
-  // get the hike
+  // Get the hike
   const hike = hikeList.find(item => item.name == hikeName);
   listElement.appendChild(renderHikeFull(hike));
 }
-// full hike details.
+// Full hike details.
 function renderHikeFull(hike) {
   const item = document.createElement('li');
   item.innerHTML = ` 

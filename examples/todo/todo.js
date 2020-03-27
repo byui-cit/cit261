@@ -24,8 +24,8 @@ read/write localStorage
 
 */
 import { qs, writeToLS, readFromLS, bindTouch } from "./utils.js";
-//  private code here. Not exported from the module
-// we need a place to store our list of todos in memory
+//  Private code here. Not exported from the module.
+// We need a place to store our list of todos in memory.
 let liveToDos = null;
 
 // View code here
@@ -43,7 +43,7 @@ function renderList(list, element, hidden) {
 }
 function getToDos(key) {
   if (liveToDos === null) {
-    // we need to go read the list from the data store
+    // We need to go read the list from the data store.
     liveToDos = readFromLS(key) || [];
   }
 

@@ -25,27 +25,27 @@ Controller:
 Pretty much everything!  Explain that each action that is the result of a user action needs a method in the controller. As well as everything necessary to get and display the initial state of the app.
 */
 
-//  model code here.
+// Model code here.
 class ToDoModel {
   constructor(key) {
     // key for localStorage saving and lookup
     this.key = key;
-    // try and read from localStorage to see if there are any pre-existing todos...otherwise set the list to an empty array
+    // Try and read from localStorage to see if there are any pre-existing todos, otherwise set the list to an empty array
     this.toDos = readFromLS(this.key) || [];
   }
   getToDos() {
-    // make sure the stored list of toDos matches what is in localstorage. Do we really need to do this? Maybe not.
+    // Make sure the stored list of toDos matches what is in localstorage. Do we really need to do this? Maybe not.
     this.toDos = readFromLS(this.key);
-    //check to make sure we found something...mention that maybe this error checking may be better done in the readFromLS function
+    // Check to make sure we found something, mention that maybe this error checking may be better done in the readFromLS function.
     if (!this.toDos) {
       this.toDos = [];
     }
     return this.toDos;
   }
-  // this would be done last if you still have time...and if you haven't blown too many minds yet :)  If you do get here...mention how similar this method is with getToDos...they could probably be combined easily.
+  // This would be done last if you still have time, and if you haven't blown too many minds yet.  If you do get here, mention how similar this method is with getToDos, they could probably be combined easily.
   filterToDos(completed = true) {
     this.toDos = readFromLS(this.key);
-    // return a list of either completed or not completed toDos based on the parameter.
+    // Return a list of either completed or not completed toDos based on the parameter.
     return this.toDos.filter(item => item.completed === hidden);
   }
   addToDo(value) {
@@ -62,21 +62,21 @@ class ToDoModel {
   completeTodo(id) {}
 }
 function writeToLS(key, data) {
-  // we can use JSON.stringify to convert our object to a string that can be stored in localStorage.
+  // We can use JSON.stringify to convert our object to a string that can be stored in localStorage.
   window.localStorage.setItem(key, JSON.stringify(data));
 }
 
 function readFromLS(key) {
-  // the string we retrieve from localStorage needs to be converted back to an object with JSON.parse
+  // The string we retrieve from localStorage needs to be converted back to an object with JSON.parse
   return JSON.parse(window.localStorage.getItem(key));
 }
 
 // Controller
 export default class ToDoController {
   constructor(listElement) {
-    // opted to store the listElement inside the class.
+    // Opted to store the listElement inside the class.
     this.listElement = listElement;
-    // create a new instance of our model and add it to the controller.
+    // Create a new instance of our model and add it to the controller.
     this.toDoModel = new ToDoModel('todo');
     this.listToDos();
   }
@@ -90,7 +90,7 @@ export default class ToDoController {
     renderList(this.toDoModel.getToDos(), this.listElement, hidden);
   }
 }
-// View code here
+// View code here.
 function renderList(list, element, hidden) {
   console.log(list);
   element.innerHTML = '';

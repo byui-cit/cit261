@@ -1,6 +1,6 @@
 import Comments from './comments.js';
-// old code using an obj literal instead of a class. This isn't being used, but is an example of
-//create an array of hikes
+// Old code using an obj literal instead of a class. This isn't being used, but is an example of
+// how to create an array of hikes
 const hikeList = [
   {
     id: 1,
@@ -12,7 +12,7 @@ const hikeList = [
     description:
       'Beautiful short hike along the Bechler river to Bechler Falls',
     directions:
-      'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+      'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const hikeList = [
     description:
       'Beautiful short hike along the Bechler river to Bechler Falls',
     directions:
-      'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+      'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const hikeList = [
     description:
       'Beautiful short hike along the Bechler river to Bechler Falls',
     directions:
-      'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+      'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
   }
 ];
 
