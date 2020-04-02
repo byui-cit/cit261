@@ -13,7 +13,7 @@
       <header class="headerBanner">
         <div>
           <h1><span>Web</span> Mobile App Development</h1>
-          <h2>CIT 261</h2>
+          <h2>WDD 330</h2>
         </div>
       </header>
       <main>
@@ -47,7 +47,7 @@
         </code></pre>
         <p>
           Create one more file: <kbd>index.js</kbd> and add it with a script
-          element into your html.
+          element into your HTML.
         </p>
         <h2>Activity</h2>
         <ol class="bigSteps">
@@ -57,7 +57,7 @@
             <p>
               Before we take the next steps, let's think a moment about how we
               would like to organize our code. Not taking this time will almost
-              always end up in what is known as 'Spaghetti code'. Hard to
+              always produce what is known as "spaghetti code." This code is hard to
               follow, maintain, and understand.
             </p>
             <p>
@@ -73,7 +73,7 @@
               <li><kbd>HikesController.js</kbd></li>
             </ul>
             <p>
-              In MVC models are responsible to handle all of the interactions
+              In MVC, models are responsible to handle all of the interactions
               with our data source. They often contain schema information
               describing the data as well.
             </p>
@@ -93,11 +93,11 @@
             <h3>HikeModel.js</h3>
             <p>
               Let's begin by building the model: HikeModel.js. We will use a
-              <kbd>class</kbd> to represent our model. I've provided a bit of
-              code below to get you started. Copy it into your file.
+              <kbd>class</kbd> to represent our model. There is a bit of
+              code provided to get you started. Copy it into your file.
             </p>
             <pre><code class="javascript">
-// normally the model would have more going on...retrieving the hikes from a database, adding hikes, editing hikes, filtering, etc. Our model will be very simple.  We could simply export the hikeList, but a better pattern would be to create a 'getter' function to do it instead. That way as our model changed...we could simply change the getter function and anything using it should be able to remain the same.
+// Normally the model would have more going on, like retrieving the hikes from a database, adding hikes, editing hikes, filtering, etc. Our model will be very simple. We could export the hikeList, but a better pattern would be to create a "getter" function to do it instead. That way as our model changed, we could change the getter function and anything using it should be able to remain the same.
 const hikeList = [
     {
     name: 'Bechler Falls',
@@ -108,7 +108,7 @@ const hikeList = [
     description:
         'Beautiful short hike along the Bechler river to Bechler Falls',
     directions:
-        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles then turn left again onto the Cave Falls road.Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
+        'Take Highway 20 north to Ashton. Turn right into the town and continue through. Follow that road for a few miles, then turn left again onto the Cave Falls road. Drive to the end of the Cave Falls road. There is a parking area at the trailhead.'
     },
     {
     name: 'Teton Canyon',
@@ -119,7 +119,7 @@ const hikeList = [
     description:
         'Beautiful short hike along the Bechler river to Bechler Falls',
     directions:
-        'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles then turn right onto Staline Raod for a short distance, then left onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
+        'Take Highway 33 East to Driggs. Turn left onto Teton Canyon Road. Follow that road for a few miles, then turn right onto Staline Raod for a short distance, then left onto Alta Road. Veer right after Alta back onto Teton Canyon Road. There is a parking area at the trailhead.'
     },
     {
     name: 'Denanda Falls',
@@ -136,20 +136,20 @@ const hikeList = [
 // Hike Model
 export default class HikeModel {
   constructor() {
-    // We need a constructor...but in this case it isn't doing much
+    // We need a constructor, but in this case it isn't doing much.
   }
   getAllHikes() {
-    // should return a list of all the hikes.
+    // This should return a list of all the hikes.
   }
   getHikeByName(hikeName) {
-    // filter the hikes for the record identified by hikeName and return it
+    // This will filter the hikes for the record identified by hikeName and return it.
     return ;
   }
 }
             </code></pre>
             <p>
-              Notice I included a list of hike data at the top for us to work
-              with. More often the data would get pulled from a database.
+              Notice the included list of hike data at the top for you to work
+              with. Often the data would get pulled from a database.
             </p>
 
             <!-- END STEP -->
@@ -158,26 +158,26 @@ export default class HikeModel {
             <!-- BEGIN STEP -->
             <h3>HikesView.js</h3>
             <p>
-              Now let's move on to the View. The view should get sent some data,
-              then format it and display it in the current page. As before we
-              will use a class, and I will give you a head start:
+              Now let's move on to the view. The view should get sent some data,
+              then format it and display it in the current page. As before, we
+              will use a class, and a head start is provided:
             </p>
             <pre><code class="javascript">
   // Hike View handler
 export default class HikesView {
     constructor(listElementId) {
-        // will need this
+        // We will need this
         this.imgBasePath = '//byui-cit.github.io/cit261/examples/';
         
     }
   renderHikeList(hikeList, listElement) {
-    // loop through our list of hikes building out the appropriate HTML for each and append it to the listElement
+    // This will loop through our list of hikes building out the appropriate HTML for each and append it to the listElement.
   }
   renderOneHikeLight(hike) {
-    // this method will be used to create the list of hikes with less detail: name, image, distance, difficulty 
+    // This method will be used to create the list of hikes with less detail: name, image, distance, difficulty.
   }
   renderOneHikeFull(hike, parentElement) {
-    // this method will be used to one hike with full detail...you will need this for the stretch goal! 
+    // This method will be used to one hike with full detail, you will need this for the stretch goal! 
   }
 }
             </code></pre>
@@ -188,11 +188,11 @@ export default class HikesView {
             <!-- BEGIN STEP -->
             <h3>HikesController.js</h3>
             <p>
-              Remember that that earlier I said that the Controller was like the
+              Remember that the Controller is like the
               glue between the Model and View? Well in order to do that the
               Controller has to know about both. Making our model and view using
               Classes and modules will make it easy to do that. As before
-              copy/paste the code below into your controller to get started.
+              copy and paste the code below into your controller to get started.
             </p>
             <pre><code class="javascript">
 import HikeModel from './HikeModel.js';
@@ -208,15 +208,15 @@ export default class HikesController {
   }
   
   showHikeList() {
-    //  this will get called each time we need to display our full hike list. It should grab the list of hikes from the Model, and then send them to the view.
+    //  This will get called each time we need to display our full hike list. It should grab the list of hikes from the Model, and then send them to the view.
   }
 
   showOneHike(hikeName) {
-    // use this when you need to show just one hike...with full details
+    // Use this when you need to show just one hike with full details.
     
   }
   addHikeListener() {
-    // for the stretch you will need to attach a listener to each of the listed hikes to watch for a touchend. 
+    // For the stretch you will need to attach a listener to each of the listed hikes to watch for a touchend. 
    
   }
 }
@@ -233,8 +233,8 @@ export default class HikesController {
               instance of the class, then call the
               <code>showHikeList()</code> method. You may want to console.log
               something out from that method until we create it to help us know
-              if everything is working correctly. If there are errors, fix them
-              :) If not move on to the next step. Make sure that
+              if everything is working correctly. If there are errors, fix them.
+              If not move on to the next step. Make sure that
               <code>showHikeList()</code> does not get called before the DOM is
               ready.
             </p>
@@ -244,16 +244,16 @@ export default class HikesController {
             <!-- BEGIN STEP -->
             <h3>Finishing up</h3>
             <p>
-              The last step is go back in our model, view, and controller and
-              finish writing the methods as indicated in the comments. I would
-              recommend starting with the Model. Complete the
+              The last step is to go back in our model, view, and controller and
+              finish writing the methods as indicated in the comments. It is
+              recommended that you start with the Model. Complete the
               <code>getAllHikes</code> method first (model), test it, then move
               on to the <code>showAllHikes</code> and
               <code>renderHikeList</code> methods. Test again.
             </p>
             <p>
               After that work on the controller or View methods as it makes
-              sense. I would recommend following the same order...finish a
+              sense. Follow the same order finish a
               method, then test. It will keep your errors under control and make
               your code easier to troubleshoot.
             </p>
@@ -278,9 +278,9 @@ export default class HikesController {
                 up! Make it look and work better.
               </li>
               <li>
-                We can drill down into a quake's details...but we currently have
+                We can dig into a quake's details, but we currently have
                 no way to get back to the list other than a refresh of the page.
-                Add a 'Back' button.
+                Add a "Back" button.
               </li>
               <li>
                 What if we wanted to add more functionality? A Routing system
@@ -303,7 +303,7 @@ export default class HikesController {
               <a
                 href="https://github.com/byui-cit/cit261/tree/gh-pages/examples/quakes"
                 target="_blank"
-                >link to my finished version</a
+                >link to the finished version</a
               >
               of this project (Or
               <a
@@ -311,7 +311,7 @@ export default class HikesController {
                 target="_blank"
                 >here for the version with the routing stretch goal</a
               >). Use it to figure out how to get unstuck, but resist the
-              temptation to copy/paste anything out of it.
+              temptation to copy and paste anything out of it.
             </p>
           </li> -->
         </ol>

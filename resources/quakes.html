@@ -127,7 +127,7 @@ function getJSON(url) {
               them. Luckily the Fetch response includes an <code>ok</code> flag
               as part of the response. If that is <kbd>true</kbd>, then we get
               got something more than just a wave from the server. Below is an
-              example of how we might check against <code>ok</code>
+              example of how we might check against <code>ok</code>.
             </p>
             <pre><code class="javascript">
 function getJSON(url) {
@@ -234,7 +234,7 @@ const getLocation = function(options) {
             <p>
               Before we take the next steps, let's think a moment about how we
               would like to organize our code. Not taking this time will almost
-              always produce what is known as "Spaghetti code." Hard to
+              always produce what is known as "Spaghetti code." Code that is hard to
               follow, maintain, and understand.
             </p>
             <p>
@@ -250,7 +250,7 @@ const getLocation = function(options) {
               <li><kbd>QuakesController.js</kbd></li>
             </ul>
             <p>
-              In MVC models are responsible to handle all of the interactions
+              In MVC, models are responsible to handle all of the interactions
               with our data source. They often contain schema information
               describing the data as well.
             </p>
@@ -270,8 +270,8 @@ const getLocation = function(options) {
             <h3>Quake.js</h3>
             <p>
               Let's begin by building the model: Quake.js. We will use a
-              <kbd>class</kbd> to represent our model. I've provided a bit of
-              code below to get you started. Copy it into your file.
+              <kbd>class</kbd> to represent our model. There is a bit of
+              code provided below to get you started. Copy it into your file.
             </p>
             <pre><code class="javascript">
 import { getJSON } from './utilities.js';
@@ -280,22 +280,22 @@ export default class Quake {
   constructor() {
     this.baseUrl =
       'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-01-01&endtime=2019-03-02';
-    // This is where we will store the last batch of retrieved quakes in the model. I don't always do this, in this case the api doesn't have an endpoint to request one quake.
+    // This is where we will store the last batch of retrieved quakes in the model. Don't always do this, in this case the api doesn't have an endpoint to request one quake.
     this._quakes = [];
   }
   async getEarthQuakesByRadius(position, radius = 100) {
-    // use the getJSON function and the position provided to build out the correct URL to get the data we need. Store it into this._quakes, then return it
+    // Use the getJSON function and the position provided to build out the correct URL to get the data we need. Store it into this._quakes, then return it.
     return this._quakes;
   }
   getQuakeById(id) {
-    // filter this._quakes for the record identified by id and return it
+    // filter this._quakes for the record identified by id and return it.
     return this._quakes.features.filter(item => item.id === id)[0];
   }
 }
             </code></pre>
             <p>
-              Notice I took the liberty of importing the
-              <code>getJSON</code> function we wrote earlier. We will need it.
+              Notice the
+              <code>getJSON</code> function we wrote earlier is imported. We will need it.
             </p>
 
             <!-- END STEP -->
@@ -305,14 +305,14 @@ export default class Quake {
             <h3>QuakesView.js</h3>
             <p>
               Now let's move on to the View. The view should get sent some data,
-              then format it and display it in the current page. As before we
-              will use a class, and I will give you a head start:
+              then format it and display it in the current page. As before, we
+              will use a class, you will have a head start:
             </p>
             <pre><code class="javascript">
   // Quake View handler
 export default class QuakesView {
   renderQuakeList(quakeList, listElement) {
-    //build a list of the quakes, include the title and time of each quake then append the list to listElement. You should also add the I.D. of the quake record as a data- property to the li. ie. &lt;li data-id=""&gt;
+    //Build a list of the quakes, include the title and time of each quake, then append the list to listElement. You should also add the I.D. of the quake record as a data- property to the li. ie. &lt;li data-id=""&gt;
     listElement.innerHTML = quakeList.features
     .map(quake => {
       return `<li data-id=${quake.id}>${quake.properties.title}, ${new Date(
@@ -323,7 +323,7 @@ export default class QuakesView {
   }
   renderQuake(quake, element) {
     const quakeProperties = Object.entries(quake.properties);
-    // For the provided quake make a list of each of the properties associated with it. Then append the list to the provided element. Notice the first line of this method. Object.entries() is a slick way to turn an object into an array so that we can iterate over it more easily! 
+    // For the provided quake, make a list of each of the properties associated with it. Then append the list to the provided element. Notice the first line of this method. Object.entries() is a great way to turn an object into an array so that we can iterate over it more easily! 
   }
 }
             </code></pre>
@@ -334,11 +334,11 @@ export default class QuakesView {
             <!-- BEGIN STEP -->
             <h3>QuakesController.js</h3>
             <p>
-              Remember that that earlier I said that the Controller was like the
+              Remember that the Controller is like the
               glue between the Model and View? Well in order to do that the
               Controller has to know about both. Making our model and view
-              Classes and modules will make it easy to do that. As before
-              copy/paste the code below into your controller to get started.
+              Classes and modules will make it easy to do that. As before,
+              copy and paste the code below into your controller to get started.
             </p>
             <pre><code class="javascript">
 import { getLocation } from './utilities.js';
@@ -349,30 +349,30 @@ import QuakesView from './QuakesView.js';
 export default class QuakesController {
   constructor(parent, position = null) {
     this.parent = parent;
-    // sometimes the DOM won't exist/be ready when the Class gets instantiated, so we will set this later in the init()
+    // Sometimes the DOM won't exist or be ready when the Class gets instantiated, so we will set this later in the init().
     this.parentElement = null;
-    // let's give ourselves the option of using a location other than the current location by passing it in.
+    // Let's give ourselves the option of using a location other than the current location by passing it in.
     this.position = position || {
       lat: 0,
       lon: 0
     };
-    // this is how our controller will know about the model and view...we add them right into the class as members.
+    // This is how our controller will know about the model and view, we add them right into the class as members.
     this.quakes = new Quake();
     this.quakesView = new QuakesView();
   }
   async init() {
-    // use this as a place to grab the element identified by this.parent, do the initial call of this.initPos(), and display some quakes by calling this.getQuakesByRadius()
+    // Use this as a place to grab the element identified by this.parent, do the initial call of this.initPos(), and display some quakes by calling this.getQuakesByRadius().
     this.parentElement = document.querySelector(this.parent);
     await this.initPos();
     this.getQuakesByRadius(100);
   }
   async initPos() {
-    // if a position has not been set
+    // If a position has not been set.
     if (this.position.lat === 0) {
       try {
-        // try to get the position using getLocation()
+        // Try to get the position using getLocation().
         
-        // if we get the location back then set the latitude and longitude into this.position
+        // If we get the location back then set the latitude and longitude into this.position.
         
       } catch (error) {
         console.log(error);
@@ -381,23 +381,23 @@ export default class QuakesController {
   }
 
   async getQuakesByRadius(radius = 100) {
-    // this method provides the glue between the model and view. Notice it first goes out and requests the appropriate data from the model, then it passes it to the view to be rendered.
-    //set loading message
+    // This method provides the glue between the model and view. Notice it first goes out and requests the appropriate data from the model, then it passes it to the view to be rendered.
+    // Set loading message.
     this.parentElement.innerHTML = '<li>Loading...</li>';
-    // get the list of quakes in the specified radius of the location
+    // Get the list of quakes in the specified radius of the location.
     const quakeList = await this.quakes.getEarthQuakesByRadius(
       this.position,
       100
     );
-    // render the list to html
+    // Render the list to HTML.
     this.quakesView.renderQuakeList(quakeList, this.parentElement);
-    // add a listener to the new list of quakes to allow drill down in to the details
+    // Add a listener to the new list of quakes to allow dig down in to the details.
     this.parentElement.addEventListener('touchend', e => {
       this.getQuakeDetails(e.target.dataset.id);
     });
   }
   async getQuakeDetails(quakeId) {
-    // get the details for the quakeId provided from the model, then send them to the view to be displayed
+    // Get the details for the quakeId provided from the model, then send them to the view to be displayed.
    
   }
 }
@@ -427,8 +427,8 @@ export default class QuakesController {
               <p>
                 The other error that pops up often is a file not found for your
                 imported modules. If you see this check your file path. You
-                probably need to add a './' to the front of your path like this:
-                <code>import Quake from './Quake.js';</code>
+                probably need to add a "./" to the front of your path like this:
+                <code>import Quake from "./Quake.js";</code>
               </p>
             </div>
             <!-- END STEP -->
@@ -446,8 +446,8 @@ export default class QuakesController {
             </p>
             <p>
               After that, work on the rest of the controller or View methods as
-              it makes sense. I would recommend following the same
-              order: finish a method, then test. It will keep your errors under
+              it makes sense. Following the same
+              order is recommended. Finish a method, then test it. It will keep your errors under
               control and make your code easier to troubleshoot.
             </p>
             <!-- END STEP -->
@@ -471,9 +471,9 @@ export default class QuakesController {
                 up! Make it look and work better.
               </li>
               <li>
-                We can drill down into a quake's details...but we currently have
+                We can drill down into a quake's details, but we currently have
                 no way to get back to the list other than a refresh of the page.
-                Add a 'Back' button.
+                Add a "Back" button.
               </li>
               <li>
                 What if we wanted to add more functionality? A Routing system
@@ -504,7 +504,7 @@ export default class QuakesController {
                 target="_blank"
                 >here for the version with the routing stretch goal</a
               >). Use it to figure out how to get unstuck, but resist the
-              temptation to copy/paste anything out of it.
+              temptation to copy and paste anything out of it.
             </p>
           </li> -->
         </ol>

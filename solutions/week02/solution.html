@@ -41,9 +41,9 @@
     <script>
       // req1
       function reqOne() {
-        // We can use getElementById to grab the correct input, but we are interested in the value of the input. Not the input itself. So we tell it that.
+        // We can use getElementById to grab the correct input, but we are interested in the value of the input, not the input itself. So we tell it that.
         const input = document.getElementById('req1Input').value;
-        // Here we want the actual element so no .value. Only input elements have a .value
+        // Here we want the actual element, so no .value. Only input elements have a .value
         const outputElement = document.getElementById('req1Output');
         //  The content for most elements (other than inputs) lives in innerHTML.
         outputElement.innerHTML = 'You entered: ' + input;
@@ -92,15 +92,15 @@
         const outputElement = document.getElementById('stretchOutput');
         outputElement.innerHTML = 'Total: ' + value;
       }
-      // function declaration
+      // function declaration.
       function add2(num1, num2) {
         return num1 + num2;
       }
-      // function expression
+      // function expression.
       const sub2 = function(num1, num2) {
         return num1 - num2;
       };
-      // arrow function
+      // arrow function.
       const mult2 = (num1, num2) => num1 * num2;
 
       // Example of using a callback to pull it all together.
