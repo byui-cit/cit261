@@ -21,7 +21,7 @@
         <hr />
 
         <p>
-          At this point we have learned a lot about coding with Javascript.
+          At this point, we have learned a lot about coding with Javascript.
           Let's make a simple earthquake watch app to apply what we have
           learned.
         </p>
@@ -163,9 +163,9 @@ function getJSON(url) {
                 href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API"
                 target="_blank"
                 >Geolocation API</a
-              >. Luckily it is pretty easy to use. Make sure to read through the
-              linked page above for more details, but I'll provide this
-              function. One thing to note is that the Geolocation API does not
+              >. Luckily, it is pretty easy to use. Make sure to read through the
+              linked page above for more details, but this
+              function will be provided. One thing to note is that the Geolocation API does not
               return a <kbd>Promise</kbd> like Fetch does. It would be nice if
               it did so we could take advantage of the newer promise based
               features of ES2015 and ES2106. Below you will find a simple
@@ -187,7 +187,7 @@ const getLocation = function(options) {
             <h3>Export the utilities</h3>
             <p>
               We would like our <kbd>utilities.js</kbd> collection to be a
-              reusable module. So we need to export our helper functions to be
+              reusable module, so we need to export our helper functions to be
               used elsewhere. Add an <code>export</code> keyword before each of
               our functions to export them.
             </p>
@@ -215,7 +215,7 @@ const getLocation = function(options) {
             <p>
               Make use of our two functions to get the current location from the
               browser, then send that on to the API to request the earthquakes
-              within a 100km radius of that location. The URL that you should
+              within a 100km radius of that location. The URL that you
               end up with should look like this:
             </p>
             <code class="callout javascript"
@@ -240,7 +240,7 @@ const getLocation = function(options) {
             <p>
               For this project we will use the Model-View-Controller (MVC)
               architecture. It provides a nice separation of concerns and will
-              help us stay organized. This is a simple application and so we
+              help us stay o`rganized. This is a simple application and so we
               will probably only need one model, one view, and one controller.
               Create three more files in your project called:
             </p>

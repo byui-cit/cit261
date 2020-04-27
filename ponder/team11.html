@@ -302,7 +302,7 @@ email: 'user1@email.com'
                 Login Form and Auth module.
               </p>
               <p>
-                Add a Login form to your <kbd>index.html</kbd>. You will need a
+                Add a login form to your <kbd>index.html</kbd>. You will need a
                 two inputs: one for the email (username) and one for password.
                 Don't forget to add a submit button as well. Create an
                 <kbd>auth.js</kbd> file, add a class to it called
@@ -322,7 +322,7 @@ export default class Auth {
   }
 
   async login(callback) {
-    // replace the ids below with whatever you used in your form.
+    // Replace the ids below with whatever you used in your form.
     const password = document.getElementById('password');
     const username = document.getElementById('username');
     const postData = {
@@ -330,39 +330,39 @@ export default class Auth {
       password: password.value  
     };
     try {
-      // 1. use the makeRequest function to pass our credentials to the server
+      // 1. Use the makeRequest function to pass our credentials to the server
       
-      // 2. if we get a successful response, we have a token!  Store it since we will need to send it with every request to the API.
+      // 2. If we get a successful response, we have a token!  Store it since we will need to send it with every request to the API.
       
-      // let's get the user details as well and store them locally in the class
-      // you can pass a query to the API by appending it on the end of the url like this: 'users?email=' + email
+      // Let's get the user details as well, and store them locally in the class.
+      // You can pass a query to the API by appending it on the end of the url like this: 'users?email=' + email
       this.user = await this.getCurrentUser(username.value);
-      // hide the login form.
+      // Hide the login form.
       document.getElementById('login').classList.add('hidden');
-      // clear the password
+      // Clear the password.
       password.value = '';
       
-      // since we have a token let's go grab some data from the API by executing the callback if one was passed in
+      // Since we have a token, let's go grab some data from the API by executing the callback, if one was passed in.
       if(callback) {
         callback();
       }
     } catch (error) {
-      // if there were any errors display them
+      // If there were any errors, display them.
       console.log(error);
     }
   }
-  // uses the email of the currently logged in user to pull up the full user details for that user from the database
+  // This code uses the email of the currently logged in user to pull up the full user details for that user from the database.
   async getCurrentUser(email) {
     try {
-      // 3. add the code here to make a request for the user identified by email, don't forget to send the token!
+      // 3. Add the code here to make a request for the user identified by email, don't forget to send the token!
     } catch (error) {
-      // if there were any errors display them
+      // If there were any errors, display them.
       console.log(error);
     }
   }
   
   set token(value) {
-    // we need this for the getter to work, but we don't want to allow setting the token through this.
+    // We need this for the getter to work, but we don't want to allow setting the token through this.
   }
   get token() {
     return this.jwtToken;
