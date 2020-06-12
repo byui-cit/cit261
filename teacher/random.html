@@ -18,7 +18,7 @@
         "lazy",
         "round",
         "flat",
-        "old"
+        "old",
       ];
       const nouns = [
         "bike",
@@ -27,7 +27,7 @@
         "computer",
         "student",
         "car",
-        "house"
+        "house",
       ];
       const numbers = [1, 4, 7, 34, 54, 243, 67, 89, 21, 12345];
 
@@ -39,7 +39,7 @@
           cost_in_credits: "1143350000",
           length: "19000",
           starship_class: "Star dreadnought",
-          url: "http://swapi.co/api/starships/15/"
+          url: "http://swapi.dev/api/starships/15/",
         },
         {
           name: "Death Star",
@@ -49,7 +49,7 @@
           cost_in_credits: "1000000000000",
           length: "120000",
           starship_class: "Deep Space Mobile Battlestation",
-          url: "http://swapi.co/api/starships/9/"
+          url: "http://swapi.dev/api/starships/9/",
         },
         {
           name: "Millennium Falcon",
@@ -58,7 +58,7 @@
           cost_in_credits: "100000",
           length: "34.37",
           starship_class: "Light freighter",
-          url: "http://swapi.co/api/starships/10/"
+          url: "http://swapi.dev/api/starships/10/",
         },
         {
           name: "X-wing",
@@ -67,8 +67,8 @@
           cost_in_credits: "149999",
           length: "12.5",
           starship_class: "Starfighter",
-          url: "http://swapi.co/api/starships/12/"
-        }
+          url: "http://swapi.dev/api/starships/12/",
+        },
       ];
 
       //example of for loop to traverse array
@@ -82,24 +82,25 @@
         console.log(color);
       }
 
-      colors.forEach(item => {
+      colors.forEach((item) => {
         console.log(item);
       });
       //example of map
-      const newArray = numbers.map(function(number) {
+      const newArray = numbers.map(function (number) {
         return number * -1;
       });
       console.log(newArray);
       //example of map with arrow function declaration
-      const negNumbers = numbers.map(number => number * -1);
+      const negNumbers = numbers.map((number) => number * -1);
 
       //filter array
 
-      const filtered = ships.filter(el => el.cost_in_credits < 120000);
+      const filtered = ships.filter((el) => el.cost_in_credits < 120000);
 
       function searchManufacturer(query) {
         const filtered2 = ships.filter(
-          el => el.manufacturer.toLowerCase().indexOf(query.toLowerCase()) > -1
+          (el) =>
+            el.manufacturer.toLowerCase().indexOf(query.toLowerCase()) > -1
         );
         return filtered2;
       }
@@ -113,7 +114,7 @@
 
       // another random function demonstrating a closure
       function random1(num) {
-        return function() {
+        return function () {
           return Math.floor(Math.random() * num) + 1;
         };
       }

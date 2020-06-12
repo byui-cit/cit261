@@ -6,7 +6,7 @@ function getJSON(url) {
 
   //var request = new Request();
   return fetch(url)
-    .then(function(response) {
+    .then(function (response) {
       if (!response.ok) {
         throw Error(response.statusText);
       } else {
@@ -14,35 +14,35 @@ function getJSON(url) {
         return response.json();
       }
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error);
     });
 }
 
 function fetchShips() {
-  const url = 'https://swapi.co/api/starships/';
+  const url = "https://swapi.dev/api/starships/";
   //const url = 'sw-ships.json';
   //call getJSON function to get the list of ships from the api
-  getJSON(url).then(function(data) {
+  getJSON(url).then(function (data) {
     //console.log(data);
     const results = data.results;
 
     //get the list element
-    const shipListElement = document.getElementById('shiplist');
+    const shipListElement = document.getElementById("shiplist");
     //make sure it is empty...this becomes important when we implement the prev/next buttons
-    shipListElement.innerHTML = '';
+    shipListElement.innerHTML = "";
     //loop through the ships
-    results.forEach(function(ship) {
+    results.forEach(function (ship) {
       //console.log(ship);
       //create elements for list...li and a
-      let listItem = document.createElement('li');
+      let listItem = document.createElement("li");
 
-      let link = document.createElement('a');
+      let link = document.createElement("a");
       //set href attribute to the URL of the ship
-      link.setAttribute('href', ship.url);
+      link.setAttribute("href", ship.url);
       //set the contents of the link element to the name of the ship
       link.innerHTML = ship.name;
-      link.addEventListener('click', function(event) {
+      link.addEventListener("click", function (event) {
         //when clicked the default link behavior should be stopped, and the ship details function should be called...passing the value of the href attribute in
         event.preventDefault();
         getShipDetails(ship.url);
@@ -70,7 +70,7 @@ function fetchShips() {
 
 function getShipDetails(url) {
   //call getJSON functions for the provided url
-  getJSON(url).then(function(data) {
+  getJSON(url).then(function (data) {
     console.log(data);
 
     //with the results populate the elements in the #detailsbox
