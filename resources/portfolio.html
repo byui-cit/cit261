@@ -32,9 +32,7 @@
         <ol class="bigSteps">
           <li>
             <!-- BEGIN STEP -->
-            <h3>
-              Code Management
-            </h3>
+            <h3>Code Management</h3>
 
             <p>
               Most of your portfolio for this course will be made up of code. It
@@ -203,9 +201,57 @@
           </li>
           <li>
             <!-- BEGIN STEP -->
-            <h3>
-              Record your work
-            </h3>
+            <h3>Dynamic Table of Contents</h3>
+
+            <p>
+              Each week you will be adding to the table of contents of your
+              portfolio. Let's create that list of links dynamically with some
+              Javascript as a review of what you learned in WDD 230 (CIT 230/CS
+              213). Create a directory called <kbd>js</kbd> in your portfolio,
+              and add a file called <kbd>main.js</kbd>. Add the appropriate
+              <code>script</code> tag to your html and write a JS function that
+              will do the following:
+            </p>
+            <ol>
+              <li>
+                Select an <code>ol</code> element from your index.html page
+                (This means you need to add the html for this element to your
+                page. You can't select something that doesn't exist.)
+              </li>
+              <li>
+                Read a list of links from an array. (You will also need to
+                create this array)
+              </li>
+              <li>
+                For each of the items in the array of links you should create a
+                <code>li</code> element, add an <code>a</code> element with the
+                label and url from the list of links, and add the new
+                <code>li</code> element into the <code>ol</code> element you
+                grabbed above.
+              </li>
+            </ol>
+            <p>
+              You can keep the structure of your list of links simple, you will
+              need a label that will be shown to the user, and the URL of the
+              page that should open when the link is clicked. It might look
+              something like this:
+            </p>
+            <pre><code class="lang-javascript">const links = [
+  {
+    label: "Week1 notes",
+    url: "week1/index.html"
+  }
+]
+            </code></pre>
+            <p>
+              Each week you will simply add new item(s) into your array to have
+              them automatically show up in the table of contents.
+            </p>
+            <!-- END STEP -->
+          </li>
+          <li>
+            <!-- BEGIN STEP -->
+            <h3>Record your work</h3>
 
             <p>
               As you read, take notes and complete exercises record your work in
