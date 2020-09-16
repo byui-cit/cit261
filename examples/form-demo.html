@@ -6,12 +6,15 @@
     <title>Form demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
+      * {
+        box-sizing: border-box;
+      }
       .title {
         text-align: center;
       }
       form {
         border: 1px solid;
-        width: 340px;
+        max-width: 340px;
         margin: auto;
         padding: 1em;
         border-radius: 5px;
@@ -22,13 +25,16 @@
       input,
       textarea {
         width: 100%;
-      }
-      input {
         font-size: 1.2em;
+        padding: 0.4em;
+      }
+
+      textarea {
+        height: 5em;
       }
       button {
         display: block;
-        padding: 0.5em;
+        padding: 0.8em;
         width: 50%;
         margin: 0 auto;
       }
@@ -52,6 +58,5 @@
       </p>
       <button type="submit">Send</button>
     </form>
-    <script></script>
   </body>
 </html>
