@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>BYU-Idaho WDD 330 | Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../../css/prism-coy.css" />
+    <link rel="stylesheet" href="../../css/course.css" />
+  </head>
+
+  <body>
+    <div id="content">
+      <header class="headerBanner">
+        <div>
+          <h1><span>Web</span> Frontend Development II</h1>
+          <h2>WDD 330</h2>
+        </div>
+      </header>
+      <main>
+        <h1>Ponder: Team Activity</h1>
+        <hr />
+        <h2>Overview</h2>
+        <p>
+          This activity will aid you in getting the project and environment
+          setup for your team. It will introduce a NodeJs based workflow and
+          development/build tools.
+        </p>
+        <h2>Instructions</h2>
+        <p>
+          Complete the following assignment as a team. Designate one team member
+          as the "main driver" and collaborate on their copy of the code.
+          Everyone on the team should be actively engaged in writing the code
+          and contributing to the solution. Once the solution is working, make
+          sure that everyone on the team gets a copy of the code. Each week let
+          someone else be the "main driver" of the coding.
+        </p>
+        <p>
+          It will be very helpful if you have completed the Sitepoint course on
+          <a
+            href="https://www.sitepoint.com/premium/courses/git-it-together-master-version-control-with-git-and-github-2902/"
+            target="_blank"
+            rel="noreferrer"
+            >Git It Together</a
+          >
+          before you do this.
+        </p>
+        <p>
+          If your group is ready to start the activity and you have not had a
+          chance to complete the course above...you can quickly review this
+          <a
+            href="https://guides.github.com/activities/hello-world/"
+            target="_blank"
+            >shorter Github guide</a
+          >
+          (Just remember to go back and do the other...it goes into much more
+          detail).
+        </p>
+        <div class="requirements">
+          <h3>Core Requirements</h3>
+          <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                Have each member of the team install the current LTS (Long Term
+                Support) version of node. Follow the instructions for your
+                operating system found in
+                <a
+                  href="https://byui-cit.github.io/advcss/lesson01/l01-software.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  >this software setup</a
+                >
+                activity.
+              </p>
+              <ol>
+                <li>
+                  The driver for this week should then log into Github, and
+                  visit this
+                  <a href="https://github.com/matkat99/sleepoutside"
+                    >repository</a
+                  >
+                  for the project. Click on the "Use this template" button to
+                  create a copy of the base project code in a new repository
+                  then give the new repo a name.
+                </li>
+                <li>
+                  The driver should then goto Settings->Manage Access and add
+                  the rest of the team members as collaborators. (Each team
+                  member needs to have their own Github account for this step.
+                  Create one if you do not have one.)
+                </li>
+                <li>
+                  Each member of the team should then clone the repository to
+                  their computer.
+                </li>
+              </ol>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Finish the project setup:</p>
+              <ol>
+                <li>
+                  Each member of the team should then open a terminal window and
+                  switch to the project directory (If you are using VS Code and
+                  open the folder as the current project and type
+                  <kbd>ctrl ~</kbd> the terminal window will automatically be
+                  set to the right directory.) then type <kbd>npm install</kbd>.
+                </li>
+                <li>
+                  This project comes with several tools built in to help the
+                  team to write error free consistent code. The driver should
+                  open up the <kbd>package.json</kbd> file. There are two
+                  sections initially you should review.
+                  <code>devDependencies</code>, and <code>scripts</code>.
+
+                  <ul>
+                    <li>
+                      <code>devDependencies</code> contains all of the tools we
+                      will be using in our development for this project. When
+                      you ran <kbd>npm install</kbd> earlier, it referred to
+                      this list to know what to install.
+                    </li>
+                    <li>
+                      <code>scripts</code> are shortcuts to commands we can run
+                      to manage the project. It contains the following:
+                      <pre><code class="lang-json">"scripts": {
+    "start": "parcel src/index.html src/cart.html src/product_pages/*.html -d build/",
+    "build": "parcel build src/index.html src/cart.html src/product_pages/*.html",
+    "lint": "eslint *.js src/**/*.js",
+    "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\""
+},</code></pre>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <ul>
+                    <li>
+                      <code>start</code>: This will run our development server.
+                      You will use this the most.
+                    </li>
+                    <li>
+                      <code>build</code>: This will prepare our code to be
+                      deployed to production. One person in your group should be
+                      designated to run this as needed.
+                    </li>
+                    <li>
+                      <code>lint</code>: This will run Eslint against the code
+                      to look for style and syntax errors. You should do this
+                      each time you are ready to commit. Make sure to clean up
+                      any errors it finds before you commit!
+                    </li>
+                    <li>
+                      <code>format</code>: This will run Prettier on your code
+                      and format it all consistently. You should also do this as
+                      a step in your commit process.
+                    </li>
+                  </ul>
+                  The commands are run in the terminal. If you wanted to start
+                  up the development server for example you would type
+                  <kbd>npm run start</kbd>. If you wanted to lint your code:
+                  <kbd>npm run lint</kbd> Feel free to run each to see what it
+                  does.
+                </li>
+                <li>
+                  The driver should run <kbd>npm run build</kbd>. This will
+                  create a directory called <kbd>dist</kbd>. Commit those
+                  changes and push them to Github. Then go back to the
+                  repository at <kbd>github.com</kbd> and go to settings. Scroll
+                  down the page until you see the section for Github Pages.
+                  Select <kbd>Branch: main</kbd> in the source dropdown. Leave
+                  the directory at <kbd>/(root)</kbd>. Notice the URL to your
+                  published site at the top of that section. Add a
+                  <kbd>dist</kbd> to the end of that URL and you should see your
+                  built site.
+                </li>
+              </ol>
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Github with a team</p>
+              <ol>
+                <li>
+                  The driver should create a file in the root of the project
+                  called <kbd>team.txt</kbd> and add their name. Then commit
+                  that change, and push it up to Github.
+                </li>
+                <li>
+                  Each other member of the team should pull the changes down and
+                  add their names. Then commit and push.
+                </li>
+                <li>
+                  The driver should then edit <kdb>team.txt</kdb>. Add your
+                  middle initial. Then commit and push. What happened?
+                  <div class="callout">
+                    <p>
+                      This should have resulted in an error with Git. There were
+                      multiple changes made to the same file and Git doesn't
+                      know which to keep! The results in a
+                      <em>merge conflict</em>.
+                    </p>
+                    <p>How can we avoid conflicts? A couple of ways:</p>
+                    <ul>
+                      <li>
+                        First make sure whenever you sit down to work on the
+                        project you should <em>pull</em> before you do anything
+                        else to make sure you get changes any of your teammates
+                        have made recently.
+                      </li>
+                      <li>
+                        Commit often! Small commits are less likely to result in
+                        conflicts than large ones...and they are much easier to
+                        fix if a conflict does occur.
+                      </li>
+                      <li>
+                        Take advantage of software design techniques like
+                        <a
+                          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"
+                          target="_blank"
+                          >modules</a
+                        >
+                        to break your code up into smaller pieces.
+                      </li>
+                      <li>
+                        Finally take advantage of Git's ability to
+                        <em>branch</em>. See the stretch goals for more on that.
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  Before you can commit the merge conflict will need to be
+                  resolved. Make sure that the <kbd>teams.txt</kbd> file is
+                  open. You should see some additions to the file from Git. It
+                  should look something like below.
+                  <div class="fig-block">
+                    <figure><img src="" /></figure>
+                  </div>
+                </li>
+              </ol>
+              <!-- END STEP -->
+            </li>
+          </ol>
+          <h3>Stretch Goals</h3>
+
+          <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Branching</p>
+              <p>
+                One of the most powerful features of Git is the ability to
+                <em>branch</em> your code. Branching makes a copy of your code
+                at the current point in time that you can make changes to
+                without affecting any other branch! This allows an organization
+                to always keep a fully working <em>production</em> version of
+                their code that can be deployed at any time, and also work on
+                adding features, fixing bugs, etc that often result in things
+                breaking until they are done.
+              </p>
+              <p>
+                You can also use branches to reduce merge conflicts if multiple
+                team members need to make changes to the same file in a
+                codebase. Each team member should complete the following steps:
+              </p>
+              <ol>
+                <li>
+                  Create a branch. Name your branch something like
+                  <kbd>initials--branch_test</kbd>. (So for me the actual name
+                  of the branch would be <kbd>st--branch_test</kbd>)
+                </li>
+                <li>
+                  Add a file in the root of the project called
+                  <kbd>yourname.txt</kbd>. Type your name in the file.
+                </li>
+                <li>Commit and publish (commit) your branch to Github</li>
+                <li>
+                  Push your commit to Github...then do a pull after the other
+                  members of the team have all pushed their branches.
+                </li>
+                <li>
+                  Switch to one of the new branches in the repository. Notice
+                  what happens to the listing of files in your editor when you
+                  do. Switch back to your own branch. Switch back to the master
+                  branch. Discuss with your team what you saw.
+                </li>
+              </ol>
+              <div class="callout">
+                <p>
+                  Throughout the semester you will be fixing bugs and adding
+                  features to the SleepOutside site. When you assign a task to
+                  yourself I would create a new branch to hold the work you will
+                  do. Name the branch <kbd>initials--feature-name</kbd>. So if I
+                  were going to work on the card dealing with the cart total not
+                  calculating correctly, and my name were John Doe, I would make
+                  a branch with a name something like
+                  <kbd>jd--cart-calculation</kbd>
+                </p>
+                <p>
+                  When you are done with your work and you are confident
+                  everything is working you should submit a pull request (see
+                  below). Each week your team will be responsible to setup a
+                  meeting with the instructor (project owner) where the pull
+                  requests will be reviewed and merged back into the project.
+                </p>
+              </div>
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <p>Pull requests</p>
+              <p>
+                When you are done with the feature that you created a branch
+                for, the new code should be merged back into the master or main
+                branch. This can be done in two ways...one is by directly
+                merging the working branch back into the main branch, and the
+                other is through a pull request.
+              </p>
+              <p>
+                On projects where there is only one developer, merging directly
+                works fine...but when working with a team it is more common to
+                work through pull requests. A pull request essentially means "My
+                work is done and tested, I am ready for the code to be merged in
+                with the main branch. Can someone check it out and make sure you
+                don't see any issues. (So I don't break anything :)"
+              </p>
+              <p>
+                In our case right now, the branches do not contain anything
+                important that needs to be merged back into the main branch. So
+                most of them can just be deleted. Have one person however submit
+                a pull request for their branch so we can see what the process
+                is like.
+              </p>
+              <p>
+                After the pull request has been made (you can do this through
+                <a
+                  href="https://guides.github.com/activities/hello-world/#pr"
+                  target="_blank"
+                  >github.com</a
+                >) the driver should go to the repository in github and review
+                the request and then finish the merge. Make sure that any extra
+                branches are deleted once you are done merging.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+          </ol>
+        </div>
+        <h2>Instructors Solution</h2>
+
+        <p>No instructor's solution this week.</p>
+        <h2>Submission</h2>
+        <p>
+          When you have finished this activity, please fill out the assessment
+          in I-Learn. You are welcome to complete any additional parts of this
+          activity by yourself or with others after your meeting before
+          submitting the assessment.
+        </p>
+      </main>
+      <!-- end #article -->
+    </div>
+
+    <script src="../../js/course.js"></script>
+    <script src="../../js/prism.js"></script>
+  </body>
+</html>
