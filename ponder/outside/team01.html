@@ -187,13 +187,13 @@
                     Try running the linter now. What did you see? Have the
                     driver open up the <kbd>.eslintrc.json</kbd> file. You may
                     have noticed that one of the errors it is complaining about
-                    is that you quotes should all be single. You might be saying
-                    to yourself..."why does it matter?" Well in this case
-                    whether you use single or double quotes does not really
-                    matter. What matters is that the whole team is consistent in
-                    using one or the other. Decide as a team whether you would
-                    like to use single or double quotes. Then find the line that
-                    looks like this:
+                    is that your quotes should all be single. You might be
+                    saying to yourself..."why does <em>that</em> matter?" Well,
+                    the truth is that it does not really matter whether you use
+                    single or double quotes in your code. What matters is that
+                    the whole team is consistent in using one or the other.
+                    Decide as a team whether you would like to use single or
+                    double quotes. Then find the line that looks like this:
                     <code>"quotes":["error", "single"]</code> in the
                     <kbd>.eslintrc.json</kbd> file. If you want single quotes
                     then make no changes. If you want double quotes then change
@@ -218,9 +218,9 @@
                   </p>
                   <p class="callout">
                     If you are using VS Code there are extensions you can
-                    install that will format and lint your code everytime you
-                    save! Alternatively you could take advantage of npm and
-                    scripts such as
+                    install that will format (Prettier) and lint (ESLint) your
+                    code everytime you save! Alternatively you could take
+                    advantage of npm and scripts such as
                     <a
                       href="https://docs.npmjs.com/cli/v6/using-npm/scripts"
                       target="_blank"
@@ -276,8 +276,9 @@
               <ol>
                 <li>
                   The driver should create a file in the root of the project
-                  called <kbd>team.txt</kbd> and add their name. Then commit
-                  that change, and push it up to Github.
+                  called <kbd>team.txt</kbd> and add the link to the team Trello
+                  board, and their name. Then commit that change, and push it up
+                  to Github.
                 </li>
                 <li>
                   Each other member of the team should pull the changes down and
@@ -290,7 +291,7 @@
                     <p>
                       This should have resulted in an error with Git. There were
                       multiple changes made to the same file and Git doesn't
-                      know which to keep! The results in a
+                      know which to keep! This results in a
                       <em>merge conflict</em>.
                     </p>
                     <p>How can we avoid conflicts? A couple of ways:</p>
