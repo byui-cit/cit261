@@ -188,7 +188,48 @@
                   </p>
                   <p>
                     Try running the linter now. What did you see? Have the
-                    driver fix any errors , then commit and push the changes.
+                    driver open up the <kbd>.eslintrc.json</kbd> file. You may
+                    have noticed that one of the errors it is complaining about
+                    is that you quotes should all be single. You might be saying
+                    to yourself..."why does it matter?" Well in this case
+                    whether you use single or double quotes does not really
+                    matter. What matters is that the whole team is consistent in
+                    using one or the other. Decide as a team whether you would
+                    like to use single or double quotes. Then find the line that
+                    looks like this:
+                    <code>"quotes":["error", "single"]</code> in the
+                    <kbd>.eslintrc.json</kbd> file. If you want single quotes
+                    then make no changes. If you want double quotes then change
+                    the word "single" to "double".
+                  </p>
+                  <p class="callout">
+                    The <kbd>.eslintrc.json</kbd> file belongs to the team. If
+                    your team disagrees with any of the rules that are being
+                    enforced, change them! Just make sure that all the team
+                    members are on board with the changes. If you do decide to
+                    dig into setting up custom Eslint rules you might want to
+                    get the <kbd>LintLens</kbd> extension for VSCode.
+                  </p>
+                  <p>
+                    Next run <kbd>npm run format</kbd>. Then go and run the
+                    linter again. What happened? Have the driver fix any
+                    remaining errors , then commit and push the changes.
+                  </p>
+                  <p>
+                    Each member of the team should run the format AND lint
+                    command BEFORE they commit after making any changes.
+                  </p>
+                  <p class="callout">
+                    If you are using VS Code there are extensions you can
+                    install that will format and lint your code everytime you
+                    save! Alternatively you could take advantage of npm and
+                    scripts such as
+                    <a
+                      href="https://docs.npmjs.com/cli/v6/using-npm/scripts"
+                      target="_blank"
+                      >prebuild</a
+                    >
+                    to further automate these tasks
                   </p>
                 </li>
                 <li>
@@ -301,14 +342,14 @@
                     We must decide which code should be kept. The code under the
                     <code><<<<<< HEAD</code> is the code you were just trying to
                     send up. The code under the <code>=========</code> is the
-                    code that was already in Github. If you wan tot keep the
+                    code that was already in Github. If you want to keep the
                     code you were just writing, and throw the other away you
                     could choose "Accept Current Change". If you wanted to keep
                     what was on Github and remove your recent changes choose
-                    "Accept Incoming Changes". Or If you choose "Accept Both
+                    "Accept Incoming Changes". Or if you choose "Accept Both
                     Changes" it will smoosh both sets of changes together. This
                     is often the quickest way to get rid of the conflict, but is
-                    often requres more work to actually fix the problem.
+                    usually requires more work to actually fix the problem.
                   </p>
                   <p>
                     In this case we should accept both, then delete the name
@@ -364,7 +405,7 @@
                   Add a file in the root of the project called
                   <kbd>yourname.txt</kbd>. Type your name in the file.
                 </li>
-                <li>Commit and publish (commit) your branch to Github</li>
+                <li>Commit and publish (push) your branch to Github</li>
                 <li>
                   Push your commit to Github...then do a pull after the other
                   members of the team have all pushed their branches.
