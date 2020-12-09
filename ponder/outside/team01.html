@@ -129,6 +129,10 @@
                   set to the right directory.) then type <kbd>npm install</kbd>.
                 </li>
                 <li>
+                  Notice that a new directory was created:
+                  <kbd>node_modules</kbd>
+                </li>
+                <li>
                   This project comes with several tools built in to help the
                   team to write error free consistent code. The driver should
                   open up the <kbd>package.json</kbd> file. There are two
@@ -146,8 +150,8 @@
                       <code>scripts</code> are shortcuts to commands we can run
                       to manage the project. It contains the following:
                       <pre><code class="lang-json">"scripts": {
-    "start": "parcel src/index.html src/cart.html src/product_pages/*.html -d build/",
-    "build": "parcel build src/index.html src/cart.html src/product_pages/*.html",
+    "start": "snowpack dev",
+    "build": "snowpack build",
     "lint": "eslint *.js src/**/*.js",
     "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\""
 },</code></pre>
@@ -232,12 +236,11 @@
                 <li>
                   Each person in the group should try running
                   <kbd>npm run start</kbd>. This runs several processes on our
-                  code, copies it to a <kbd>build</kbd> directory, and launches
-                  a web server at <code>localhost:1234</code>. If you are in VS
-                  Code you can ctrl/cmd-click on that address in the terminal to
-                  open it in a browser...or you can type that address directly
-                  into a browser as well. You should use this server as you
-                  develop your project instead of something like LiveServer!
+                  code and launches a web server at <code>localhost:8080</code>.
+                  It shuold also open that address in your default browser as
+                  well, if it did not you can type that address directly into a
+                  browser as well. You should use this server as you develop
+                  your project instead of something like LiveServer!
                   <p>
                     When you are done working you can stop the dev server by
                     typing <kbd>ctrl c</kbd> in the same terminal window in
@@ -246,17 +249,17 @@
                 </li>
                 <li>
                   The driver should run <kbd>npm run build</kbd>. This will
-                  create a directory called <kbd>dist</kbd>. Commit those
+                  create a directory called <kbd>build</kbd>. Commit those
                   changes and push them to Github. Then go back to the
                   repository at <kbd>github.com</kbd> and go to settings. Scroll
                   down the page until you see the section for Github Pages.
                   Select <kbd>Branch: main</kbd> in the source dropdown. Leave
                   the directory at <kbd>/(root)</kbd>. Notice the URL to your
                   published site at the top of that section. Add a
-                  <kbd>dist</kbd> to the end of that URL and you should see your
-                  built site.
+                  <kbd>build</kbd> to the end of that URL and you should see
+                  your built site.
                   <p class="callout">
-                    The <kbd>dist</kbd> version of the site will be considered
+                    The <kbd>build</kbd> version of the site will be considered
                     the production version. This should always work! The
                     instructor should be able to go to that address at any time
                     and not see any errors. One person in the team should take

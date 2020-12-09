@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <title>BYU-Idaho WDD 330 | Team</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../../css/prism-coy.css" />
+    <link rel="stylesheet" href="../../css/course.css" />
+  </head>
+
+  <body>
+    <div id="content">
+      <header class="headerBanner">
+        <div>
+          <h1><span>Web</span> Frontend Development II</h1>
+          <h2>WDD 330</h2>
+        </div>
+      </header>
+      <main>
+        <h1>Ponder: Team 4 Activity</h1>
+        <hr />
+        <h2>Overview</h2>
+        <p>
+          This activity will finish the process of converting our site to a
+          dynamic site.
+        </p>
+        <h2>Instructions</h2>
+        <p>
+          Complete the following assignment as a team. Designate one team member
+          as the "main driver" and collaborate on their copy of the code.
+          Everyone on the team should be actively engaged in writing the code
+          and contributing to the solution. Once the solution is working, make
+          sure that everyone on the team gets a copy of the code. Each week let
+          someone else be the "main driver" of the coding.
+        </p>
+
+        <div class="requirements">
+          <h3>Core Requirements</h3>
+          <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <p>
+                The driver should visit the team's copy of the Trello board for
+                the project. Add each of the attending team members to the
+                "Team4: Dynamic header and footer" task...then move it to
+                'Doing'. Read the details of the card together.
+              </p>
+              <p>
+                The driver should make sure to <kbd>pull</kbd> any changes from
+                Github before proceeding. Next they should create a new branch
+                called <kbd>initials--team4</kbd>. So if the driver's name were
+                John Doe the branch should be called <code>jd--team4</code>
+              </p>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <h3>Plan</h3>
+              <p>
+                We currently have several HTML pages: index, cart, a product
+                page for each product, and a mostly empty checkout page. What
+                modules should we create? Which pages (views) should be entirely
+                generated through Javascript and which would benefit from
+                loading an HTML template in?
+              </p>
+              <ul>
+                <li>
+                  I would recommend having a one to one relationship with
+                  views/pages and modules. Then any functionality that needs to
+                  be shared between modules can be placed in a utility modules.
+                </li>
+                <li>
+                  The following views are needed: productList, productDetail,
+                  cart, checkout
+                </li>
+                <li>
+                  productList and productDetail are going to be mostly dynamic,
+                  so let's just generate those entirely through Javascript.
+                </li>
+                <li>
+                  cart and checkout will have more static content on them...so
+                  let's load in an html partial as a starting point, and then
+                  modify as needed with Javascript.
+                </li>
+              </ul>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <h3>Navigation</h3>
+              <p>
+                With a SPA links do not work the way they normally should.
+                Normally when you click on a link it makes a request to the host
+                server for a new file. We instead need to hijack that request
+                and run some Javascript locally.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+            <li>
+              <!-- BEGIN STEP -->
+              <h3>Cart and Checkout</h3>
+              <p>
+                Write a function to output the html to display a list of
+                products to the home (index.html) page. The function should take
+                the list of products as an argument, and insert the HTML markup
+                into the DOM. It should leverage the function writted in the
+                last step as well.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+          </ol>
+          <h3>Stretch Goals</h3>
+
+          <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <h3>Product pages</h3>
+              <p>
+                Write a function in <kbd>main.js</kbd> that will filter our list
+                of products to just the 4 we currently need. Use that function
+                to show only those 4 tents.
+              </p>
+
+              <!-- END STEP -->
+            </li>
+          </ol>
+        </div>
+
+        <h2>Instructors Solution</h2>
+        <p>
+          As a part of this team activity, you are expected to look over a
+          solution from the instructor, to compare your approach to that one.
+          One of the questions on the I-Learn submission will ask you to provide
+          insights from this comparison.
+        </p>
+        <p>
+          Please DO NOT open the solution until you have worked through this
+          activity as a team for the one hour period. At the end of the hour, if
+          you are still struggling with some of the core requirements, you are
+          welcome to view the instructor's solution and use it to help you
+          complete your own code. Even if you use the instructor's code to help
+          you, you are welcome to report that you finished the core
+          requirements, if you code them up yourself.
+        </p>
+        <p>
+          After working with your team for the one hour activity,
+          <a
+            href="https://github.com/byui-cit/cit261/tree/gh-pages/solutions/week02/solution.html"
+            target="_blank"
+            rel="noreferrer"
+            >click here for the instructor's solution</a
+          >.
+        </p>
+        <h2>Make a pull request.</h2>
+        <p>
+          After you have completed what you can, and reviewed the instructor's
+          solution, the driver should commit and push their changes, then submit
+          a pull request for this branch. Then review the pull request as a
+          team, close it, and merge the branch back into Main. Finally someone
+          should move the Trello card to "Done".
+        </p>
+        <h2>Submission</h2>
+        <p>
+          When you have finished this activity, please fill out the assessment
+          in I-Learn. You are welcome to complete any additional parts of this
+          activity by yourself or with others after your meeting before
+          submitting the assessment.
+        </p>
+      </main>
+      <!-- end #article -->
+    </div>
+
+    <script src="../../js/course.js"></script>
+    <script src="../../js/prism.js"></script>
+  </body>
+</html>
