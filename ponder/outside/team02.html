@@ -206,9 +206,9 @@ export default class ProductData  {
                   </p>
                   <pre><code class="lang-js">function(item) { return item.Id === id; }</code></pre>
                   <p>
-                    It is very common to see short functions that really just
-                    return some value or expression written using the arrow
-                    function syntax.
+                    It is very common to see short functions that just return
+                    some value or expression written using the arrow function
+                    syntax.
                   </p>
                 </div>
               </section>
@@ -244,7 +244,9 @@ const product = urlParams.get('product')
                 <kdb>product.js</kdb>. Open <kbd>index.html</kbd> and change the
                 link to the first product page from
                 <code>href="product_pages/marmot-ajax-3.html"</code> to
-                <code>href="product-details.html?product=880RR"</code>.
+                <code
+                  >href="product_pages/product-details.html?product=880RR"</code
+                >.
               </p>
               <p class="callout">
                 Where did the <code>880RR</code> come from? If you look in the
@@ -268,7 +270,7 @@ const product = urlParams.get('product')
               </p>
               <ol>
                 <li>
-                  <code>constructor()</code>: this is required for classes
+                  <code>constructor()</code>: this is recommended for classes
                 </li>
                 <li>
                   <code>init()</code>: there are a few things that need to
