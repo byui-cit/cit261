@@ -54,19 +54,7 @@
 
               <!-- END STEP -->
             </li>
-            <li>
-              <!-- BEGIN STEP -->
-              <h3>Create a module</h3>
-              <p>
-                Create a new file <kbd>productList.js</kbd> that we will use for
-                the code to generate a list of product cards in HTML from an
-                array. Add a class called <kbd>ProductList</kbd>, and think
-                about what methods we will need to complete this task. Export
-                your class as default, and import it into <kbd>main.js</kbd>.
-              </p>
 
-              <!-- END STEP -->
-            </li>
             <li>
               <!-- BEGIN STEP -->
               <h3>Read the Data</h3>
@@ -85,11 +73,15 @@
               <!-- BEGIN STEP -->
               <h3>ProductListing class</h3>
               <p>
+                Create a new file <kbd>productList.js</kbd> that we will use for
+                the code to generate a list of product cards in HTML from an
+                array. Add a class called <kbd>ProductList</kbd>, and think
+                about what methods we will need to complete this task. Export
+                your class as default, and import it into <kbd>main.js</kbd>.
+              </p>
+              <p>
                 Begin creating your ProductListing module by writing the code
-                for the constructor. Then create an instance of your
-                <code>ProductList</code> class in <kbd>main.js</kbd>. Review the
-                code from the week 2 team activity if you need help remembering
-                how to do this.
+                for the constructor.
               </p>
               <p>
                 Eventually we will want to have more than one category of
@@ -100,31 +92,108 @@
               <p>
                 In order to make our class as flexible and reusable as possible
                 let's also pass in the HTML element we want the product list to
-                render to.
+                render to, and we should send in our dataSource.
+              </p>
+              <p>
+                Then create an instance of your <code>ProductList</code> class
+                in <kbd>main.js</kbd>. Review the code from the week 2 team
+                activity if you need help remembering how to do this.
               </p>
 
               <!-- END STEP -->
             </li>
             <li>
               <!-- BEGIN STEP -->
-              <h3>Render one product</h3>
+              <h3>Working with templates</h3>
               <p>
-                Add a method to your productList module to generate the html to
-                display one product. The method should take the product info as
-                an argument, and return the HTML markup.
+                As we think about building our product list, each product card
+                will have very similar markup. Templates are a way for us to
+                re-use markup in an efficient way. Last week we just generated
+                the dynamic html in Javascript but that does have a couple of
+                issues.
+              </p>
+              <ol>
+                <li>
+                  It breaks the separation of concerns. It would be good if we
+                  left the HTML where it belongs...in the .html file instead of
+                  buried in the javascript. This leads to more maintainable
+                  code.
+                </li>
+                <li>
+                  The html and css for a site is often managed by a different
+                  group than the logic in the Javascript. If the HTML is in the
+                  javascript then everytime a styling change needs to be made
+                  the Javascript will have to be modified instead of just
+                  changing the HTML
+                </li>
+                <li>
+                  Performance. Generating lots of HTML through Javascript can
+                  lead to performance issues.
+                </li>
+              </ol>
+              <p class="callout">
+                Make sure that you have read the
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"
+                  target="_blank"
+                  rel="noopener"
+                  >MDN article on template</a
+                >
+                from the reading list this week.
+              </p>
+              <p>
+                HTML <code>template</code>s are perfect for what we need to do.
+                Let's create a <code>template</code> element in the
+                <kbd>index.html</kbd> file. Give it an id of
+                <kbd>product-card-template</kbd>. You can place the element in
+                the <code>head</code>. The contents should be one of the product
+                cards. You can then remove all of the information that is
+                specific to the product. It should look something like this:
+              </p>
+              <pre><code class="lang-markup">
+&lt;!-- HTML template to build a product card --&gt;
+&lt;template id="product-card-template"&gt;
+  &lt;li class="product-card"&gt;
+    &lt;a href="product_pages/product-details.html?product="&gt;
+    &lt;img
+      src=""
+      alt="Image of "
+    /&gt;
+    &lt;h3 class="card__brand"&gt;&lt;/h3&gt;
+    &lt;h2 class="card__name"&gt;&lt;/h2&gt;
+    &lt;p class="product-card__price"&gt;$&lt;/p&gt;&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/template&gt;
+              </code></pre>
+              <p>
+                Add a method to your productList module to grab this template
+                called <code>renderList</code>, then clone it once for each
+                product in our list, and add it to the DOM. The method should
+                take the product list as an argument.
               </p>
 
               <!-- END STEP -->
             </li>
             <li>
               <!-- BEGIN STEP -->
-              <h3>Output list of products</h3>
+              <h3>Adding in the data</h3>
               <p>
-                Add a method to output the html to display a list of products to
-                the home (index.html) page. The method should take the list of
-                products as an argument, and insert the HTML markup into the
-                DOM. It should leverage the method written in the last step as
-                well.
+                You should have some product cards showing, but they are all the
+                same and are missing critical information. The next step is to
+                add another method to the module called
+                <code>prepareTemplate</code>. This method should take a template
+                clone, and a product as arguments. It should then insert the
+                information from the product into the template.
+              </p>
+              <p class="callout">
+                If you have trouble with this step it is useful to remember than
+                while we usually call methods like
+                <code>querySelector</code> from <code>document</code>, all DOM
+                nodes actually have access to that method. So we can do
+                something like this:
+                <code>templateClone.querySelector('.card__name')</code>. It will
+                only look inside the template instead of looking at the whole
+                document!
               </p>
 
               <!-- END STEP -->
@@ -133,6 +202,72 @@
           <h3>Stretch Goals</h3>
 
           <ol class="bigSteps">
+            <li>
+              <!-- BEGIN STEP -->
+              <h3>Make it re-usable</h3>
+              <p>
+                The code for your <code>renderList</code> method probably looks
+                something like this:
+              </p>
+              <pre><code class="lang-js line-numbers">renderList(list) {
+  const template = document.getElementById('product-card-template');
+  list.forEach(product => {
+    const clone = template.content.cloneNode(true);
+    const hydratedTemplate = this.prepareTemplate(clone, product);
+    this.listElement.appendChild(hydratedTemplate);
+  })
+}
+              </code></pre>
+              <p>
+                If we look over that code...it is easy to imagine that we will
+                want to do something similar later. We will probably need to
+                generate more content with templates so let's make this function
+                re-usable. Look for all the parts of the code that are specific
+                to this use case: making a list of products
+              </p>
+              <ol>
+                <li>
+                  ln 2: the id of the template we will use is hard coded:
+                  <kbd>product-card-template</kbd>
+                </li>
+                <li>
+                  ln 5: we call a method <kbd>prepareTemplate</kbd> that is very
+                  specific to the current use case. That function would need to
+                  be completely different if we were working with another
+                  template.
+                </li>
+                <li>
+                  ln 6: the element we will place our list in is hard coded:
+                  <kbd>this.listElement</kbd>
+                </li>
+              </ol>
+              <p>
+                The list of products is also specific, but we are already
+                passing that in.
+              </p>
+              <p>
+                Dealing with items 1, and 3 is easy...we can pass those in. But
+                what about #2, the function? Remember that functions can be
+                passed into other functions in Javascript. (Search 'js
+                callbacks' or 'js higher order functions' for more depth). Make
+                a new function in
+                <kbd>utils.js</kbd> called
+                <code>renderListWithTemplate</code> and export it.
+              </p>
+              <p>
+                It should take 4 arguments: templateId, parentElement, list,
+                callback. Then move the code from your
+                <code>renderList</code> function over to utils.js and refactor
+                it to work with the new parameters.
+              </p>
+              <p>
+                Then import in your function to the
+                <kbd>productList</kbd> module, and refactor
+                <code>renderList</code> to use our new utility function.
+              </p>
+
+              <!-- END STEP -->
+            </li>
             <li>
               <!-- BEGIN STEP -->
               <h3>Remove extra products</h3>

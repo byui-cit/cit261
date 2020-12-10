@@ -58,13 +58,29 @@
               <!-- BEGIN STEP -->
               <h3>Plan</h3>
               <p>
-                We currently have several HTML pages: index, cart, a product
-                page for each product, and a mostly empty checkout page. What
-                modules should we create? Which pages (views) should be entirely
-                generated through Javascript and which would benefit from
-                loading an HTML template in?
+                As you completed the reading for this week there were two
+                articles about Single Page Applications (SPA). One outlining
+                what they are, and another indicating some of the drawbacks to
+                them. At this point we need to decide if a Single Page
+                Application is the right architecture for our application.
+                Discuss with your group your feelings. You may want to pull up
+                the two articles (<a
+                  href="https://blog.pshrmn.com/how-single-page-applications-work/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >How Single Page Applications work</a
+                >
+                and
+                <a
+                  href="https://gomakethings.com/the-problem-with-single-page-apps/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >The problem with single page apps</a
+                >
+                ) to refresh you memory about the advantages, disadvantages, and
+                alternatives.
               </p>
-              <ul>
+              <!-- <ul>
                 <li>
                   I would recommend having a one to one relationship with
                   views/pages and modules. Then any functionality that needs to
@@ -83,8 +99,86 @@
                   let's load in an html partial as a starting point, and then
                   modify as needed with Javascript.
                 </li>
-              </ul>
-
+              </ul> -->
+              <p>
+                Once you are done with your discussion, review the information
+                below with the instructor's recommendation and reasoning. Keep
+                in mind that there is no one right answer here. There's more
+                than one way to skin a cat...as the old adage goes. You may
+                disagree with the conclusion or reasoning and that is fine...but
+                because the future activities will make certain assumptions
+                about the structure of your app I would recommend that you still
+                follow the recommendation below.
+              </p>
+              <section class="hint">
+                <input type="checkbox" />
+                <h3>Instructor's recommendation</h3>
+                <i></i>
+                <div>
+                  <p>SPAs can be great in the right circumstances:</p>
+                  <ul>
+                    <li>
+                      Once the page has downloaded switching betwen views is
+                      usually very fast
+                    </li>
+                    <li>
+                      In complex applications where there is a lot of state to
+                      manage SPAs make it easier
+                    </li>
+                    <li>
+                      when you need a very native application type of a feel.
+                    </li>
+                  </ul>
+                  <p>But they do come with a few drawbacks:</p>
+                  <ul>
+                    <li>
+                      Initial load times are often higher...people are most
+                      sensitive to initial load times...first impressions...
+                    </li>
+                    <li>SPAs are more complex than multipage apps</li>
+                    <li>
+                      You lose some great native features of browsers like
+                      history
+                    </li>
+                    <li>SEO often becomes hard</li>
+                  </ul>
+                  <p>
+                    In the case of our application I'm not sure the additional
+                    complexities added by converting to a SPA are worth the
+                    extra work and complexity it will introduce:
+                  </p>
+                  <ul>
+                    <li>
+                      We don't have complex state that needs to persist from one
+                      page to another. The product listing page for example
+                      really doesn't care what happens on the product detail
+                      page.
+                    </li>
+                    <li>
+                      It would be really nice to not have to write our own
+                      routing and history functionality.
+                    </li>
+                    <li>
+                      This really isn't trying to duplicate a native app...so a
+                      bit of flash on a page load isn't going to feel too out of
+                      place.
+                    </li>
+                    <li>
+                      As a retail site initial loading speed needs to be as fast
+                      as possible...and SEO is really important to get new
+                      customers to the site.
+                    </li>
+                  </ul>
+                  <p>
+                    In our case a SPA would be overkill, but there are some
+                    advantages to dynamically generating parts of the site. I
+                    really like the hybrid approach introduced in the second
+                    article. We should implement something along those lines.
+                    The good news is that what we have done already kind of
+                    follows that model.
+                  </p>
+                </div>
+              </section>
               <!-- END STEP -->
             </li>
             <li>
